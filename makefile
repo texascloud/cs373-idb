@@ -16,8 +16,8 @@ GamesObservatory.log:
 # 	diff RunCollatz.tmp RunCollatz.out
 
 tests.tmp: tests.py
-	flask/bin/coverage3 run    --omit="./flask/*" --branch tests.py >  tests.tmp 2>&1
-	flask/bin/coverage3 report -m                      >> tests.tmp
+	coverage3 run    --include="./*" --branch tests.py >  tests.tmp 2>&1
+	coverage3 report -m                      >> tests.tmp
 	cat tests.tmp
 
 check:
