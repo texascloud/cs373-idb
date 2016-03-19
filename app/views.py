@@ -12,7 +12,13 @@ def hello():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    josh = {'name': 'Joshua Hurt',
+            'bio': 'I like Austin and CS!',
+            'responsibilities': 'Backend mostly.'
+           };
+    teammates = [ [josh, josh], [josh, josh], [josh] ]
+    # teammates = [ [josh, doug], [will, jerry], [james] ]
+    return render_template('about.html', teammates=teammates)
 
 @app.route('/companies')
 def companies():
