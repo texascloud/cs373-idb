@@ -26,7 +26,7 @@ class TestCase(TestCase):
     # test splash page
     # -------------------
     # Make sure connection to each page is successful
-    def test_splash_page1(self):
+    def test_page_connection(self):
         for endpoint in self.endpoints:
             with self.subTest():
                 req = self.app.get(str(endpoint))
