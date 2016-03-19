@@ -1,0 +1,22 @@
+language: python
+
+python:
+   - "3.4"
+
+sudo: false
+
+install:
+    - pip install --upgrade pip
+    - pip --version
+    - pip install -r requirements.txt
+
+before_script:
+    - uname -a
+    - printenv
+    - pip list
+    - coverage --version
+
+script:
+    - date
+    - make clean test
+    - cat tests.tmp
