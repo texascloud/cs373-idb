@@ -1,4 +1,15 @@
 {% extends "base.html" %}
+
+{% block title %}
+  Timelines
+{% endblock %}
+
+{% block description %}
+  An innovative view into the history of gaming. Ever wanted to see
+  all the best RPG games between 1984 and 1999 in chronological order?
+  You're welcome.
+{% endblock %}
+
 {% block content  %}
     <div id="timelines"></div>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/timelines.js')  }}"></script>

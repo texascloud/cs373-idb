@@ -42,21 +42,19 @@ var AboutList = React.createClass({
 					<AboutCard name="Doug Wiley" />
 				</div>
 			</div>
-
-			<div className="row">
-				<div className="col-md-6">
-					<AboutCard name="Will Ripley" />
-				</div>
-				<div className="col-md-6">
-					<AboutCard name="Jerry Pon" />
-				</div>
-			</div>
-
-			<div className="row">
-				<div className="col-md-6">
-					<AboutCard name="James Huang" />
-				</div>
-			</div>
+			//<div className="row">
+			//	<div className="col-md-6">
+			//		<AboutCard name="Will Ripley" />
+			//	</div>
+			//	<div className="col-md-6">
+			//		<AboutCard name="Jerry Pon" />
+			//	</div>
+			//</div>
+			//<div className="row">
+			//	<div className="col-md-6">
+			//		<AboutCard name="James Huang" />
+			//	</div>
+			//</div>
 			);
 	}
 });

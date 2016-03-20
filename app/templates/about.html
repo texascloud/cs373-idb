@@ -1,9 +1,19 @@
 {% extends "base.html" %}
+
+{% block title %}
+  About us
+{% endblock %}
+
+{% block description %}
+  Information and statistics about the team and tools we used to make this website.
+{% endblock %}
+
 {% block content  %}
-    <div class="container-fluid">
-      <div id="about-member-info"></div>
+  <div className="row">
+    <div className="col-md-6">
     </div>
-
-
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/about.js')  }}"></script>
+    <div className="col-md-6">
+    </div>
+  </div>
+{#    <script type="text/babel" src="{{ url_for('static', filename='jsx/about.js')  }}"></script>#}
 {% endblock %}
