@@ -2,7 +2,7 @@ var SplashPage = React.createClass({
     render: function() {
         return (
           <p>
-            Insert React components here!
+              Insert React components here!
           </p>
         );
     }
@@ -10,5 +10,5 @@ var SplashPage = React.createClass({
 
 ReactDOM.render(
     <SplashPage />,
-    document.getElementById('companies')
+    document.getElementById('timelines')
 );

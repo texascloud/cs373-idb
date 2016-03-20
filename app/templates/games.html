@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+
+{% block title %}
+  Games
+{% endblock %}
+
+{% block description %}
+  A lot of games, okay?
+{% endblock %}
+
 {% block content  %}
     <div id="games"></div>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/games.js')  }}"></script>

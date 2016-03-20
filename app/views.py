@@ -3,16 +3,18 @@ from flask import render_template
 
 # Two decorators below creates mapping from URLs / and /hello to this function
 @app.route('/')
-@app.route('/hello')
-def hello():
-    user = {'nickname': 'Josh'}
-    return render_template('splash.html',
-                            title='Splash',
-                            user=user)
+def splash():
+    return render_template('splash.html', home=True)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    josh = {'name': 'Joshua Hurt',
+            'bio': 'I like Austin and CS!',
+            'responsibilities': 'Backend mostly.'
+           };
+    teammates = [ [josh, josh], [josh, josh], [josh] ]
+    # teammates = [ [josh, doug], [will, jerry], [james] ]
+    return render_template('about.html', teammates=teammates)
 
 @app.route('/companies')
 def companies():

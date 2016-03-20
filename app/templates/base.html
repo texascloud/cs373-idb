@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/main.css" />
+
+    <!-- React requirements (browser.min.js is used to transform JSX to JS) -->
     <script src="https://fb.me/react-0.14.7.js"></script>
     <script src="https://fb.me/react-dom-0.14.7.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -12,8 +18,79 @@
     {% endif %}
   </head>
   <body>
-    <div>Splash: <a href="/">Home</a></div>
-    <hr>
-    {% block content %}{% endblock %}
+    <div id="page-wrapper">
+      <!-- Navbar -->
+      <header id="header" {% if home %}class="alt"{% endif %}>
+        <h1><a href="/">Games Observatory</a></h1>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('companies') }}">Companies</a></li>
+            <li><a href="{{ url_for('games') }}">Games</a></li>
+            <li><a href="{{ url_for('timelines') }}">Timelines</a></li>
+          </ul>
+          <a href="#" class="close">Close</a>
+        </div>
+      </nav>
+
+      {% if home %}
+        <!-- Home Page Banner -->
+        <section id="banner">
+          <div class="inner">
+            <!-- TODO: @james, make a sweet ass logo for our splash page -->
+            <!-- Use line below if you want the logo to be scaled down and inside a faint circle -->
+{#            <div class="logo"><img src="{{ url_for('static', filename='img/kirby.png') }}" class="icon img-responsive"></div>#}
+            <!-- Use line below if you want the logo to show up as its exact size and not in a circle -->
+            <div class="logo"><img src="{{ url_for('static', filename='img/kirby.png') }}" class="img-responsive"></div>
+            <h2>Binary Gamers</h2>
+            <p>Defending the world from misinformation one line of code at a time</p>
+          </div>
+        </section>
+      {% endif %}
+
+
+      <!-- All page content -->
+      <section id="wrapper">
+        <!-- Banner shows on home page, so don't need
+        header (will pad space and look bad) -->
+        {% if not home %}
+          <header>
+            <div class="inner">
+              <h2>{% block title %}{% endblock %}</h2>
+              <p>{% block description %}{% endblock %}</p>
+            </div>
+          </header>
+        {% endif %}
+        <div class="wrapper">
+          <div class="inner">
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+      </section>
+
+      <section id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>&copy; Binary Gamers Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Scripts -->
+      <script src="/static/js/jquery.min.js"></script>
+      <script src="/static/js/jquery.scrollex.min.js"></script>
+      <script src="/static/js/skel.min.js"></script>
+      <script src="/static/js/util.js"></script>
+      <!--[if lte IE 8]><script src="/static//js/ie/respond.min.js"></script><![endif]-->
+      <script src="/static/js/main.js"></script>
+    </div>
   </body>
 </html>
