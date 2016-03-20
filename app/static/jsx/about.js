@@ -1,32 +1,35 @@
 var AboutCard = React.createClass({
     render: function() {
-		var placeholder_bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius at sem sit amet volutpat. ";
         return (
-		  <div className="card">
-		    <div className="card-header text-xs-center">
-		    <h3>{this.props.name}</h3>
-		    </div>
-		    <div className="row">
-		      <div className="col-sm-4">
-		      	<h2>img placeholder</h2>
-		      </div>
-		      <div className="col-sm-8">
-		        <div className="card-block">
-		          <p className="card-text">{this.props.bio ? this.props.bio : placeholder_bio}</p>
-		        </div>
-		      </div>
-		    </div>
-		    <ul className="list-group list-group-flush">
-		      <li className="list-group-item"><b>Major Responsibilities:</b> {this.props.responsibilities}</li>
-		      <li className="list-group-item"><b># Commits:</b> {this.props.commits}</li>
-		      <li className="list-group-item"><b># Issues:</b> {this.props.issues}</li>
-		      <li className="list-group-item"><b># Unit Tests:</b> {this.props.tests}</li>
-		    </ul>
-		    <div className="card-block">
-		      <a href="#" className="card-link">Card link</a>
-		      <a href="#" className="card-link">Placeholder link</a>
-		    </div>
-		  </div>   
+			<div className="card">
+				<div className="member-name text-xs-center">
+					<h1>{this.props.name}</h1>
+				</div>
+				<div className="row">
+					<div className="col-sm-6">
+						<img className="card-img-top img-responsive" src="/static/img/kirby.png" alt="Card image cap" />
+					</div>
+					<div className="col-sm-6">
+                        <p className="member-bio">{this.props.bio}</p>
+					</div>
+				</div>
+				<ul className="list-group list-group-flush">
+					<li className="list-group-item"><b>Major Responsibilities:</b> {this.props.duties}</li>
+					<li className="list-group-item"><b># Commits:</b> {this.props.commits}</li>
+					<li className="list-group-item"><b># Issues:</b> {this.props.issues}</li>
+					<li className="list-group-item"><b># Unit Tests:</b> {this.props.tests}</li>
+				</ul>
+				<div className="card-block">
+					<div className="row">
+						<div className="col-sm-6">
+                            <a href="#" className="member-link">Github</a>
+                        </div>
+						<div className="col-sm-6">
+							<a href="#" className="member-link">Placeholder</a>
+						</div>
+                    </div>
+				</div>
+			</div>
   		);
     }
 });
@@ -34,33 +37,56 @@ var AboutCard = React.createClass({
 var AboutList = React.createClass({
 	render:function() {
 		return (
-			<div className="row">
-				<div className="col-md-6">
-					<AboutCard name="Joshua Hurt" />
+			<div className="aboutList">
+				<div className="row">
+                    <AboutCard
+                        name="James Huang"
+                        bio="Write short bio here"
+                        duties="List responsibilities here"
+                        commits="0"
+                        issues="0"
+                        tests="0"/>
+                    <AboutCard
+                            name="Will Ripley"
+                            bio="Write short bio here"
+                            duties="List responsibilities here"
+                            commits="0"
+                            issues="0"
+                            tests="0"/>
+                </div>
+				<div className="row">
+                    <AboutCard
+                            name="Doug Wiley"
+                            bio="Write short bio here"
+                            duties="List responsibilities here"
+                            commits="0"
+                            issues="0"
+                            tests="0"/>
+                    <AboutCard
+                            name="Jerry Pon"
+                            bio="Write short bio here"
+                            duties="List responsibilities here"
+                            commits="0"
+                            issues="0"
+                            tests="0"/>
 				</div>
-				<div className="col-md-6">
-					<AboutCard name="Doug Wiley" />
+				<div className="row">
+					<div className="col-md-12">
+						<AboutCard
+								name="Joshua Hurt"
+								bio="Write short bio here"
+								duties="List responsibilities here"
+								commits="0"
+								issues="0"
+								tests="0"/>
+						</div>
 				</div>
-			</div>
-			//<div className="row">
-			//	<div className="col-md-6">
-			//		<AboutCard name="Will Ripley" />
-			//	</div>
-			//	<div className="col-md-6">
-			//		<AboutCard name="Jerry Pon" />
-			//	</div>
-			//</div>
-			//<div className="row">
-			//	<div className="col-md-6">
-			//		<AboutCard name="James Huang" />
-			//	</div>
-			//</div>
-			);
+            </div>
+		);
 	}
 });
 
-ReactDOM.render(
-    <AboutList />,
-    document.getElementById('about-member-info')
+React.render(
+	<AboutList />,
+	document.getElementById('about-team-cards')
 );
-

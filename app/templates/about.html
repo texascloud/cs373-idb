@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-  About us
+  About the team
 {% endblock %}
 
 {% block description %}
@@ -9,11 +9,8 @@
 {% endblock %}
 
 {% block content  %}
-  <div className="row">
-    <div className="col-md-6">
-    </div>
-    <div className="col-md-6">
-    </div>
+  <div id="about-team-cards">
+    <!-- Will be populated by React Component content -->
   </div>
-{#    <script type="text/babel" src="{{ url_for('static', filename='jsx/about.js')  }}"></script>#}
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/about.js')  }}"></script>
 {% endblock %}
