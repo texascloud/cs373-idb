@@ -136,12 +136,12 @@ var AboutList = React.createClass({
 	}
 });
 
-React.render(
+ReactDOM.render(
 	<AboutList />,
 	document.getElementById('about-team-cards')
 );
 
-React.render(
+ReactDOM.render(
 		<GithubCard name="Total Coding Stats"
 					commits="103789"
 					issues="50"
