@@ -10,37 +10,38 @@ var GithubStats = React.createClass({
 	}
 });
 
+
 var GithubCard = React.createClass({
-	render: function() {
-		return (
-				<div className="card">
-					<div className="member-name text-xs-center">
-						<h1>{this.props.name}</h1>
-					</div>
-					<ul className="list-group list-group-flush">
-						<GithubStats commits={this.props.commits}
-									 issues={this.props.issues}
-									 tests={this.props.tests}/>
-					</ul>
-					<div className="card-block">
-						<div className="row">
-							<div className="col-sm-3">
-								<a href="{this.props.apiary}" className="member-link">Apiary API</a>
-							</div>
-							<div className="col-sm-3">
-								<a href="{this.props.gh-issues}" className="member-link">Github Issue Tracker</a>
-							</div>
-							<div className="col-sm-3">
-								<a href="{this.props.gh-repo}" className="member-link">Github Repo</a>
-							</div>
-							<div className="col-sm-3">
-								<a href="{this.props.gh-wiki}" className="member-link">Github Wiki</a>
-							</div>
-						</div>
-					</div>
-				</div>
-		);
-	}
+    render: function() {
+        return (
+                <div className="card">
+                    <div className="member-name text-xs-center">
+                        <h1>{this.props.name}</h1>
+                    </div>
+                    <ul className="list-group list-group-flush">
+                        <GithubStats commits={this.props.commits}
+                                     issues={this.props.issues}
+                                     tests={this.props.tests}/>
+                    </ul>
+                    <div className="card-block">
+                        <div className="row">
+                            <div className="col-sm-3">
+                                <a href="https://jsapi.apiary.io/previews/gamesobservatory/reference" className="member-link">Apiary API</a>
+                            </div>
+                            <div className="col-sm-3">
+                                <a href="https://github.com/CamelBackNotation/cs373-idb/issues" className="member-link">Github Issue Tracker</a>
+                            </div>
+                            <div className="col-sm-3">
+                                <a href="https://github.com/CamelBackNotation/cs373-idb" className="member-link">Github Repo</a>
+                            </div>
+                            <div className="col-sm-3">
+                                <a href="https://github.com/CamelBackNotation/cs373-idb/wiki" className="member-link">Github Wiki</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        );
+    }
 });
 
 var AboutCard = React.createClass({
