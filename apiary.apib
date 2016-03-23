@@ -1,0 +1,72 @@
+FORMAT: 1A
+HOST: http://gamesobservatory.apiblueprint.org/
+
+# GamesObservatory
+
+The Games Observatory API uses a RESTful interface to retrieve data about video
+games, including game information, company information, and a timeline.
+
+## All Games [/games]
+### Get All Games [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                
+            }
+        ]
+
+## Single Game [/games/{id}]
+### Get A Specific Game [GET]
++ Parameters
+    + id (required, int) ... ID of the game 
+    
++ Response 200 (application/json)
+
+        [
+            {
+            
+            }
+        ]
+        
+## All Companies [/company]
+
+### Get All Companies [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                
+            }
+        ]
+
+## Single Company [/company/{id}]
+### Get A Specific Company [GET]
++ Parameters
+    + id (required, int) ... ID of the game 
+    
++ Response 200 (application/json)
+
+        [
+            {
+            
+            }
+        ]
+
+    
+## Specified Timeline [/timeline/{startYear}-{endYear}]
+### Get Games From A Specific Time Period [GET]
+
++ Parameters
+    + startYear (required, int) ... Starting year (inclusive)
+    + endYear (required, int) ... Ending year (exclusive)
+
++ Response 200 (application/json)
+
+        [
+            {
+                
+            }
+        ]
