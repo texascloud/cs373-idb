@@ -17,9 +17,14 @@ class TestCase(TestCase):
         self.app = app.test_client()
         # Dynamically gather all defined endpoints. No need to update ever! :D
         self.endpoints = []
-        for rule in app.url_map.iter_rules():
-            if rule.endpoint != 'static':
-                self.endpoints.append(rule.rule)
+        self.endpoints.append('/')
+        self.endpoints.append('/about')
+        self.endpoints.append('/games')
+        self.endpoints.append('/games/1')
+        self.endpoints.append('/companies')
+        self.endpoints.append('/companies/1234')
+        self.endpoints.append('/years')
+        self.endpoints.append('/years/1995')
 
 
     # -------------------

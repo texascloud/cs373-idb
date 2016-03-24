@@ -8,12 +8,6 @@ var data = [
 
 
 ReactDOM.render(
-        <Table id="companies-table" data={data}
-               sortable={true}
-               defaultSort={{column: 'Name', direction: 'desc'}}
-               filterable={['Name','Avg Rating']}
-               filterPlaceholder='Filter by Name or Avg Rating...'
-               itemsPerPage={6} pageButtonLimit={10}
-               defaultSortDescending/>,
+        <h1>Nah</h1>,
         document.getElementById('table')
 );

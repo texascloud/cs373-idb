@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ year_id }}
+{% endblock %}
+
+{% block description %}
+    Nah
+{% endblock %}
+
+{% block content  %}
+    <div id="timelines"></div>
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/year.js')  }}"></script>
+{% endblock %}

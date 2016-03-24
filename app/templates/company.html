@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ company_id }}
+{% endblock %}
+
+{% block description %}
+  Companies can either be Publishers, Developers, or both!
+{% endblock %}
+
+{% block content  %}
+  <div id="table">
+    <!-- Will be populated by React Component content -->
+  </div>
+  <script type="text/babel" src="{{ url_for('static', filename='jsx/company.js')  }}"></script>
+{% endblock %}
