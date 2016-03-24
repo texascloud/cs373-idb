@@ -6,7 +6,7 @@ Flask is a microframework for Python and is required to run this app. Install it
 
     pip3 install Flask
 
-The database is implemented using SQLAlchemy. Install it with:
+The database is implemented using SQLAlchemy. To add support for it, install the extension for Flask with:
 
     pip3 install Flask-SQLAlchemy
 
