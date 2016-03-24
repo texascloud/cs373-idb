@@ -61,7 +61,7 @@ class TestCase(TestCase):
         g = Game("Fallout 3", ["RPG", "Shooter"], ["PS3", "Xbox 360", "PC"], rating = 87, year = 2008)
         db.session.add(g)
         db.session.commit()
-        assertTrue(user in db.session) # https://pythonhosted.org/Flask-Testing/
+        assertTrue(g in db.session) # https://pythonhosted.org/Flask-Testing/
         db.session.remove()
 
     def test_games_3(self):
