@@ -5,16 +5,16 @@ var Td = Reactable.Td;
 
 //How to use: https://github.com/glittershark/reactable
 var data = [
-    {Title: <a href="/games/1">Crash Bandicoot</a>, Genre: 'Platform', Console: 'PS1', Developer:'Naughty Dog', Rating:'5.0', 'Release':<a href="/years/1996">1996</a>},
-    {Title: <a href="/games/2">Jak and Daxter</a>, Genre: 'Platform', Console: 'PS2', Developer:'Naughty Dog', Rating:'4.2', 'Release':<a href="/years/2001">2001</a>},
-    {Title: <a href="/games/3">The Last of Us</a>, Genre: 'Action-Adventure, Survival-Horror', Console: 'PS3', Developer:'Naughty Dog', Rating:'4.9', 'Release':<a href="/years/2003">2003</a>}
+    {Year: <a href="/years/1">1996</a>, 'Number of Games': '1','Most Popular Genre': 'Platform', 'Average Rating':'5.0', 'Number of Companies Founded': '1'},
+    {Year: <a href="/years/2">2001</a>, 'Number of Games': '1', 'Most Popular Genre': 'Platform', 'Average Rating':'4.2', 'Number of Companies Founded' : '1'},
+    {Year: <a href="/years/3">2003</a>, 'Number of Games': '1', 'Most Popular Genre': 'Action-Adventure', 'Average Rating':'4.9', 'Number of Companies Founded' : '0'}
 ];
 ReactDOM.render(
-    <Table id="games-table" data={data}
+    <Table id="years-table" data={data}
            sortable={true}
-           defaultSort={{column: 'Title', direction: 'desc'}}
-           filterable={['Title','Genre','Console','Rating']}
-           filterPlaceholder='Filter by Title, Genre, Console, or Rating'
+           defaultSort={{column: 'Years', direction: 'desc'}}
+           filterable={['Year','Number of Games','Most Popular Genre','Average Rating', 'Number of Companies Founded']}
+           filterPlaceholder='Filter by Years, Number of Games, Most Popular Genre, Average Rating, or Number of Companies Founded'
            itemsPerPage={6} pageButtonLimit={10}
            defaultSortDescending />,
     document.getElementById('table')

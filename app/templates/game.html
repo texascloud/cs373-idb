@@ -10,4 +10,10 @@
 
 {% block content  %}
   <script type="text/babel" src="{{ url_for('static', filename='jsx/game.js')  }}"></script>
+  Game Name: Crash Bandicoot
+  <div> Genre: {{ game_title }} </div>
+  <div> Console: PS2</div>
+  <div> Developer: <a href="../companies/1"> Naughty Dog </a> </div>
+  <div> Rating: 4.0 </div>
+  <div> Year: <a href="../years/1"> 1996 </a> </div>
 {% endblock %}

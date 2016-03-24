@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block description %}
-    Nah
+    What year is it?!
 {% endblock %}
 
 {% block content  %}
-    <div id="timelines"></div>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/year.js')  }}"></script>
+    <div> Year: 1996 </div>
+    <div> Games: <a href="../games/1"> Crash Bandicoot </a> </div>
+    <div> Most Popular Genre: Platform </div>
+    <div> Average Rating: 4.0 </div>
+    <div> Companies Founded: <a href="../companies/1"> Naughty Dog</a> </div>
 {% endblock %}
