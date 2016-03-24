@@ -10,5 +10,16 @@ The database is implemented using SQLAlchemy. To add support for it, install the
 
     pip3 install Flask-SQLAlchemy
 
+To run the app locally, follow these steps:
+
+1. Clone the repo
+
+2. cd into the cloned repo
+
+3. Open terminal and type in ```python3 run.py```
+
+4. Open your preferred web browser (Chrome and Safari recommended) and go to http://localhost:5000
+
 Estimated time: xx hrs
+
 Actual time: xx hrs
