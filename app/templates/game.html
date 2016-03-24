@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Game.
+{% endblock %}
+
+{% block description %}
+  A lot of games, okay? It might have this ID: {{ game_id }}
+{% endblock %}
+
+{% block content  %}
+  <script type="text/babel" src="{{ url_for('static', filename='jsx/game.js')  }}"></script>
+{% endblock %}

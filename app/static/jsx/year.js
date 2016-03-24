@@ -10,5 +10,5 @@ var SplashPage = React.createClass({
 
 ReactDOM.render(
     <SplashPage />,
-    document.getElementById('timelines')
+    document.getElementById('year')
 );
