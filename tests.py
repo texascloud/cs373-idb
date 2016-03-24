@@ -3,8 +3,7 @@ import os
 from unittest import main, TestCase
 
 
-# from config import basedir
-from app import app
+from app import app, db
 from flask import url_for
 # Maybe not the below one just yet
 # from app.models import User
@@ -18,7 +17,6 @@ class TestCase(TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         self.app = app.test_client()
-        # Dynamically gather all defined endpoints. No need to update ever! :D
         self.endpoints = []
         self.endpoints.append('/')
         self.endpoints.append('/about')
@@ -50,28 +48,28 @@ class TestCase(TestCase):
     # TESTS FOR MODELS
         # Game name=None, genre=None, console=None, rating=None, year=None
     def test_games_1(self):
-        g = Game("Fallout 3", ["RPG", "Shooter"], ["PS3", "Xbox 360", "PC"], rating = 87, year = 2008)
+        g = Game("Fallout 3", "RPG, Shooter", "PS3, Xbox 360, PC", rating = 87, year = 2008)
         db.session.add(g)
         db.session.commit()
         q = Game.query.all()
-        assertEqual(len(q), 1)
+        self.assertEqual(len(q), 1)
         db.session.remove()
 
     def test_games_2(self):
-        g = Game("Fallout 3", ["RPG", "Shooter"], ["PS3", "Xbox 360", "PC"], rating = 87, year = 2008)
+        g = Game("Fallout 3", "RPG, Shooter", "PS3, Xbox 360, PC", rating = 87, year = 2008)
         db.session.add(g)
         db.session.commit()
-        assertTrue(g in db.session) # https://pythonhosted.org/Flask-Testing/
+        self.assertTrue(g in db.session) # https://pythonhosted.org/Flask-Testing/
         db.session.remove()
 
     def test_games_3(self):
-        g = Game("Fallout 3", ["RPG", "Shooter"], ["PS3", "Xbox 360", "PC"], rating = 87, year = 2008)
-        g2 = Game("TES IV: Oblivion", ["RPG"], ["PS3", "Xbox 360", "PC"], rating = 100, year = 2004)
+        g = Game("Fallout 3", "RPG, Shooter", "PS3, Xbox 360, PC", rating = 87, year = 2008)
+        g2 = Game("TES IV: Oblivion", "RPG", "PS3, Xbox 360, PC", rating = 100, year = 2004)
         db.session.add(g)
         db.session.add(g2)
         db.session.commit()
         q = Game.query.all()
-        assertEqual(len(q), 2)
+        self.assertEqual(len(q), 2)
         db.session.remove()
 
         # Company  name=None, num_developed=None, num_published=None, avg_rating=None, year_founded=None
@@ -79,7 +77,7 @@ class TestCase(TestCase):
         c = Company("Bethesda Softworks", 11, 66, 8.9, 1986)
         db.session.add(c)
         db.session.commit()
-        assertTrue(c in db.session)
+        self.assertTrue(c in db.session)
         db.session.remove()
 
     def test_company_2(self):
@@ -91,13 +89,15 @@ class TestCase(TestCase):
         db.session.add(c3)
         db.session.commit()
         q = Company.query.all()
-        assertEqual(len(q), 3)
+        self.assertEqual(len(q), 3)
         db.session.remove()
 
     def test_company_3(self):
         c = Company("Bethesda Softworks", 11, 66, 8.9, 1986)
+        c2 = Company("Bethesda Softworks", 11, 66, 8.9, 1986)
         db.session.add(c)
-        assertFalse(c in db.session)
+        self.assertTrue(c in db.session)
+        self.assertFalse(c2 in db.session)
         db.session.remove()
 
         #Years year_id = None, num_games = None, most_popular_genre = None, avg_rating = None, num_companies_founded = None
@@ -106,7 +106,7 @@ class TestCase(TestCase):
         db.session.add(y)
         db.session.commit()
         q = Year.query.all()
-        assertEqual(y, q[0])
+        self.assertEqual(y, q[0])
         db.session.remove()
 
     def test_year_2(self):
@@ -115,9 +115,10 @@ class TestCase(TestCase):
         db.session.add(y)
         db.session.add(y2)
         db.session.commit()
-        assertTrue(y2 in db.session)
+        self.assertTrue(y2 in db.session)
         db.session.remove()
 
+    # q is a list sorted in asc order by primary key (year_id in this case)
     def test_year_3(self):
         y = Year(2007, 5000, "FPS", 9.6, 1000)
         y2 = Year(2008, 2000, "FPS", 9.5, 500)
@@ -126,7 +127,7 @@ class TestCase(TestCase):
         db.session.add(y2)
         db.session.add(y3)
         q = Year.query.all()
-        assertEqual(q[2], y3.year_id)
+        self.assertEqual(q[0].year_id, y3.year_id)
         db.session.remove()
 
 if __name__ == '__main__':

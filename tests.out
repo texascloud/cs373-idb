@@ -1,12 +1,15 @@
-.
+/usr/lib/python3.4/site-packages/flask_sqlalchemy/__init__.py:800: UserWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.
+  warnings.warn('SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.')
+..........
 ----------------------------------------------------------------------
-Ran 1 test in 0.055s
+Ran 10 tests in 1.211s
 
 OK
 Name                           Stmts   Miss Branch BrPart  Cover   Missing
 --------------------------------------------------------------------------
-app/__init__.py                    3      0      0      0   100%   
-app/views.py                      14      0      0      0   100%   
-tests.py                          19      0      8      1    96%   35->-2
+app/__init__.py                    5      0      0      0   100%   
+app/views.py                      20      0      0      0   100%   
+models.py                         54      3      0      0    94%   28, 50, 69
+tests.py                         100      0      4      1    99%   133->-2
 --------------------------------------------------------------------------
-TOTAL                             36      0      8      1    98%  
+TOTAL                            179      3      4      1    98%   
