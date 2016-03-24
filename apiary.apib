@@ -1,0 +1,119 @@
+FORMAT: 1A
+HOST: http://findgamesfor.me
+
+# GamesObservatory
+
+The Games Observatory API uses a RESTful interface to retrieve data about video
+games, including game information, company information, and a timeline.
+
+## All Games [/games]
+### Get All Games [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "title": "Fallout 3",
+                "genre": ["Shooter", "Role-Playing (RPG)"],
+                "developers": ["Bethesda Game Studios"],
+                "publishers": ["Zenimax Media", "Bethesda Softworks"],
+                "consoles": ["Microsoft Windows", "Playstation 3", "Xbox 360"],
+                "year": 2008,
+                "rating": 87,
+                "id": 1
+            },
+            
+            {
+                "title": "The Last of Us",
+                "genre": ["Adventure"],
+                "developers": ["Naughty Dog"],
+                "publishers": ["Sony Computer Entertainment"],
+                "consoles": ["Playstation 3"],
+                "year": 2013,
+                "rating": 93,
+                "id": 2
+            }
+        ]
+
+## Single Game [/games/{id}]
+### Get A Specific Game [GET]
++ Parameters
+    + id (required, int) ... ID of the game 
+    
++ Response 200 (application/json)
+
+        [
+            {
+                "title": "Fallout 3",
+                "genre": ["Shooter", "Role-Playing (RPG)"],
+                "developers": ["Bethesda Game Studios"],
+                "publishers": ["Zenimax Media", "Bethesda Softworks"],
+                "consoles": ["Microsoft Windows", "Playstation 3", "Xbox 360"],
+                "year": 2008,
+                "rating": 87,
+                "id": 1
+            }
+        ]
+        
+## All Companies [/company]
+
+### Get All Companies [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "Blizzard Entertainment",
+                "type": "Both",
+                "founded": 1994,
+                "avg_rating": 86,
+                "num_developed": 27,
+                "num_published": 25,
+                "id": 1
+            },
+            
+            {
+                "name": "Bethesda Softworks",
+                "type": "Both",
+                "founded": 1986,
+                "avg_rating": 79,
+                "num_developed": 10,
+                "num_published": 66,
+                "id": 2
+            }
+        ]
+
+## Single Company [/company/{id}]
+### Get A Specific Company [GET]
++ Parameters
+    + id (required, int) ... ID of the game 
+    
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "Blizzard Entertainment",
+                "type": "Both",
+                "founded": 1994,
+                "avg_rating": 86,
+                "num_developed": 27,
+                "num_published": 25,
+                "id": 1I
+            }
+        ]
+
+    
+## Specified Timeline [/timeline/{startYear}-{endYear}]
+### Get Games From A Specific Time Period [GET]
+
++ Parameters
+    + startYear (required, int) ... Starting year (inclusive)
+    + endYear (required, int) ... Ending year (exclusive)
+
++ Response 200 (application/json)
+        
+        [
+            {
+                "year": 2013
+            }
+        ]
