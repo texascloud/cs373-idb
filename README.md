@@ -10,6 +10,7 @@ The database is implemented using SQLAlchemy. To add support for it, install the
 
     pip3 install Flask-SQLAlchemy
 
+###View the Pages###
 To run the app locally, follow these steps:
 
 1. Clone the repo
