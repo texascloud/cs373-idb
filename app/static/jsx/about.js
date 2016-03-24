@@ -47,35 +47,33 @@ var GithubCard = React.createClass({
 var AboutCard = React.createClass({
     render: function() {
         return (
-			<div className="card">
-				<div className="member-name text-xs-center">
-					<h1>{this.props.name}</h1>
-				</div>
-				<div className="row">
-					<div className="col-sm-6">
-						<img className="img-responsive" src={this.props.avatar ? this.props.avatar : "/static/img/kirby.png"}/>
-					</div>
-					<div className="col-sm-6">
-                        <p className="member-bio">{this.props.bio}</p>
-					</div>
-				</div>
-				<ul className="list-group list-group-flush">
-					<li className="list-group-item"><b>Major Responsibilities:</b> {this.props.duties}</li>
-					<GithubStats commits={this.props.commits}
-								 issues={this.props.issues}
-								 tests={this.props.tests}/>
-				</ul>
-				<div className="card-block">
-					<div className="row">
-						<div className="col-sm-6">
-                            <a href="#" className="member-link">Github</a>
-                        </div>
-						<div className="col-sm-6">
-							<a href="#" className="member-link">Placeholder</a>
-						</div>
-                    </div>
-				</div>
-			</div>
+					<div className="card">
+		    <div className="member-name text-xs-center">
+		        <h1>{this.props.name}</h1>
+		    </div>
+		    <div className="row">
+		        <div className="col-sm-6">
+		            <img className="img-responsive img-circle" src={this.props.avatar ? this.props.avatar : "/static/img/kirby.png"}/>
+		        </div>
+		        <div className="col-sm-6">
+		            <p className="member-bio">{this.props.bio}</p>
+		        </div>
+		    </div>
+		    <ul className="list-group list-group-flush">
+		        <li className="list-group-item"><b>Major Responsibilities:</b> {this.props.duties}</li>
+		        <GithubStats commits={this.props.commits} issues={this.props.issues} tests={this.props.tests}/>
+		    </ul>
+		    <div className="card-block">
+		        <div className="row">
+		            <div className="col-sm-6">
+		                <a href="#" className="member-link">Github</a>
+		            </div>
+		            <div className="col-sm-6">
+		                <a href="#" className="member-link">Placeholder</a>
+		            </div>
+		        </div>
+		    </div>
+		</div>
   		);
     }
 });
