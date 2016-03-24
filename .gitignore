@@ -3,4 +3,4 @@ app/__pycache__
 tests.tmp
 .idea
 .DS_Store
-
+venv/

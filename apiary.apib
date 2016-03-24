@@ -104,7 +104,7 @@ games, including game information, company information, and a timeline.
 
     
 ## Specified Timeline [/timeline/{startYear}-{endYear}]
-### Get Games From A Specific Time Period [GET]
+### Get Game statistics From A Specific Time Period [GET]
 
 + Parameters
     + startYear (required, int) ... Starting year (inclusive)
@@ -114,6 +114,18 @@ games, including game information, company information, and a timeline.
         
         [
             {
-                "year": 2013
+                "year": 2013,
+                "num_games": 2000,
+                "most_popular_genre": "FPS",
+                "avg_rating": 8.6,
+                "num_companies_founded": 5000
+            },
+            
+            {
+                "year": 2014,
+                "num_games": 1900,
+                "most_popular_genre": "RPG",
+                "avg_rating": 9.0,
+                "num_companies_founded": 3000
             }
         ]
