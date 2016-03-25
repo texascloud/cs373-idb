@@ -2,14 +2,14 @@
   warnings.warn('SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.')
 ..........
 ----------------------------------------------------------------------
-Ran 10 tests in 1.211s
+Ran 10 tests in 1.276s
 
 OK
 Name                           Stmts   Miss Branch BrPart  Cover   Missing
 --------------------------------------------------------------------------
-app/__init__.py                    5      0      0      0   100%   
+app/__init__.py                    6      0      0      0   100%   
 app/views.py                      20      0      0      0   100%   
-models.py                         54      3      0      0    94%   28, 50, 69
+models.py                         54      3      0      0    94%   53, 93, 129
 tests.py                         100      0      4      1    99%   133->-2
 --------------------------------------------------------------------------
-TOTAL                            179      3      4      1    98%   
+TOTAL                            180      3      4      1    98%   
