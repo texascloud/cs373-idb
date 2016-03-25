@@ -2,12 +2,16 @@ from flask import Flask
 from app import db
 from flask_sqlalchemy import SQLAlchemy
 
-association_table_game_company = db.Table('association_game_company',
-                                          db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
-                                          db.Column('company_id', db.Integer, db.ForeignKey('companies.company_id'))
-                                          )
+association_table_game_company = db.Table(
+        'association_game_company',
+        db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
+        db.Column('company_id', db.Integer, db.ForeignKey('companies.company_id')))
 
 class Game(db.Model):
+    """
+     This model is used to represent Game entries in our databse. The primary key
+     is
+    """
     __tablename__ = 'games'
     game_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
@@ -29,6 +33,9 @@ class Game(db.Model):
 
 
 class Company(db.Model):
+    """
+
+    """
     __tablename__ = 'companies'
     company_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)
@@ -50,6 +57,9 @@ class Company(db.Model):
         return '<Company: %r>' % (self.name)
 
 class Year(db.Model):
+    """
+
+    """
     __tablename__ = 'years'
     year_id = db.Column(db.Integer, primary_key=True)
     num_games = db.Column(db.Integer)
