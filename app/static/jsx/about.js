@@ -90,46 +90,46 @@ var AboutList = React.createClass({
 						avatar="/static/img/james.png"
                         bio="I am James, yes. I like Geico gaming."
                         duties="Docker, Frontend"
-                        commits="1"
-                        issues="2"
+                        commits="5"
+                        issues="4"
                         tests="3"/>
                     <AboutCard
-                        name="Will Ripley"
-                        avatar="/static/img/will.png"
-                        bio="I am a CS and MIS double major at UT Austin."
-                        duties="Frontend, Database, REST API documentation, Technical Report"
-                        commits="4"
-                        issues="5"
-                        tests="6"/>
+                            name="Will Ripley"
+							avatar="/static/img/will.jpg"
+                            bio="I am a CS and MIS double major at UT Austin."
+                            duties="Frontend, Database, REST API documentation, Technical Report"
+                            commits="11"
+                            issues="2"
+                            tests="12"/>
                 </div>
 				<div className="row">
                     <AboutCard
-                        name="Doug Wiley"
-                        avatar="/static/img/doug.png"
-                        bio="Doug likes hot wheels. And he likes lobster a lot. "
-                        duties="NoOps Advocate"
-                        commits="6"
-                        issues="5"
-                        tests="4"/>
+                            name="Doug Wiley"
+							avatar="/static/img/placeholder.jpg"
+                            bio="Write short bio here"
+                            duties="List responsibilities here"
+                            commits="1"
+                            issues="5"
+                            tests="4"/>
                     <AboutCard
-                        name="Jerry Pon"
-                        avatar="/static/img/jerry.png"
-                        bio="Jerry loves Halo. He's a spartan."
-                        duties="hype man"
-                        commits="3"
-                        issues="2"
-                        tests="1"/>
+                            name="Jerry Pon"
+							avatar=""
+                            bio="Write short bio here"
+                            duties="List responsibilities here"
+                            commits="9"
+                            issues="2"
+                            tests="1"/>
 				</div>
 				<div className="row">
 					<div className="col-md-12">
 						<AboutCard
-                            name="Joshua Hurt"
-                            avatar="/static/img/josh.png"
-                            bio="Josh is a top 10% Brawhalla player. Once upon a time his computer got rained on; he dried it out."
-                            duties="everything dev guy"
-                            commits="nah"
-                            issues="nah"
-                            tests="nah"/>
+								name="Joshua Hurt"
+								avatar=""
+								bio="Write short bio here"
+								duties="List responsibilities here"
+								commits="18"
+								issues="7"
+								tests="4"/>
 						</div>
 				</div>
             </div>
