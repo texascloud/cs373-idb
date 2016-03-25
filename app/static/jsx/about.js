@@ -88,7 +88,7 @@ var AboutList = React.createClass({
                     <AboutCard
                         name="James Huang"
 						avatar="/static/img/james.png"
-                        bio="I am James, yes. I like Geico Gaming."
+                        bio="I am James, yes. I like Geico gaming."
                         duties="Docker, Frontend"
                         commits="1"
                         issues="2"

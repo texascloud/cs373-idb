@@ -1,9 +1,6 @@
 var SplashPage = React.createClass({
     render: function() {
         return (
-          <p>
-              Insert React components here!
-          </p>
         );
     }
 });
