@@ -5,14 +5,13 @@
 {% endblock %}
 
 {% block description %}
-    What year is it?!
+    <div class="year-id" id="year-id">Year ID: {{ year_id }}</div>
 {% endblock %}
 
 {% block content  %}
+    <div id="year-information">
+        <!-- React component populates information here -->
+    </div>
+
     <script type="text/babel" src="{{ url_for('static', filename='jsx/year.js')  }}"></script>
-    <div> Year: 1996 </div>
-    <div> Games: <a href="../games/1"> Crash Bandicoot </a> </div>
-    <div> Most Popular Genre: Platform </div>
-    <div> Average Rating: 4.0 </div>
-    <div> Companies Founded: <a href="../companies/1"> Naughty Dog</a> </div>
 {% endblock %}
