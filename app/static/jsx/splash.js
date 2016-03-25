@@ -1,7 +1,6 @@
 var SplashPage = React.createClass({
     render: function() {
-        return (
-        );
+        return;
     }
 });
 

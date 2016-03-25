@@ -1,15 +1,15 @@
 FILES :=                              \
-    GamesObservatory.html             \
-    GamesObservatory.log              \
+    models.html             \
+    IDB1.log              \
     run.py                            \
     tests.out                         \
     tests.py
 
-GamesObservatory.html: Collatz.py
-	pydoc3 -w GamesObservatory
+models.html: models.py
+	pydoc3 -w models.py
 
-GamesObservatory.log:
-	git log > GamesObservatory.log
+IDB1.log:
+	git log > IDB1.log
 
 # RunCollatz.tmp: RunCollatz.in RunCollatz.out RunCollatz.py
 # 	./RunCollatz.py < RunCollatz.in > RunCollatz.tmp
