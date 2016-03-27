@@ -5,3 +5,4 @@ tests.tmp
 .idea
 .DS_Store
 venv/
+node_modules

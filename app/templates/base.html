@@ -1,101 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/main.css" />
-    <link rel="stylesheet" href="/static/css/style.css" /> <!-- James stylesheet for css -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/main.css" />
+  <link rel="stylesheet" href="/static/css/style.css" /> <!-- James stylesheet for css -->
 
-    <!-- React requirements (browser.min.js is used to transform JSX to JS) -->
-    <script src="https://fb.me/react-0.14.7.js"></script>
-    <script src="https://fb.me/react-dom-0.14.7.js"></script>
-    <script src="/static/js/reactable.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    {% if title %}
-    <title>{{ title }} - Games Observatory</title>
-    {% else %}
-    <title>Welcome to Games Observatory</title>
-    {% endif %}
-  </head>
-  <body>
-    <div id="page-wrapper">
-      <!-- Navbar -->
-      <header id="header" {% if home %}class="alt"{% endif %}>
-        <h1><a href="/">Games Observatory</a></h1>
-        <nav>
-          <a href="#menu">Menu</a>
-        </nav>
-      </header>
-
-      <!-- Menu -->
-      <nav id="menu">
-        <div class="inner">
-          <h2>Menu</h2>
-          <ul class="links">
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('companies') }}">Companies</a></li>
-            <li><a href="{{ url_for('games') }}">Games</a></li>
-            <li><a href="{{ url_for('years') }}">Years</a></li>
-          </ul>
-          <a href="#" class="close">Close</a>
-        </div>
-      </nav>
-
-      {% if home %}
-        <!-- Home Page Banner -->
-        <section id="banner">
-          <div class="inner">
-            <!-- TODO: @james, make a sweet ass logo for our splash page -->
-            <!-- Use line below if you want the logo to show up as its exact size and not in a circle -->
-            <div class="logo"><img src="{{ url_for('static', filename='img/observatory1.png') }}" class="img-responsive"></div>
-            <h2>Games Observatory</h2>
-            <p>Defending the world from misinformation one line of code at a time</p>
-            <p>We're a team of students at the University of Texas at Austin that want to make a fast and easy way for people to find out information about their favorite games. <a href="http://findgamesfor.me"></a> is a database of all the games in the world built with Flask and React.js. We're making a beautiful place to find all your favorite games.</p>
-          </div>
-        </section>
-      {% endif %}
-
-
-      <!-- All page content -->
-      <section id="wrapper">
-        <!-- Banner shows on home page, so don't need
-        header (will pad space and look bad) -->
-        {% if not home %}
-          <header>
-            <div class="inner">
-              <h2>{% block title %}{% endblock %}</h2>
-              <p>{% block description %}{% endblock %}</p>
-            </div>
-          </header>
-        {% endif %}
-        <div class="wrapper">
-          <div class="inner">
-            {% block content %}{% endblock %}
-          </div>
-        </div>
-      </section>
-
-      <section id="footer">
-        <div class="inner">
-          <ul class="copyright">
-            <li>&copy; Binary Gamers Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Scripts -->
-      <script src="/static/js/jquery.min.js"></script>
-      <!-- TODO: Evaluate usefulness.
-      Experimental Bootstrap V4 alpha below. May not need/use -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
-      <script src="/static/js/jquery.scrollex.min.js"></script>
-      <script src="/static/js/skel.min.js"></script>
-      <script src="/static/js/util.js"></script>
-      <!--[if lte IE 8]><script src="/static//js/ie/respond.min.js"></script><![endif]-->
-      <script src="/static/js/main.js"></script>
-    </div>
-  </body>
+</head>
+<body>
+  <div id="content">
+    <!-- React components will be rendered here -->
+  </div>
+  <!-- TODO: Evaluate usefulness.
+  Experimental Bootstrap V4 alpha below. May not need/use -->
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery.scrollex.min.js"></script>
+  <script src="/static/js/skel.min.js"></script>
+  <script src="/static/js/util.js"></script>
+  <script src="/static/js/bundle.js"></script>
+  <script src="/static/js/animations.js"></script>
+  <!--[if lte IE 8]><script src="/static//js/ie/respond.min.js"></script><![endif]-->
+</body>
 </html>
