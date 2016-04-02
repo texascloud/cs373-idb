@@ -2,11 +2,11 @@ DROP DATABASE IF EXISTS swe;
 CREATE DATABASE swe;
 use swe;
 
-CREATE TABLE tblGames (game_id INT NOT NULL AUTO_INCREMENT, 
+CREATE TABLE tblGames (game_id INT NOT NULL, 
 	name VARCHAR(30) NOT NULL, image_url VARCHAR(255), 
 	rating DEC(4,2), release_date DATE, PRIMARY KEY(game_id));
 
-CREATE TABLE tblCompanies (company_id INT NOT NULL AUTO_INCREMENT, 
+CREATE TABLE tblCompanies (company_id INT NOT NULL, 
 	name VARCHAR(30) NOT NULL, image_url VARCHAR(255), 
 	avg_rating DEC(4,2), date_founded DATE, PRIMARY KEY(company_id));
 
