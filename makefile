@@ -42,7 +42,8 @@ check:
 clean:
 	rm -f  .coverage
 	rm -f  *.pyc
-	rm -rf app/__pycache__
+	rm -rf server/__pycache__
+	rm -rf __pycache__
 	rm -f  tests.tmp
 
 config:

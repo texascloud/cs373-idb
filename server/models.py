@@ -1,5 +1,5 @@
 from flask import Flask
-from app import db
+from server import db
 from flask_sqlalchemy import SQLAlchemy
 
 association_table_game_company = db.Table(

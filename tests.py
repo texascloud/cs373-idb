@@ -3,12 +3,11 @@ import os
 from unittest import main, TestCase
 
 
-from app import app, db
-from flask import url_for
+from server import app, db
 # Maybe not the below one just yet
 # from app.models import User
 
-from models import Game, Company, Year, db
+from server.models import Game, Company, Year
 
 class TestCase(TestCase):
     # -------------------
@@ -18,14 +17,19 @@ class TestCase(TestCase):
         app.config['TESTING'] = True
         self.app = app.test_client()
         self.endpoints = []
-        self.endpoints.append('/')
-        self.endpoints.append('/about')
         self.endpoints.append('/games')
         self.endpoints.append('/games/1')
         self.endpoints.append('/companies')
         self.endpoints.append('/companies/1234')
         self.endpoints.append('/years')
         self.endpoints.append('/years/1995')
+
+        self.api_endpoints = ['/api'+x for x in self.endpoints]
+
+        # Below two added after making api_endpoints because these
+        # are not api endpoints
+        self.endpoints.append('/')
+        self.endpoints.append('/about')
 
         db.create_all()
 
@@ -41,8 +45,23 @@ class TestCase(TestCase):
     def test_page_connection(self):
         for endpoint in self.endpoints:
             with self.subTest():
-                req = self.app.get(str(endpoint))
-                self.assertEqual('200 OK', req.status)
+                res = self.app.get(endpoint)
+                self.assertEqual('200 OK', res.status)
+
+
+    # Make sure connection to each API endpoint is successful
+    def test_api_page_connection1(self):
+        for endpoint in self.api_endpoints:
+            with self.subTest():
+                res = self.app.get(endpoint)
+                self.assertEqual('200 OK', res.status)
+
+    # Make sure JSON is returned from a GET on each API endpoint
+    def test_api_page_connection2(self):
+        for endpoint in self.api_endpoints:
+            with self.subTest():
+                res = self.app.get(endpoint)
+                self.assertTrue('json' in res.mimetype, 'culprit: {}'.format(endpoint))
 
 
     # TESTS FOR MODELS
@@ -120,6 +139,37 @@ class TestCase(TestCase):
 
     # q is a list sorted in asc order by primary key (year_id in this case)
     def test_year_3(self):
+        y = Year(2007, 5000, "FPS", 9.6, 1000)
+        y2 = Year(2008, 2000, "FPS", 9.5, 500)
+        y3 = Year(1999, 1000, "Fighting", 8.0, 400)
+        db.session.add(y)
+        db.session.add(y2)
+        db.session.add(y3)
+        q = Year.query.all()
+        self.assertEqual(q[0].year_id, y3.year_id)
+        db.session.remove()
+
+
+    #Years year_id = None, num_games = None, most_popular_genre = None, avg_rating = None, num_companies_founded = None
+    def test_year_api_1(self):
+        y = Year(1997, 2000, "FPS", 9, 100)
+        db.session.add(y)
+        db.session.commit()
+        q = Year.query.all()
+        self.assertEqual(y, q[0])
+        db.session.remove()
+
+    def test_year_api_2(self):
+        y = Year(1997, 2000, "FPS", 9, 100)
+        y2 = Year(1990, 200, "Platformer", 10, 50)
+        db.session.add(y)
+        db.session.add(y2)
+        db.session.commit()
+        self.assertTrue(y2 in db.session)
+        db.session.remove()
+
+    # q is a list sorted in asc order by primary key (year_api_id in this case)
+    def test_year_api_3(self):
         y = Year(2007, 5000, "FPS", 9.6, 1000)
         y2 = Year(2008, 2000, "FPS", 9.5, 500)
         y3 = Year(1999, 1000, "Fighting", 8.0, 400)
