@@ -57,7 +57,7 @@ var AboutCard = React.createClass({
               </div>
               <div className="row">
                   <div className="col-sm-6">
-                      <img className="img-responsive" src={this.props.avatar ? this.props.avatar : "/static/img/kirby.png"}/>
+                      <img className="img-responsive img-circle" src={this.props.avatar ? this.props.avatar : "/static/img/kirby.png"}/>
                   </div>
                   <div className="col-sm-6">
                       <p className="member-bio">{this.props.bio}</p>
@@ -159,4 +159,3 @@ export default class About extends React.Component {
         );
     }
 }
-
