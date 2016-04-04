@@ -1,5 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
+from server import db
+from server import models
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 
 @api.resource('/companies')
@@ -24,7 +26,16 @@ class GamesAPI(Resource):
 class GameAPI(Resource):
     @staticmethod
     def get(game_id):
-        return { "game_id" : game_id }
+        Game = models.Game
+        q = Game.query.filter_by(game_id = game_id).first()
+        return {
+            "game_id" : game_id,
+             "name" : q.name,
+             "genre" : q.genre,
+             "console" : q.console,
+             "rating" : q.rating,
+             "year" : q.year
+        }
 
 @api.resource('/years')
 class YearsAPI(Resource):

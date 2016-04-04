@@ -11,7 +11,7 @@ Requires ROOT
 Instructions: Run these commands from the root directory of the project!!
 
     (To have the bundle.js be continually updated while you're making changes to the React files [PREFERRED WAY, WAY SIMPLER])
-    watchify -t [ babelify --presets [ es2015 react ] ] react/main.jsx -o app/static/js/bundle.js
+    watchify -t [ babelify --presets [ es2015 react ] ] react/main.jsx -o app/static/js/bundle.js -v
 
     (To build just once)
     browserify -t [ babelify --presets [ es2015 react ] ] react/main.jsx -o app/static/js/bundle.js
