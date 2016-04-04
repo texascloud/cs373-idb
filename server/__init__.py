@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from server.views import index
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/swe'
 
 app.register_blueprint(index)
 db = SQLAlchemy(app)

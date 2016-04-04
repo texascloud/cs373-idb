@@ -7,6 +7,16 @@ association_table_game_company = db.Table(
         db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
         db.Column('company_id', db.Integer, db.ForeignKey('companies.company_id')))
 
+association_table_game_genre = db.Table(
+        'association_game_genre',
+        db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
+        db.Column('genre_id', db.Integer, db.ForeignKey('genres.genre_id')))
+
+association_table_game_console = db.Table(
+        'association_game_console',
+        db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
+        db.Column('console_id', db.Integer, db.ForeignKey('consoles.console_id')))
+
 class Game(db.Model):
     """
     This model is used to represent Company entries in our database.
@@ -36,18 +46,19 @@ class Game(db.Model):
     __tablename__ = 'games'
     game_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    genre = db.Column(db.String(120))
-    console = db.Column(db.String(20))
-    rating = db.Column(db.Float(3))
-    year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
+    image_url = db.Column(db.String(255))
+    rating = db.Column(db.Float(4))
+    release_year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
     associated_companies = db.relationship("Company", secondary=association_table_game_company, backref=db.backref("games"))
+    associated_genres = db.relationship("Genre", secondary=association_table_game_genre, backref=db.backref("games"))
+    associated_consoles = db.relationship("Console", secondary=association_table_game_console, backref=db.backref("games"))
 
-    def __init__(self, name=None, genre=None, console=None, rating=None, year=None):
+    def __init__(self, id, name=None, image_url=None, rating=None, release_year=None):
+        self.id = id
         self.name = name
-        self.genre = genre
-        self.console = console
+        self.image_url = image_url
         self.rating = rating
-        self.year = year
+        self.release_year = release_year
 
     def __repr__(self):
         return '<Game: %r>' % (self.name)
@@ -77,6 +88,7 @@ class Company(db.Model):
     name = db.Column(db.String(50), unique=True)
     num_developed = db.Column(db.Integer)
     num_published = db.Column(db.Integer)
+    image_url = db.Column(db.String(255))
     avg_rating = db.Column(db.Float)
     year_founded = db.Column(db.Integer, db.ForeignKey('years.year_id'))
     associated_games = db.relationship("Game", secondary=association_table_game_company, backref=db.backref('companies'))
@@ -127,3 +139,6 @@ class Year(db.Model):
 
     def __repr__(self):
         return '<Year : %r>' % (self.year_id)
+
+
+db.create_all()
