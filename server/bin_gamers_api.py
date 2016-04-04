@@ -28,14 +28,17 @@ class GameAPI(Resource):
     def get(game_id):
         Game = models.Game
         q = Game.query.filter_by(game_id = game_id).first()
-        return {
-            "game_id" : game_id,
-             "name" : q.name,
-             "genre" : q.genre,
-             "console" : q.console,
-             "rating" : q.rating,
-             "year" : q.year
-        }
+        if q is None:
+            return {}
+        else:
+            return {
+                "game_id" : game_id,
+                 "name" : q.name,
+                 "genre" : q.genre,
+                 "console" : q.console,
+                 "rating" : q.rating,
+                 "year" : q.year
+            }
 
 @api.resource('/years')
 class YearsAPI(Resource):
