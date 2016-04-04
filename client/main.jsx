@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 import About from './components/about.jsx'
 import Companies from './components/companies.jsx'
@@ -10,6 +11,12 @@ import Years from './components/years.jsx'
 import YearPage from './components/year-page.jsx'
 import Menu from './components/menu.jsx'
 import Home from './components/home.jsx'
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 class App extends React.Component {
   render() {
