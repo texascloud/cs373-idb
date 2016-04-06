@@ -54,7 +54,7 @@ class Game(db.Model):
     associated_platforms = db.relationship("Platform", secondary=association_table_game_platform, backref=db.backref("games"))
 
     def __init__(self, id, name=None, image_url=None, rating=None, release_year=None):
-        self.id = id
+        self.game_id = id
         self.name = name
         self.image_url = image_url
         self.rating = rating
