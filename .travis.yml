@@ -5,14 +5,20 @@ python:
 
 sudo: true
 
+services:
+    - mysql
+
+# before_install:
+#     - sudo apt-get update
+
 install:
     - pip install --upgrade pip
     - pip --version
     - pip install -r requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
-    - sudo apt-get install python3-pymysql
-    - sudo apt-get install mysql-server
+    # - sudo apt-get install python3-pymysql
+    # - sudo apt-get install mysql-server
 
 before_script:
     - uname -a
