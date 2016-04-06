@@ -1,7 +1,6 @@
 FILES :=                              \
     models.html             \
     IDB1.log              \
-    IDB2.log				\
     run.py                            \
     tests.out                         \
     tests.py
