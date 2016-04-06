@@ -7,10 +7,14 @@ from server.models import Game, Company, Year, Genre, Platform
 
 
 def db_import():
+	db.drop_all()
 	db.create_all()
 
 	year_cache = [y.year_id for y in Year.query.all()]
 	game_cache = [g.game_id for g in Game.query.all()]
+	companies = {}
+	genre_cache = []
+	platform_cache = []
 
 	header = {"token" : "Sl8Jkh1lYZKydQjStnUFa_sjrlO5bbUxWYwuaKyDk50", "offset": 0}
 
@@ -52,8 +56,26 @@ def db_import():
 			rating = None
 			if("rating" in game_info):
 				rating = game_info["rating"]
+
+
 			g = Game(id=game_id, name=name, image_url=image_url, rating=rating, release_year=release_year)
-			db.session.add(g)
+			
+
+			for v in game_info["release_dates"]:
+				c = None
+				platform = v["platform_name"]
+				id = -1
+				if platform not in platform_cache:
+					platform_cache += [platform]
+					c = Platform(platform)
+					db.session.add(c)					
+				else:
+					c = Platform.query.filter_by(platform_name = platform).first()
+				if c is not None:
+					g.associated_platforms.append(c)
+
+
+			db.session.add(g)	
 			db.session.commit()
 
 
