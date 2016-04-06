@@ -130,7 +130,7 @@ class Year(db.Model):
     __tablename__ = 'years'
     year_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     num_games = db.Column(db.Integer)
-    most_popular_genre = db.Column(db.String(20))
+    most_popular_genre = db.Column(db.String(100))
     avg_rating = db.Column(db.Float)
     games = db.relationship('Game', backref=db.backref('years'))
     companies_founded = db.relationship('Company', backref=db.backref('years'))
