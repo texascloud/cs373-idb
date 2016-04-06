@@ -1,6 +1,7 @@
 FILES :=                              \
     models.html             \
     IDB1.log              \
+    IDB2.log				\
     run.py                            \
     tests.out                         \
     tests.py
@@ -10,6 +11,12 @@ models.html: models.py
 
 IDB1.log:
 	git log > IDB1.log
+
+IDB2.log:
+	git log > IDB2.log
+
+IDB3.log:
+	git log > IDB3.log	
 
 # RunCollatz.tmp: RunCollatz.in RunCollatz.out RunCollatz.py
 # 	./RunCollatz.py < RunCollatz.in > RunCollatz.tmp

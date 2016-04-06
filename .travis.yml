@@ -3,10 +3,10 @@ language: python
 python:
    - "3.4"
 
-sudo: true
-
 services:
     - mysql
+
+sudo: false
 
 # before_install:
 #     - sudo apt-get update
@@ -17,14 +17,14 @@ install:
     - pip install -r requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
-    # - sudo apt-get install python3-pymysql
-    # - sudo apt-get install mysql-server
+
 
 before_script:
     - uname -a
     - printenv
     - pip list
     - coverage --version
+    - mysql -e 'create database IF NOT EXISTs swe'
 
 script:
     - date
