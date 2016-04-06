@@ -11,6 +11,8 @@ install:
     - pip install -r requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
+    - apt-get install python3-pymysql
+    - apt-get install mysql-server
 
 before_script:
     - uname -a
