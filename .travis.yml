@@ -3,7 +3,13 @@ language: python
 python:
    - "3.4"
 
-sudo: false
+sudo: true
+
+services:
+    - mysql
+
+# before_install:
+#     - sudo apt-get update
 
 install:
     - pip install --upgrade pip
@@ -11,6 +17,8 @@ install:
     - pip install -r requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
+    # - sudo apt-get install python3-pymysql
+    # - sudo apt-get install mysql-server
 
 before_script:
     - uname -a
