@@ -1,0 +1,10 @@
+use swe;
+show tables;
+SELECT * FROM games;
+SELECT * FROM companies;
+SELECT * FROM genres;
+SELECT * FROM platforms;
+SELECT * FROM years;
+SELECT * FROM association_game_company;
+SELECT * FROM association_game_genre;
+SELECT * FROM association_game_platform;
