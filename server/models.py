@@ -12,10 +12,10 @@ association_table_game_genre = db.Table(
         db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
         db.Column('genre_id', db.Integer, db.ForeignKey('genres.genre_id')))
 
-association_table_game_console = db.Table(
-        'association_game_console',
+association_table_game_platform = db.Table(
+        'association_game_platform',
         db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
-        db.Column('console_id', db.Integer, db.ForeignKey('consoles.console_id')))
+        db.Column('platform_id', db.Integer, db.ForeignKey('platforms.platform_id')))
 
 class Game(db.Model):
     """
@@ -32,7 +32,7 @@ class Game(db.Model):
         comma-delimited string for the sake of the models.py file and the
         tests.py file.
 
-    Console - The console(s) the game was released on. This data is in a similar
+    platform - The platform(s) the game was released on. This data is in a similar
         situation to genre because it is currently being stored as a string.
 
     Rating - The rating the game received. This rating is pulled from IGDB,
@@ -44,14 +44,14 @@ class Game(db.Model):
         table is properly filled with the right IDs.
     """
     __tablename__ = 'games'
-    game_id = db.Column(db.Integer, primary_key=True)
+    game_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     name = db.Column(db.String(50))
     image_url = db.Column(db.String(255))
     rating = db.Column(db.Float(4))
     release_year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
     associated_companies = db.relationship("Company", secondary=association_table_game_company, backref=db.backref("games"))
     associated_genres = db.relationship("Genre", secondary=association_table_game_genre, backref=db.backref("games"))
-    associated_consoles = db.relationship("Console", secondary=association_table_game_console, backref=db.backref("games"))
+    associated_platforms = db.relationship("Platform", secondary=association_table_game_platform, backref=db.backref("games"))
 
     def __init__(self, id, name=None, image_url=None, rating=None, release_year=None):
         self.id = id
@@ -84,7 +84,7 @@ class Company(db.Model):
         the association table.
     """
     __tablename__ = 'companies'
-    company_id = db.Column(db.Integer, primary_key=True)
+    company_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), unique=True)
     num_developed = db.Column(db.Integer)
     num_published = db.Column(db.Integer)
@@ -123,7 +123,7 @@ class Year(db.Model):
     Who_made_games - The companies who put out at least 1 game this year.
     """
     __tablename__ = 'years'
-    year_id = db.Column(db.Integer, primary_key=True)
+    year_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     num_games = db.Column(db.Integer)
     most_popular_genre = db.Column(db.String(20))
     avg_rating = db.Column(db.Float)
@@ -140,5 +140,24 @@ class Year(db.Model):
     def __repr__(self):
         return '<Year : %r>' % (self.year_id)
 
+class Genre(db.Model):
+    __tablename__ = 'genres'
+    genre_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    genre_name = db.Column(db.String(100))
 
-db.create_all()
+    def __init__(self, genre_name=None):
+        self.genre_name = genre_name
+
+    def __repr__(self):
+        return '<Genre : %s>' % (self.genre_name)
+
+class Platform(db.Model):
+    __tablename__ = 'platforms'
+    platform_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    platform_name = db.Column(db.String(100))
+
+    def __init__(self, platform_name=None):
+        self.platform_name = platform_name
+
+    def __repr__(self):
+        return '<Platform : %s>' % (self.platform_name)
