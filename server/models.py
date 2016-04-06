@@ -17,6 +17,9 @@ association_table_game_platform = db.Table(
         db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
         db.Column('platform_id', db.Integer, db.ForeignKey('platforms.platform_id')))
 
+def get_genre_table():
+    return association_table_game_genre
+
 class Game(db.Model):
     """
     This model is used to represent Company entries in our database.
@@ -93,9 +96,11 @@ class Company(db.Model):
     year_founded = db.Column(db.Integer, db.ForeignKey('years.year_id'))
     associated_games = db.relationship("Game", secondary=association_table_game_company, backref=db.backref('companies'))
 
-    def __init__(self, name=None, num_developed=None, num_published=None, avg_rating=None, year_founded=None):
+    def __init__(self, company_id, name=None, num_developed=None, image_url=None, num_published=None, avg_rating=None, year_founded=None):
+        self.company_id = company_id
         self.name = name
         self.num_developed = num_developed
+        self.image_url = image_url
         self.num_published = num_published
         self.avg_rating = avg_rating
         self.year_founded = year_founded
