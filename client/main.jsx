@@ -10,6 +10,7 @@ import Years from './components/years.jsx'
 import YearPage from './components/year-page.jsx'
 import Menu from './components/menu.jsx'
 import Home from './components/home.jsx'
+import NotFound from './components/not-found.jsx'
 
 class App extends React.Component {
   render() {
@@ -33,6 +34,7 @@ render((
         <Route path="/games/:gameID" component={GamePage}/>
       <Route path="/years" component={Years}/>
         <Route path="/years/:yearID" component={YearPage}/>
+      <Route path="/*" component={NotFound}/>
     </Route>
   </Router>
 ), document.getElementById('content'));
