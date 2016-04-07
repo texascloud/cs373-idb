@@ -8,9 +8,6 @@ services:
 
 sudo: false
 
-# before_install:
-#     - sudo apt-get update
-
 install:
     - pip install --upgrade pip
     - pip --version
@@ -24,10 +21,10 @@ before_script:
     - printenv
     - pip list
     - coverage --version
-    - mysql -e 'create database IF NOT EXISTs swe'
-    - mysql -e 'create database IF NOT EXISTS swe_test'
+    - mysql -e 'create database swe_test'
 
 script:
     - date
+    - ls -al
     - make clean test
     - cat tests.tmp
