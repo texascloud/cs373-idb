@@ -33,7 +33,7 @@ class CompanyAPI(Resource):
                 "num_developed" :  c.num_developed,
                 "num_published" : c.num_published,
                 "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
-                "year_to_url" : { c.year_founded : ("years/" + str(c.year_founded))},
+                "year" : c.year_founded,
                 "games_to_url" : { i.name : ("games/" + str(i.game_id)) for i in c.associated_games}
                 }]
 
@@ -68,7 +68,7 @@ class GameAPI(Resource):
                 "platforms" : [i.platform_name for i in g.associated_platforms],
                 "companies_to_url" : {i.name : ("companies/" + str(i.company_id)) for i in g.associated_companies},
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
-                "year_to_url" : { g.release_year : ("years/" + str(g.release_year)) }
+                "year" : g.release_year
         }]
 
 @api.resource('/years')
