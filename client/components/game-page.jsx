@@ -1,27 +1,58 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { render, constructor, componentDidMount, getInitialState } from 'react-dom'
+import { connect } from 'react-redux';
 import { Link } from 'react-router'
+import { requestGame } from '../db_actions/actions'
+import { requestKittens } from '../db_actions/actions'
+import { getGamePls } from '../db_actions/actions'
 
 export default class GamePage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.params.gameID);
-    console.log(this.props);
+    console.log('GamePage#Constructor.gameID: '+this.props.params.gameID);
+  }
+  componentWillMount() {
+    this.setState({data: null});
+    this.serverRequest = $.get('/api/games/'+this.props.params.gameID, function (result) {
+      this.setState({
+        data: result
+      });
+    }.bind(this));
+
+  }
+  componentWillUnmount() {
+    this.serverRequest.abort();
   }
   render() {
-    let id = this.props.params.gameID;
+    if (this.state.data === null) {
+      return (<div><h1>Loading data</h1></div>)
+    }
+    else {
+      let game = this.state.data[0];
       return (
         <div className="game-stats">
-          <h2>Primary key for database lookup: {id}</h2>
-          <h2>Title: </h2>
-          <h2>Genre: </h2>
-          <h2>Console: </h2>
-          <h2>Developer: <Link to="companies/">No static data</Link></h2>
-          <h2>Rating:</h2>
-          <h2>Release: <Link to="years/">No static data</Link></h2>
+          <h2>Title: {game.name}</h2>
+          <h2>Genre: {game.genres[0]}</h2>
+          <h2>Console: {game.platforms[0]}</h2>
+          <h2>Developer: <Link to="companies/"></Link></h2>
+          <h2>Rating: {game.rating}</h2>
+          <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
         </div>
-        );
+      );
+    }
   }
 }
+//function mapStateToProps(state) {
+//  return {
+//    data: state.nah
+//  };
+//}
+//function mapDispatchToProps(dispatch) {
+//  return {
+//    stuff: function(game_id) {
+//      return dispatch(getGamePls(game_id))
+//    }
+//  }
+//}
 
-
+//export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

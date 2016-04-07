@@ -2,28 +2,47 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { Table } from 'reactable'
-
-const game_data = [
-  {Title: <Link to="/games/1">Crash Bandicoot</Link>, Genre: 'Platform', Console: 'PS1',
-    Developer: <Link to="/companies/1">Naughty Dog</Link>, Rating:'5.0', 'Release':<Link to="/years/1996">1996</Link>},
-  {Title: <Link to="/games/2">Halo: Combat Evolved</Link>, Genre: 'Shooter', Console: 'Xbox',
-    Developer: <Link to="/companies/2">Bungie</Link>, Rating:'4.5', 'Release':<Link to="/years/2001">2001</Link>},
-  {Title: <Link to="/games/3">The Last of Us</Link>, Genre: 'RPG', Console: 'PS3, Xbox 360',
-    Developer: <Link to="/companies/3">Bethesda Softworks</Link>, Rating:'4.9', 'Release':<Link to="/years/2008">2008</Link>}
-];
+import { connect } from 'react-redux';
+import { requestGame } from '../db_actions/actions'
+import { requestKittens } from '../db_actions/actions'
 
 
 export default class Games extends React.Component {
+  componentWillMount() {
+    this.setState({data: null});
+    this.serverRequest = $.get('/api/games', function (result) {
+      this.setState({
+        data: result
+      });
+    }.bind(this));
+  }
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
   render() {
-    return (
-      <Table data={game_data}
-             sortable={true}
-             defaultSort={{column: 'Title', direction: 'desc'}}
-             filterable={['Genre','Console','Rating']}
-             filterPlaceholder='Filter by Title, Genre, Console, or Rating'
-             itemsPerPage={6} pageButtonLimit={10}
-             defaultSortDescending />
-        );
+    if (this.state.data === null) {
+      return (<div><h1>Loading data</h1></div>)
+    }
+    else{
+      let games = this.state.data;
+      var reformattedGames = games.map(function(obj) {
+        var g = obj;
+        var id = g['game_id'];
+        var name = g['name'];
+        g['name'] = <Link to={"/games/"+id}>{name}</Link>;
+        delete g.game_id;
+        return g;
+      });
+      return (
+        <Table data={reformattedGames}
+               sortable={true}
+               defaultSort={{column: 'name', direction: 'desc'}}
+               filterable={['Genre','Console','Rating']}
+               filterPlaceholder='Filter by Title, Genre, Console, or Rating'
+               itemsPerPage={6} pageButtonLimit={10}
+               defaultSortDescending />
+          );
+    }
   }
 }
 

@@ -3,21 +3,51 @@ import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { Table } from 'reactable'
 
-export const year_data = [
-    {Year: <Link to="/years/1996">1996</Link>, 'Number of Games': '1','Most Popular Genre': 'Platform', 'Average Rating':'5.0', 'Number of Companies Founded': '1'},
-    {Year: <Link to="/years/2001">2001</Link>, 'Number of Games': '1', 'Most Popular Genre': 'Platform', 'Average Rating':'4.2', 'Number of Companies Founded' : '1'},
-    {Year: <Link to="/years/2008">2008</Link>, 'Number of Games': '1', 'Most Popular Genre': 'Action-Adventure', 'Average Rating':'4.9', 'Number of Companies Founded' : '0'}
-];
-
 export default class Years extends React.Component {
   constructor() {
     super();
 
   }
+  componentWillMount() {
+    this.setState({data: null});
+    this.serverRequest = $.get('/api/years', function (result) {
+      this.setState({
+        data: result
+      });
+    }.bind(this));
+
+  }
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
   render() {
+    if (this.state.data === null) {
+      return (<div><h2>Loading data..... Or something failed :)</h2></div>)
+    }
+    let years = this.state.data;
+    var reformattedYears = years.map(function(obj) {
+      var y = obj;
+      var id = y['year_id'];
+      y['year_id'] = <Link to={"/years/"+id}>{id}</Link>;
+      return y;
+    });
     return (
-      <Table data={year_data}
-             sortable={true}
+      <Table data={reformattedYears}
+             sortable={[
+               {
+                  column: 'year_id',
+                  sortFunction: function(a, b) {
+                  var nameA = a.props.children;
+                  var nameB = b.props.children;
+                  console.log(nameA);
+                  return nameA > nameB;
+                  }
+                },
+                'avg_rating',
+                'num_games',
+                'num_companies_founded',
+                'most_popular_genre'
+                ]}
              defaultSort={{column: 'Year', direction: 'desc'}}
              filterable={['Year']}
              filterPlaceholder='Filter by Years, Number of Games, Most Popular Genre, Average Rating, or Who Made Games'
