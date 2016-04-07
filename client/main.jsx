@@ -1,10 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+import { createStore } from 'redux';
 import About from './components/about.jsx'
 import Companies from './components/companies.jsx'
 import CompanyPage from './components/company-page.jsx'
@@ -16,8 +14,6 @@ import Menu from './components/menu.jsx'
 import Home from './components/home.jsx'
 import NotFound from './components/not-found.jsx'
 
-// Temporary
-import { requestKittens } from './db_actions/actions'
 
 
 class App extends React.Component {
@@ -42,13 +38,7 @@ function todos(state = [], action) {
       return state
   }
 }
-
-const createStoreWithMiddleware = applyMiddleware(
-  thunk,
-  promise
-)(createStore);
-
-let store = createStoreWithMiddleware(todos, []);
+let store = createStore(todos, []);
 
 
 render((

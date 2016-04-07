@@ -1,6 +1,4 @@
-from flask import Flask
 from server import db
-from flask_sqlalchemy import SQLAlchemy
 
 association_table_game_company = db.Table(
         'association_game_company',

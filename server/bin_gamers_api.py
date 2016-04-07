@@ -1,6 +1,5 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
-from server import db
 from server import models
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 
