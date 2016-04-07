@@ -49,8 +49,6 @@ export default class Years extends React.Component {
                 'most_popular_genre'
                 ]}
              defaultSort={{column: 'Year', direction: 'desc'}}
-             filterable={['Year']}
-             filterPlaceholder='Filter by Years, Number of Games, Most Popular Genre, Average Rating, or Who Made Games'
              itemsPerPage={6} pageButtonLimit={10}
              defaultSortDescending />
       )
