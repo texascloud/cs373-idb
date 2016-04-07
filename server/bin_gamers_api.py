@@ -11,7 +11,7 @@ class CompaniesAPI(Resource):
         q = Company.query.all()
         return [ { 
                 "company_id" : c.company_id,
-                "Company" : c.name,
+                "_Company" : c.name,
                 "Number of Games Developed" :  c.num_developed,
                 "Number of Games Published" : c.num_published,
                 "Average Rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
@@ -44,7 +44,7 @@ class GamesAPI(Resource):
         q = Game.query.all()
         return [{
                 "game_id" : g.game_id,
-                "Game" : g.name,
+                "_Game" : g.name,
                 "Genres" : [i.genre_name for i in g.associated_genres],
                 "Platforms" : [i.platform_name for i in g.associated_platforms],
                 "Companies" : [i.name for i in g.associated_companies],
@@ -77,7 +77,7 @@ class YearsAPI(Resource):
         Year = models.Year
         q = Year.query.all()
         return [{ 
-                "year_id" : y.year_id,
+                "_Year" : y.year_id,
                 "Number of Games" : len(y.games),
                 "Most popular genre" : y.most_popular_genre,
                 "Average Rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
