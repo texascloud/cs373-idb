@@ -3824,3 +3824,8 @@
 	.active {
 		color: firebrick;
 	}
+
+	#about .inner {
+			margin: 0 auto;
+			width: 70em;
+		}
