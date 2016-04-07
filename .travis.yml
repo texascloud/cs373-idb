@@ -25,6 +25,7 @@ before_script:
     - pip list
     - coverage --version
     - mysql -e 'create database IF NOT EXISTs swe'
+	- mysql -e 'create database IF NOT EXISTS swe_test'
 
 script:
     - date
