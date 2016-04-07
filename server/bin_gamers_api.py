@@ -10,7 +10,6 @@ class CompaniesAPI(Resource):
     def get():
         Company = models.Company
         q = Company.query.all()
-        #TODO: YEAR FOUNDED
         return [ { 
                 "company_id" : c.company_id,
                 "name" : c.name,
@@ -28,7 +27,6 @@ class CompanyAPI(Resource):
         c = Company.query.filter_by(company_id = company_id).first()
         if not c:
             return []
-        #TODO: YEAR FOUNDED
         return [{ 
                 "company_id" : c.company_id,
                 "name" : c.name,
@@ -47,8 +45,9 @@ class GamesAPI(Resource):
         return [{
                 "game_id" : g.game_id,
                 "name" : g.name,
-                "genres" : str(g.associated_genres),
-                "platforms" : str(g.associated_platforms),
+                "genres" : [i.genre_name for i in g.associated_genres],
+                "platforms" : [i.platform_name for i in g.associated_platforms],
+                "companies" : [i.name for i in g.associated_companies],
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
                 "year" : g.release_year
             } for g in q]
@@ -64,8 +63,9 @@ class GameAPI(Resource):
         return [{
                 "game_id" : game_id,
                 "name" : g.name,
-                "genres" : str(g.associated_genres),
-                "platforms" : str(g.associated_platforms),
+                "genres" : [i.genre_name for i in g.associated_genres],
+                "platforms" : [i.platform_name for i in g.associated_platforms],
+                "companies" : [i.name for i in g.associated_companies],
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
                 "year" : g.release_year
         }]
@@ -78,10 +78,10 @@ class YearsAPI(Resource):
         q = Year.query.all()
         return [{ 
                 "year_id" : y.year_id,
-                "num_games" : y.num_games,
+                "num_games" : len(y.games),
                 "most_popular_genre" : y.most_popular_genre,
                 "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                "num_companies_founded" : y.num_companies_founded
+                "num_companies_founded" : len(y.companies_founded)
         } for y in q]
 
 @api.resource('/years/<int:year_id>')
@@ -97,5 +97,5 @@ class YearAPI(Resource):
                 "num_games" : y.num_games,
                 "most_popular_genre" : y.most_popular_genre,
                 "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                "num_companies_founded" : len(y.companies_founded)
+                "companies_founded" : [i.name for i in y.companies_founded]
         }]
