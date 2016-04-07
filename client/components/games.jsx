@@ -35,10 +35,20 @@ export default class Games extends React.Component {
       });
       return (
         <Table data={reformattedGames}
-               sortable={true}
+               sortable={[
+               {
+                  column: 'name',
+                  sortFunction: function(a, b) {
+                  var nameA = a.props.children.toLowerCase();
+                  var nameB = b.props.children.toLowerCase();
+
+                  return nameA.localeCompare(nameB);
+                  }
+                },
+                'rating',
+                'release_year',
+                ]}
                defaultSort={{column: 'name', direction: 'desc'}}
-               filterable={['Genre','Console','Rating']}
-               filterPlaceholder='Filter by Title, Genre, Console, or Rating'
                itemsPerPage={6} pageButtonLimit={10}
                defaultSortDescending />
           );
