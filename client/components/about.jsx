@@ -5,11 +5,15 @@ import { Link } from 'react-router'
 var GithubStats = React.createClass({
     render: function() {
         return (
+          
           <div className="github-stats">
+          <section id="about">
               <li className="list-group-item"><b># Commits:</b> {this.props.commits}</li>
               <li className="list-group-item"><b># Issues:</b> {this.props.issues}</li>
               <li className="list-group-item"><b># Unit Tests:</b> {this.props.tests}</li>
+              </section>
           </div>
+          
         );
     }
 });
@@ -51,7 +55,7 @@ var GithubCard = React.createClass({
 var AboutCard = React.createClass({
     render: function() {
         return (
-          <div className="card">
+          <div className="card col-lg-4 col-sm-6">
               <div className="member-name text-xs-center">
                   <h1>{this.props.name}</h1>
               </div>
@@ -80,6 +84,7 @@ var AboutCard = React.createClass({
                   </div>
               </div>
           </div>
+        
         );
     }
 });
@@ -88,54 +93,58 @@ var AboutList = React.createClass({
     render:function() {
         return (
           <div className="aboutList">
-              <div className="row">
+          <section id="about">
+              <div className="row inner">
                   <AboutCard
                     name="James Huang"
                     avatar="/static/img/james.png"
-                    bio="I am James, yes. I like Geico gaming."
-                    duties="Docker, Frontend"
-                    commits="1"
+                    bio="He is James, and yes. He likes Geico gaming."
+                    duties="Docker, frontend design"
+                    commits="21"
                     issues="2"
                     tests="3"/>
                   <AboutCard
                     name="Will Ripley"
                     avatar="/static/img/will.png"
-                    bio="I am a CS and MIS double major at UT Austin."
+                    bio="He is just a CS and MIS double major at UT Austin."
                     duties="Frontend, Database, REST API documentation, Technical Report"
-                    commits="4"
-                    issues="5"
-                    tests="6"/>
+                    commits="24"
+                    issues="15"
+                    tests="10"/>
               </div>
-              <div className="row">
+              </section>
+              <section id="about">
+              <div className="row inner">
                   <AboutCard
                     name="Doug Wiley"
                     avatar="/static/img/doug.png"
                     bio="Doug likes hot wheels. And he likes lobster a lot. "
-                    duties="NoOps Advocate"
-                    commits="6"
+                    duties="API, end-points"
+                    commits="26"
                     issues="5"
-                    tests="4"/>
+                    tests="6"/>
                   <AboutCard
                     name="Jerry Pon"
                     avatar="/static/img/jerry.png"
-                    bio="Jerry loves Halo. He's a spartan."
-                    duties="hype man"
-                    commits="3"
+                    bio="Jerry loves Halo. He's a Spartan."
+                    duties="Technical report, static page"
+                    commits="12"
                     issues="2"
                     tests="1"/>
               </div>
-              <div className="row">
-                  <div className="col-md-12">
+              </section>
+              <section id="about">
+              <div className="row inner">
                       <AboutCard
                         name="Joshua Hurt"
                         avatar="/static/img/josh.png"
                         bio="Josh is a top 10% Brawhalla player. Once upon a time his computer got rained on; he dried it out."
-                        duties="everything dev guy"
-                        commits="nah"
-                        issues="nah"
-                        tests="nah"/>
-                  </div>
+                        duties="React, backend, framework, everything pretty much"
+                        commits="45"
+                        issues="22"
+                        tests="2"/>
               </div>
+              </section>
           </div>
         );
     }
@@ -144,18 +153,23 @@ var AboutList = React.createClass({
 export default class About extends React.Component {
     render() {
         return (
+          <section id="about">
           <div id="about-page">
+            <div className="inner">
+          
             <AboutList />
             <GithubCard name="Total Coding Stats"
-            commits="103789"
-            issues="50"
-            tests="2"
+            commits="132"
+            issues="35"
+            tests="20"
             apiary=""
             gh-issues=""
             gh-repo=""
             gh-wiki=""
               />
+            </div>
           </div>
+          </section>
         );
     }
 }
