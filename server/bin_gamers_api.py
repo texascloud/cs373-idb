@@ -33,8 +33,8 @@ class CompanyAPI(Resource):
                 "num_developed" :  c.num_developed,
                 "num_published" : c.num_published,
                 "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
-                "year_founded" : c.year_founded,
-                "games_to_id" : { i.name : i.game_id for i in c.associated_games}
+                "year_to_url" : { c.year_founded : ("http://findgamesfor.me/years/" + str(c.year_founded))},
+                "games_to_url" : { i.name : ("http://findgamesfor.me/games/" + str(i.game_id)) for i in c.associated_games}
                 }]
 
 @api.resource('/games')
@@ -50,7 +50,7 @@ class GamesAPI(Resource):
                 "platforms" : [i.platform_name for i in g.associated_platforms],
                 "companies" : [i.name for i in g.associated_companies],
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
-                "year" : g.release_year
+                "year" : g.release_year 
             } for g in q]
 
 @api.resource('/games/<int:game_id>')
@@ -66,9 +66,9 @@ class GameAPI(Resource):
                 "name" : g.name,
                 "genres" : [i.genre_name for i in g.associated_genres],
                 "platforms" : [i.platform_name for i in g.associated_platforms],
-                "companies_to_id" : {i.name : i.company_id for i in g.associated_companies},
+                "companies_to_url" : {i.name : ("http://findgamesfor.me/companies/" + str(i.company_id)) for i in g.associated_companies},
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
-                "year" : g.release_year
+                "year_to_url" : { g.release_year : ("http://findgamesfor.me/years/" + str(g.release_year)) }
         }]
 
 @api.resource('/years')
@@ -98,6 +98,6 @@ class YearAPI(Resource):
                 "num_games" : y.num_games,
                 "most_popular_genre" : y.most_popular_genre,
                 "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                "companies_to_id" : {i.name : i.company_id for i in y.companies_founded},
-                "games_to_id" : {i.name : i.game_id for i in y.games}
+                "companies_to_url" : {i.name : ("http://findgamesfor.me/companies/" + str(i.company_id)) for i in y.companies_founded},
+                "games_to_url" : {i.name : ("http://findgamesfor.me/games/" + str(i.game_id)) for i in y.games}
         }]
