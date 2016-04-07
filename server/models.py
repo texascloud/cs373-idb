@@ -22,27 +22,14 @@ class Game(db.Model):
     """
     This model is used to represent Company entries in our database.
     Attributes:
-    ID - ID of the game object. The ID will self-increment as we add more values
-        into the Game table.
-
-    Name - Name of the game. The IGDB API also pulls information like alternate
-        names for the game, which may be integrated in a future project release.
-
-    Genre - The genre(s) of the game. This will be stored with a joining table or
-        a string table in the future. Currently, we are storing them as a
-        comma-delimited string for the sake of the models.py file and the
-        tests.py file.
-
-    platform - The platform(s) the game was released on. This data is in a similar
-        situation to genre because it is currently being stored as a string.
-
-    Rating - The rating the game received. This rating is pulled from IGDB,
-        just like the other information regarding games.
-
-    Companies - The companies who developed and published the game.
-        This information will be populated using a combination of the association
-        table and the IGDB API. Currently, the model assumes that the association
-        table is properly filled with the right IDs.
+    Game_ID - ID of the game object. The ID will self-increment as we add more values into the Game table.
+    Name - Name of the game. The IGDB API also pulls information like alternate names for the game, which may be integrated in a future project release.
+    Image_URL - The image for the game.
+    Rating - The rating the game received. This rating is pulled from IGDB, just like the other information regarding games.
+    Release_Year - The year the game had came out.
+    Associated_Companies - The companies who developed and published the game. This information will be populated using a combination of the association table and the IGDB API.
+    Associated_Genres - The genres associated with the game. Like companies, the information  is populated using an associated table with the data retrieved from the IGDB API.
+    Associated_Platforms - The platforms the game was released on. This information is populated using a combination of the association table for platforms and games and the IGDB API.
     """
     __tablename__ = 'games'
     game_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
@@ -74,6 +61,8 @@ class Company(db.Model):
     Name - The name of the company.
 
     Num_developed - The number of games this company has developed.
+
+    Image_url - The company logo from the IGDB API.
 
     Num_published - The number of games this company has published.
 
@@ -123,7 +112,7 @@ class Year(db.Model):
 
     Avg_rating - The average rating of all games for the given year.
 
-    Who_made_games - The companies who put out at least 1 game this year.
+    Num_companies_founded - The number of companies that were founded this specific year.
     """
     __tablename__ = 'years'
     year_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
@@ -143,7 +132,15 @@ class Year(db.Model):
     def __repr__(self):
         return '<Year : %r>' % (self.year_id)
 
+
 class Genre(db.Model):
+    """
+    The table which corresponds genre names to a specific genre ID.
+    Attributes:
+    Genre_id - The ID of the genre which acts as the primary key.
+    
+    Genre_Name - The name of the genre.
+    """
     __tablename__ = 'genres'
     genre_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     genre_name = db.Column(db.String(100))
@@ -155,6 +152,13 @@ class Genre(db.Model):
         return '<Genre : %s>' % (self.genre_name)
 
 class Platform(db.Model):
+    """
+    The table which stores the platform names with a platform ID.
+    Attributes:
+    Platform_id - The ID for the platform which is also the primary key.
+
+    Platform_Name - The name of the platform.
+    """
     __tablename__ = 'platforms'
     platform_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     platform_name = db.Column(db.String(100))
