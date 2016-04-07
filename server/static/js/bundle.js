@@ -348,23 +348,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var company_data = [{ Name: _react2.default.createElement(
-    _reactRouter.Link,
-    { to: '/companies/1' },
-    'Naughty Dog '
-  ), Developed: 60, Published: 581,
-  Founded: '1994', 'Avg Rating': 82 * 0.05 }, { Name: _react2.default.createElement(
-    _reactRouter.Link,
-    { to: '/companies/2' },
-    'Bungie '
-  ), Developed: 8, Published: 363,
-  Founded: '1989', 'Avg Rating': 77 * 0.05 }, { Name: _react2.default.createElement(
-    _reactRouter.Link,
-    { to: '/companies/3' },
-    'Bethesda Softworks'
-  ), Developed: 17, Published: 1,
-  Founded: '2003', 'Avg Rating': 81 * 0.05 }];
-
 var Companies = function (_React$Component) {
   _inherits(Companies, _React$Component);
 
@@ -413,7 +396,6 @@ var Companies = function (_React$Component) {
             { to: "/companies/" + id },
             name
           );
-          //comp[name] = '<Link to="/companies/"comp.company_id>comp.name</Link>';
           delete comp.company_id;
           return comp;
         });
@@ -635,45 +617,49 @@ var GamePage = function (_React$Component) {
         var game = this.state.data[0];
         return _react2.default.createElement(
           'div',
-          { className: 'game-stats' },
+          { className: 'fluid-container' },
           _react2.default.createElement(
-            'h2',
-            null,
-            'Title: ',
-            game.name
-          ),
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Genre: ',
-            game.genres[0]
-          ),
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Console: ',
-            game.platforms[0]
-          ),
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Developer: ',
-            _react2.default.createElement(_reactRouter.Link, { to: 'companies/' })
-          ),
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Rating: ',
-            game.rating
-          ),
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Release: ',
+            'div',
+            { className: 'game-stats' },
             _react2.default.createElement(
-              _reactRouter.Link,
-              { to: "years/" + game.year },
-              game.year ? game.year : 'N/A'
+              'h2',
+              null,
+              'Title: ',
+              game.name
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Genre: ',
+              game.genres[0]
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Console: ',
+              game.platforms[0]
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Developer: ',
+              _react2.default.createElement(_reactRouter.Link, { to: 'companies/' })
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Rating: ',
+              game.rating
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Release: ',
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: "years/" + game.year },
+                game.year ? game.year : 'N/A'
+              )
             )
           )
         );
@@ -784,10 +770,16 @@ var Games = function (_React$Component) {
           return g;
         });
         return _react2.default.createElement(_reactable.Table, { data: reformattedGames,
-          sortable: true,
+          sortable: [{
+            column: 'name',
+            sortFunction: function sortFunction(a, b) {
+              var nameA = a.props.children.toLowerCase();
+              var nameB = b.props.children.toLowerCase();
+
+              return nameA.localeCompare(nameB);
+            }
+          }, 'rating', 'release_year'],
           defaultSort: { column: 'name', direction: 'desc' },
-          filterable: ['Genre', 'Console', 'Rating'],
-          filterPlaceholder: 'Filter by Title, Genre, Console, or Rating',
           itemsPerPage: 6, pageButtonLimit: 10,
           defaultSortDescending: true });
       }
@@ -1225,8 +1217,6 @@ var Years = function (_React$Component) {
           }
         }, 'avg_rating', 'num_games', 'num_companies_founded', 'most_popular_genre'],
         defaultSort: { column: 'Year', direction: 'desc' },
-        filterable: ['Year'],
-        filterPlaceholder: 'Filter by Years, Number of Games, Most Popular Genre, Average Rating, or Who Made Games',
         itemsPerPage: 6, pageButtonLimit: 10,
         defaultSortDescending: true });
     }

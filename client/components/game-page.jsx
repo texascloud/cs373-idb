@@ -30,13 +30,15 @@ export default class GamePage extends React.Component {
     else {
       let game = this.state.data[0];
       return (
-        <div className="game-stats">
-          <h2>Title: {game.name}</h2>
-          <h2>Genre: {game.genres[0]}</h2>
-          <h2>Console: {game.platforms[0]}</h2>
-          <h2>Developer: <Link to="companies/"></Link></h2>
-          <h2>Rating: {game.rating}</h2>
-          <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
+        <div className="fluid-container">
+          <div className="game-stats">
+            <h2>Title: {game.name}</h2>
+            <h2>Genre: {game.genres[0]}</h2>
+            <h2>Console: {game.platforms[0]}</h2>
+            <h2>Developer: <Link to="companies/"></Link></h2>
+            <h2>Rating: {game.rating}</h2>
+            <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
+          </div>
         </div>
       );
     }
