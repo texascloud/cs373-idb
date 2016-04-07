@@ -22,31 +22,32 @@ export default class Years extends React.Component {
   }
   render() {
     if (this.state.data === null) {
-      return (<div><h2>Loading data..... Or something failed :)</h2></div>)
+      return (<div></div>)
     }
     let years = this.state.data;
     var reformattedYears = years.map(function(obj) {
       var y = obj;
-      var id = y['year_id'];
-      y['year_id'] = <Link to={"/years/"+id}>{id}</Link>;
+      var id = y[' Year'];
+      y[' Year'] = <Link to={"/years/"+id}>{id}</Link>;
       return y;
     });
     return (
       <Table data={reformattedYears}
              sortable={[
                {
-                  column: 'year_id',
+                  column: ' Year',
                   sortFunction: function(a, b) {
                   var nameA = a.props.children;
                   var nameB = b.props.children;
                   console.log(nameA);
-                  return nameA > nameB;
+                  return nameA > nameB ? 1 : -1;
+                  // return nameA > nameB;
                   }
                 },
-                'avg_rating',
-                'num_games',
-                'num_companies_founded',
-                'most_popular_genre'
+                'Average Rating',
+                'Most popular genre',
+                'Number of Companies Founded',
+                'Number of Games'
                 ]}
              defaultSort={{column: 'Year', direction: 'desc'}}
              itemsPerPage={6} pageButtonLimit={10}

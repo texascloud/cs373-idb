@@ -376,22 +376,14 @@ var Companies = function (_React$Component) {
     key: 'render',
     value: function render() {
       if (this.state.data === null) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Waiting to load data...'
-          )
-        );
+        return _react2.default.createElement('div', null);
       } else {
         var companies = this.state.data;
         var reformattedCompanies = companies.map(function (obj) {
           var comp = obj;
           var id = comp['company_id'];
-          var name = comp['name'];
-          comp['name'] = _react2.default.createElement(
+          var name = comp[' Company'];
+          comp[' Company'] = _react2.default.createElement(
             _reactRouter.Link,
             { to: "/companies/" + id },
             name
@@ -401,14 +393,14 @@ var Companies = function (_React$Component) {
         });
         return _react2.default.createElement(_reactable.Table, { data: reformattedCompanies,
           sortable: [{
-            column: 'name',
+            column: ' Company',
             sortFunction: function sortFunction(a, b) {
               var nameA = a.props.children.toLowerCase();
               var nameB = b.props.children.toLowerCase();
 
               return nameA.localeCompare(nameB);
             }
-          }, 'avg_rating', 'num_published', 'year_founded', 'num_developed'],
+          }, 'Average Rating', 'Number of Games Developed', 'Number of Games Published', 'Year Founded'],
           defaultSort: { column: 'name', direction: 'desc' },
           itemsPerPage: 6, pageButtonLimit: 10,
           defaultSortDescending: true });
@@ -746,22 +738,14 @@ var Games = function (_React$Component) {
     key: 'render',
     value: function render() {
       if (this.state.data === null) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Loading data'
-          )
-        );
+        return _react2.default.createElement('div', null);
       } else {
         var games = this.state.data;
         var reformattedGames = games.map(function (obj) {
           var g = obj;
           var id = g['game_id'];
-          var name = g['name'];
-          g['name'] = _react2.default.createElement(
+          var name = g[' Game'];
+          g[' Game'] = _react2.default.createElement(
             _reactRouter.Link,
             { to: "/games/" + id },
             name
@@ -771,14 +755,15 @@ var Games = function (_React$Component) {
         });
         return _react2.default.createElement(_reactable.Table, { data: reformattedGames,
           sortable: [{
-            column: 'name',
+            column: ' Game',
             sortFunction: function sortFunction(a, b) {
               var nameA = a.props.children.toLowerCase();
               var nameB = b.props.children.toLowerCase();
-
-              return nameA.localeCompare(nameB);
+              var result = nameA.localeCompare(nameB);
+              console.log(result);
+              return result;
             }
-          }, 'rating', 'release_year'],
+          }, 'Companies', 'Genres', 'Platforms', 'Rating', 'Year'],
           defaultSort: { column: 'name', direction: 'desc' },
           itemsPerPage: 6, pageButtonLimit: 10,
           defaultSortDescending: true });
@@ -788,6 +773,23 @@ var Games = function (_React$Component) {
 
   return Games;
 }(_react2.default.Component);
+// const mapStateToProps = (state) => {
+//   return {
+//     game_data: state.nah
+//   }
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getGames: () => {
+//       dispatch(requestGames())
+//     }
+//   }
+// }
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Games)
+
 
 exports.default = Games;
 
@@ -1185,21 +1187,13 @@ var Years = function (_React$Component) {
     key: 'render',
     value: function render() {
       if (this.state.data === null) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Loading data..... Or something failed :)'
-          )
-        );
+        return _react2.default.createElement('div', null);
       }
       var years = this.state.data;
       var reformattedYears = years.map(function (obj) {
         var y = obj;
-        var id = y['year_id'];
-        y['year_id'] = _react2.default.createElement(
+        var id = y[' Year'];
+        y[' Year'] = _react2.default.createElement(
           _reactRouter.Link,
           { to: "/years/" + id },
           id
@@ -1208,14 +1202,15 @@ var Years = function (_React$Component) {
       });
       return _react2.default.createElement(_reactable.Table, { data: reformattedYears,
         sortable: [{
-          column: 'year_id',
+          column: ' Year',
           sortFunction: function sortFunction(a, b) {
             var nameA = a.props.children;
             var nameB = b.props.children;
             console.log(nameA);
-            return nameA > nameB;
+            return nameA > nameB ? 1 : -1;
+            // return nameA > nameB;
           }
-        }, 'avg_rating', 'num_games', 'num_companies_founded', 'most_popular_genre'],
+        }, 'Average Rating', 'Most popular genre', 'Number of Companies Founded', 'Number of Games'],
         defaultSort: { column: 'Year', direction: 'desc' },
         itemsPerPage: 6, pageButtonLimit: 10,
         defaultSortDescending: true });
@@ -1243,8 +1238,11 @@ var _api = require('../utils/api');
 require('react-redux');
 
 function requestGames() {
-  return (0, _api.getStuff)('/api/games');
-  //return get('/api/games/2');
+  return {
+    type: 'GET_GAMES',
+    //nah: 'naaaaah'
+    nah: (0, _api.getStuff)('/api/games')
+  };
 }
 
 function requestGame(game_id) {
@@ -1385,6 +1383,8 @@ function todos() {
       return [].concat(_toConsumableArray(state), [text]);
     case 'GET_GAME':
       return [].concat(_toConsumableArray(state), [{ id: action.game_id }]);
+    case 'GET_GAMES':
+      return [].concat(_toConsumableArray(state), [{ result: action.nah }]);
     default:
       return state;
   }

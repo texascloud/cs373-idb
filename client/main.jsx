@@ -34,6 +34,8 @@ function todos(state = [], action) {
       return [ ...state, text ];
     case 'GET_GAME':
       return [...state, {id: action.game_id}];
+    case 'GET_GAMES':
+      return [...state, {result: action.nah}];
     default:
       return state
   }

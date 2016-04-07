@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { Table } from 'reactable'
 import { connect } from 'react-redux';
-import { requestGame } from '../db_actions/actions'
+import { requestGames } from '../db_actions/actions'
 import { requestKittens } from '../db_actions/actions'
 
 
@@ -21,15 +21,15 @@ export default class Games extends React.Component {
   }
   render() {
     if (this.state.data === null) {
-      return (<div><h1>Loading data</h1></div>)
+      return (<div></div>)
     }
     else{
       let games = this.state.data;
       var reformattedGames = games.map(function(obj) {
         var g = obj;
         var id = g['game_id'];
-        var name = g['name'];
-        g['name'] = <Link to={"/games/"+id}>{name}</Link>;
+        var name = g[' Game'];
+        g[' Game'] = <Link to={"/games/"+id}>{name}</Link>;
         delete g.game_id;
         return g;
       });
@@ -37,16 +37,20 @@ export default class Games extends React.Component {
         <Table data={reformattedGames}
                sortable={[
                {
-                  column: 'name',
+                  column: ' Game',
                   sortFunction: function(a, b) {
                   var nameA = a.props.children.toLowerCase();
                   var nameB = b.props.children.toLowerCase();
-
-                  return nameA.localeCompare(nameB);
+                  var result = nameA.localeCompare(nameB);
+                  console.log(result);
+                  return result;
                   }
                 },
-                'rating',
-                'release_year',
+                'Companies',
+                'Genres',
+                'Platforms',
+                'Rating',
+                'Year'
                 ]}
                defaultSort={{column: 'name', direction: 'desc'}}
                itemsPerPage={6} pageButtonLimit={10}
@@ -55,4 +59,20 @@ export default class Games extends React.Component {
     }
   }
 }
+// const mapStateToProps = (state) => {
+//   return {
+//     game_data: state.nah
+//   }
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getGames: () => {
+//       dispatch(requestGames())
+//     }
+//   }
+// }
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Games)
 

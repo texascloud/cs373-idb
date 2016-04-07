@@ -3,8 +3,11 @@ import 'react-redux';
 
 
 export function requestGames() {
-  return getStuff('/api/games');
-  //return get('/api/games/2');
+  return {
+   type: 'GET_GAMES',
+   //nah: 'naaaaah'
+   nah: getStuff('/api/games')
+  };
 }
 
 export function requestGame(game_id) {
