@@ -3,7 +3,7 @@ import pprint
 import re
 from numpy import mean
 from server import db
-from server.models import Game, Company, Year, Genre, Platform, get_genre_table
+from server.models import Game, Company, Year, Genre, Platform, get_game_genre_table
 from sqlalchemy.sql import func
 
 
@@ -106,7 +106,7 @@ def update_year_entries():
 		if(len(ratings) != 0):
 			# print(type(mean(ratings)))
 			year_entry.avg_rating = mean(ratings).item()
-		popular_genre_query = db.session.query(Genre, func.count(Genre.genre_id).label("count")).join(get_genre_table()).join(Game).filter(Game.release_year == year_entry.year_id).group_by(Genre).order_by("count DESC").all()
+		popular_genre_query = db.session.query(Genre, func.count(Genre.genre_id).label("count")).join(get_game_genre_table()).join(Game).filter(Game.release_year == year_entry.year_id).group_by(Genre).order_by("count DESC").all()
 		if(len(popular_genre_query) > 0):
 			year_entry.most_popular_genre = popular_genre_query[0][0].genre_name
 		db.session.commit()

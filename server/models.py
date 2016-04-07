@@ -15,7 +15,7 @@ association_table_game_platform = db.Table(
         db.Column('game_id', db.Integer, db.ForeignKey('games.game_id')),
         db.Column('platform_id', db.Integer, db.ForeignKey('platforms.platform_id')))
 
-def get_genre_table():
+def get_game_genre_table():
     return association_table_game_genre
 
 class Game(db.Model):
