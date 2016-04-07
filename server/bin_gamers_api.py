@@ -16,7 +16,8 @@ class CompaniesAPI(Resource):
                 "name" : c.name,
                 "num_developed" :  c.num_developed,
                 "num_published" : c.num_published,
-                "avg_rating" : float("%.2f" % c.avg_rating) 
+                "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
+                "year_founded" : c.year_founded
                 } for c in q]
 
 @api.resource('/companies/<int:company_id>')
@@ -33,7 +34,8 @@ class CompanyAPI(Resource):
                 "name" : c.name,
                 "num_developed" :  c.num_developed,
                 "num_published" : c.num_published,
-                "avg_rating" : float("%.2f" % c.avg_rating) 
+                "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
+                "year_founded" : c.year_founded
                 }]
 
 @api.resource('/games')
@@ -45,8 +47,8 @@ class GamesAPI(Resource):
         return [{
                 "game_id" : g.game_id,
                 "name" : g.name,
-                #"genre" : q.genre,
-                #"console" : q.console,
+                "genres" : str(g.associated_genres),
+                "platforms" : str(g.associated_platforms),
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
                 "year" : g.release_year
             } for g in q]
@@ -62,8 +64,8 @@ class GameAPI(Resource):
         return [{
                 "game_id" : game_id,
                 "name" : g.name,
-                #"genre" : q.genre,
-                #"console" : q.console,
+                "genres" : str(g.associated_genres),
+                "platforms" : str(g.associated_platforms),
                 "rating" : float("%.2f" % g.rating) if g.rating else None,
                 "year" : g.release_year
         }]
@@ -79,7 +81,7 @@ class YearsAPI(Resource):
                 "num_games" : y.num_games,
                 "most_popular_genre" : y.most_popular_genre,
                 "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                #"num_companies_founded" : y.num_companies_founded
+                "num_companies_founded" : y.num_companies_founded
         } for y in q]
 
 @api.resource('/years/<int:year_id>')
@@ -95,5 +97,5 @@ class YearAPI(Resource):
                 "num_games" : y.num_games,
                 "most_popular_genre" : y.most_popular_genre,
                 "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                #"num_companies_founded" : y.num_companies_founded
+                "num_companies_founded" : len(y.companies_founded)
         }]
