@@ -1,13 +1,27 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
+import RaisedButton from 'material-ui/lib/raised-button';
+
 
 
 class TestButton extends React.Component {
   render() {
     const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
+    const style = {
+         margin: 12,
+    };
+
+    const RaisedButtonExampleSimple = () => (
+    <div>
+        <RaisedButton label="Press Me; I'm a button!" primary={true} style={style} />
+    </div>
+    );
     return (
-      <h1>Press me bitch!</h1>
+      <div>
+        <RaisedButtonExampleSimple />
+        <h1>Press me bitch!</h1>
+      </div>
     )
   }
 }
