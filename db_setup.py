@@ -62,7 +62,7 @@ def db_import():
 			#image
 			image_url = None
 			if("cover" in game_info and "url" in game_info["cover"]):
-				image_url = "https" + game_info["cover"]["url"]
+				image_url = "https:" + game_info["cover"]["url"]
 
 			#rating
 			rating = None
@@ -159,7 +159,7 @@ def add_companies(companies, game):
 			if "average_rating" in company_info:
 				c["avg_rating"] = company_info["average_rating"]
 			if "company_logo" in company_info:
-				c["image_url"] = "https" + company_info["company_logo"]["url"]
+				c["image_url"] = "https:" + company_info["company_logo"]["url"]
 			company_to_update = Company(**c)
 			db.session.add(company_to_update)
 		
