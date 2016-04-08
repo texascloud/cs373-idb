@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from server import app
+from server import app, db
 
 # This is the run harness for our main application whose logic
 # is in the 'server' directory.
