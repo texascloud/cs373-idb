@@ -38,7 +38,6 @@ class TestCase(TestCase):
         db.session.remove()
         db.drop_all()
 
-    
     # -------------------
     # test splash page
     # -------------------
@@ -101,7 +100,7 @@ class TestCase(TestCase):
         self.assertEqual(len(q), 2)
         db.session.remove()
 
-    #(self, company_id, name=None, num_developed=None, image_url=None, num_published=None, avg_rating=None, year_founded=None)        
+    #(self, company_id, name=None, num_developed=None, image_url=None, num_published=None, avg_rating=None, year_founded=None)
     def test_company_1(self):
         y = Year(1986)
         db.session.add(y)
@@ -240,7 +239,6 @@ class TestCase(TestCase):
         q = Platform.query.all()
         self.assertEqual(len(q), 3)
         db.session.remove()
-        
 
     def test_get_genre_table_1(self):
         game_genre_table = get_game_genre_table()
@@ -249,6 +247,5 @@ class TestCase(TestCase):
         db.session.remove()
 
 
-        
 if __name__ == '__main__':
     main()
