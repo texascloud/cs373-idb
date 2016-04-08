@@ -7,5 +7,5 @@ app.run(host='0.0.0.0', debug=True)
 
 def create_test_db():
 	app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
-   	db.create_all()
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
+    db.create_all()
