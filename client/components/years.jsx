@@ -51,7 +51,7 @@ export default class Years extends React.Component {
                 ]}
              defaultSort={{column: 'Year', direction: 'desc'}}
              itemsPerPage={6} pageButtonLimit={10}
-             defaultSortDescending />
+             defaultSortAscending />
       )
   }
 }

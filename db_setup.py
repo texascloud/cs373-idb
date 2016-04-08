@@ -102,6 +102,7 @@ def db_import():
 
 
 
+
 def update_year_entries():
 	years = Year.query.all()
 	for year_entry in years:

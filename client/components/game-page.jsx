@@ -1,10 +1,11 @@
 import React from 'react'
+import GenericTable from './generic-table.jsx'
 import { render, constructor, componentDidMount, getInitialState } from 'react-dom'
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
-import { requestGame } from '../db_actions/actions'
-import { requestKittens } from '../db_actions/actions'
-import { getGamePls } from '../db_actions/actions'
+//import { requestGame } from '../db_actions/actions'
+//import { requestKittens } from '../db_actions/actions'
+//import { getGamePls } from '../db_actions/actions'
 
 export default class GamePage extends React.Component {
   constructor(props) {
@@ -29,21 +30,23 @@ export default class GamePage extends React.Component {
     }
     else {
       let game = this.state.data[0];
+      console.log(game.companies_to_url);
       return (
-        <div className="fluid-container">
-          <div className="game-stats">
-            <h2>Title: {game.name}</h2>
-            <h2>Genre: {game.genres[0]}</h2>
-            <h2>Console: {game.platforms[0]}</h2>
-            <h2>Developer: <Link to="companies/"></Link></h2>
-            <h2>Rating: {game.rating}</h2>
-            <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
-          </div>
+        <div className="game-stats">
+          <img src={game.image_url} />
+          <h2>Title: {game.name}</h2>
+          <h2>Genre: {game.genres[0]}</h2>
+          <h2>Console: {game.platforms[0]}</h2>
+          <GenericTable title="Companies" data_arr={game.companies_to_url} />
+          <h2>Rating: {game.rating}</h2>
+          <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
         </div>
       );
     }
   }
 }
+
+
 //function mapStateToProps(state) {
 //  return {
 //    data: state.nah
