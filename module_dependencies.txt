@@ -1,0 +1,17 @@
+If you want to build/update the bundle.js, then do the follow. Do NOT add this to the repo for tracking since it all gets packaged into the bundle.js and thus the dependencies are not required to live in the repo (it would also take up a lot of space).
+
+Module list:
+react react-dom reactable react-router babelify babel-preset-react babel-preset-es2015 browserify watchify whatwg-fetch react-redux redux-promise
+[NOTE]
+Sometimes the below commands won't work unless you install browserify and watchify globally. If they don't, then do this:
+    npm install -g browserify watchify
+Requires ROOT
+
+
+Instructions: Run these commands from the root directory of the project!!
+
+    (To have the bundle.js be continually updated while you're making changes to the React files [PREFERRED WAY, WAY SIMPLER])
+    watchify -t [ babelify --presets [ es2015 react ] ] client/main.jsx -o server/static/js/bundle.js -v
+
+    (To build just once)
+    browserify -t [ babelify --presets [ es2015 react ] ] client/main.jsx -o server/static/js/bundle.js

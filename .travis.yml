@@ -3,6 +3,9 @@ language: python
 python:
    - "3.4"
 
+services:
+    - mysql
+
 sudo: false
 
 install:
@@ -12,13 +15,16 @@ install:
     - pip install Flask
     - pip install Flask-SQLAlchemy
 
+
 before_script:
     - uname -a
     - printenv
     - pip list
     - coverage --version
+    - mysql -e 'create database swe_test;'
 
 script:
     - date
+    - ls -al
     - make clean test
     - cat tests.tmp
