@@ -119,4 +119,6 @@ class YearAPI(Resource):
 class TestOutput(Resource):
     @staticmethod
     def get():
-        return { 'passed': False if subprocess.call(["python3", "tests.py"]) else True}
+        proc = subprocess.Popen(["python3", "tests.py"], stdout=subprocess.PIPE, stderr= subprocess.STDOUT)
+        output = proc.communicate()
+        return { 'passed': not bool(proc.returncode), 'output' : str(output[0])}
