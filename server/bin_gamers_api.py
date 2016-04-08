@@ -1,7 +1,9 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 from server import models, cache
+import subprocess
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
+
 
 @api.resource('/companies')
 class CompaniesAPI(Resource):
@@ -113,9 +115,10 @@ class YearAPI(Resource):
         }]
 
 
-
 @api.resource('/tests')
 class TestOutput(Resource):
     @staticmethod
     def get():
-        return { 'nah': 'yea'}
+        returnCode = subprocess.call(["python3", "tests.py"])
+        print(returnCode)
+        return { 'passed': False if returnCode else True}
