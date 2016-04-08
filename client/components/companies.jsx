@@ -28,7 +28,9 @@ export default class Companies extends React.Component {
         var comp = obj;
         var id = comp['company_id'];
         var name = comp[' Company'];
+        var year = comp['Year Founded'];
         comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
+        comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
         delete comp.company_id;
         return comp;
       });
@@ -44,14 +46,21 @@ export default class Companies extends React.Component {
                   return nameA.localeCompare(nameB);
                   }
                 },
+               {
+                  column: 'Year Founded',
+                  sortFunction: function(a, b) {
+                  var nameA = a.props.children;
+                  var nameB = b.props.children;
+                  return nameA > nameB ? 1 : -1;
+                  }
+                },
                 'Average Rating',
                 'Number of Games Developed',
                 'Number of Games Published',
-                'Year Founded'
                 ]}
-               defaultSort={{column: 'name', direction: 'desc'}}
+               defaultSort={{column: ' Company', direction: 'asc'}}
                itemsPerPage={6} pageButtonLimit={10}
-               defaultSortDescending/>
+               defaultSortAscending/>
         );
     }
   }

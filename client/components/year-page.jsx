@@ -30,11 +30,15 @@ export default class YearPage extends React.Component {
     else {
       let year = this.state.data[0];
       return (
-        <div className="year-stats">
-          <h2>Year: {id}</h2>
-          <h2>Most Popular Genre: {year.most_popular_genre}</h2>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-offset-4 col-md-6">
+              <h2>{id}</h2>
+            </div>
+          </div>
           <GenericTable title="Games" data_arr={year.games_to_url} />
           <GenericTable title="Companies" data_arr={year.companies_to_url} />
+          <h2>Most Popular Genre: {year.most_popular_genre}</h2>
         </div>
         );
     }

@@ -41,9 +41,7 @@ export default class Games extends React.Component {
                   sortFunction: function(a, b) {
                   var nameA = a.props.children.toLowerCase();
                   var nameB = b.props.children.toLowerCase();
-                  var result = nameA.localeCompare(nameB);
-                  console.log(result);
-                  return result;
+                  return nameA.localeCompare(nameB);
                   }
                 },
                 'Companies',
@@ -52,7 +50,7 @@ export default class Games extends React.Component {
                 'Rating',
                 'Year'
                 ]}
-               defaultSort={{column: 'name', direction: 'desc'}}
+               defaultSort={{column: ' Game', direction: 'asc'}}
                itemsPerPage={6} pageButtonLimit={10}
                defaultSortDescending />
           );

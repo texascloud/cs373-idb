@@ -39,9 +39,7 @@ export default class Years extends React.Component {
                   sortFunction: function(a, b) {
                   var nameA = a.props.children;
                   var nameB = b.props.children;
-                  console.log(nameA);
                   return nameA > nameB ? 1 : -1;
-                  // return nameA > nameB;
                   }
                 },
                 'Average Rating',
@@ -49,7 +47,7 @@ export default class Years extends React.Component {
                 'Number of Companies Founded',
                 'Number of Games'
                 ]}
-             defaultSort={{column: 'Year', direction: 'desc'}}
+             defaultSort={{column: ' Year', direction: 'desc'}}
              itemsPerPage={6} pageButtonLimit={10}
              defaultSortAscending />
       )

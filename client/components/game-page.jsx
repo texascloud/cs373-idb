@@ -32,14 +32,25 @@ export default class GamePage extends React.Component {
       let game = this.state.data[0];
       console.log(game.companies_to_url);
       return (
-        <div className="game-stats">
-          <img src={game.image_url} />
-          <h2>Title: {game.name}</h2>
-          <h2>Genre: {game.genres[0]}</h2>
-          <h2>Console: {game.platforms[0]}</h2>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3">
+              <img src={game.image_url} />
+            </div>
+            <div className="col-md-6">
+              <h2>{game.name}</h2>
+            </div>
+          </div>
+          <h2>Genre(s):</h2>
+          <ul>
+            {game.genres.map((gen) => (
+              <li>{gen}</li>
+            ))}
+          </ul>
           <GenericTable title="Companies" data_arr={game.companies_to_url} />
+          <h2>Console: {game.platforms[0]}</h2>
           <h2>Rating: {game.rating}</h2>
-          <h2>Release: <Link to={"years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
+          <h2>Release: <Link to={"/years/"+game.year}>{game.year ? game.year : 'N/A'}</Link></h2>
         </div>
       );
     }

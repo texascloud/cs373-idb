@@ -30,7 +30,7 @@ export default class CompanyPage extends React.Component {
       return (
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-3">
               <img src={c.image_url} />
             </div>
             <div className="col-md-6">

@@ -403,10 +403,16 @@ var Companies = function (_React$Component) {
           var comp = obj;
           var id = comp['company_id'];
           var name = comp[' Company'];
+          var year = comp['Year Founded'];
           comp[' Company'] = _react2.default.createElement(
             _reactRouter.Link,
             { to: "/companies/" + id },
             name
+          );
+          comp['Year Founded'] = _react2.default.createElement(
+            _reactRouter.Link,
+            { to: "/years/" + year },
+            year
           );
           delete comp.company_id;
           return comp;
@@ -420,10 +426,17 @@ var Companies = function (_React$Component) {
 
               return nameA.localeCompare(nameB);
             }
-          }, 'Average Rating', 'Number of Games Developed', 'Number of Games Published', 'Year Founded'],
-          defaultSort: { column: 'name', direction: 'desc' },
+          }, {
+            column: 'Year Founded',
+            sortFunction: function sortFunction(a, b) {
+              var nameA = a.props.children;
+              var nameB = b.props.children;
+              return nameA > nameB ? 1 : -1;
+            }
+          }, 'Average Rating', 'Number of Games Developed', 'Number of Games Published'],
+          defaultSort: { column: ' Company', direction: 'asc' },
           itemsPerPage: 6, pageButtonLimit: 10,
-          defaultSortDescending: true });
+          defaultSortAscending: true });
       }
     }
   }]);
@@ -513,7 +526,7 @@ var CompanyPage = function (_React$Component) {
             { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-6' },
+              { className: 'col-md-3' },
               _react2.default.createElement('img', { src: c.image_url })
             ),
             _react2.default.createElement(
@@ -637,27 +650,48 @@ var GamePage = function (_React$Component) {
         console.log(game.companies_to_url);
         return _react2.default.createElement(
           'div',
-          { className: 'game-stats' },
-          _react2.default.createElement('img', { src: game.image_url }),
+          { className: 'container' },
           _react2.default.createElement(
-            'h2',
-            null,
-            'Title: ',
-            game.name
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-3' },
+              _react2.default.createElement('img', { src: game.image_url })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6' },
+              _react2.default.createElement(
+                'h2',
+                null,
+                game.name
+              )
+            )
           ),
           _react2.default.createElement(
             'h2',
             null,
-            'Genre: ',
-            game.genres[0]
+            'Genre(s):'
           ),
+          _react2.default.createElement(
+            'ul',
+            null,
+            game.genres.map(function (gen) {
+              return _react2.default.createElement(
+                'li',
+                null,
+                gen
+              );
+            })
+          ),
+          _react2.default.createElement(_genericTable2.default, { title: 'Companies', data_arr: game.companies_to_url }),
           _react2.default.createElement(
             'h2',
             null,
             'Console: ',
             game.platforms[0]
           ),
-          _react2.default.createElement(_genericTable2.default, { title: 'Companies', data_arr: game.companies_to_url }),
           _react2.default.createElement(
             'h2',
             null,
@@ -670,7 +704,7 @@ var GamePage = function (_React$Component) {
             'Release: ',
             _react2.default.createElement(
               _reactRouter.Link,
-              { to: "years/" + game.year },
+              { to: "/years/" + game.year },
               game.year ? game.year : 'N/A'
             )
           )
@@ -780,12 +814,10 @@ var Games = function (_React$Component) {
             sortFunction: function sortFunction(a, b) {
               var nameA = a.props.children.toLowerCase();
               var nameB = b.props.children.toLowerCase();
-              var result = nameA.localeCompare(nameB);
-              console.log(result);
-              return result;
+              return nameA.localeCompare(nameB);
             }
           }, 'Companies', 'Genres', 'Platforms', 'Rating', 'Year'],
-          defaultSort: { column: 'name', direction: 'desc' },
+          defaultSort: { column: ' Game', direction: 'asc' },
           itemsPerPage: 6, pageButtonLimit: 10,
           defaultSortDescending: true });
       }
@@ -1203,21 +1235,28 @@ var YearPage = function (_React$Component) {
         var year = this.state.data[0];
         return _react2.default.createElement(
           'div',
-          { className: 'year-stats' },
+          { className: 'container' },
           _react2.default.createElement(
-            'h2',
-            null,
-            'Year: ',
-            id
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-offset-4 col-md-6' },
+              _react2.default.createElement(
+                'h2',
+                null,
+                id
+              )
+            )
           ),
+          _react2.default.createElement(_genericTable2.default, { title: 'Games', data_arr: year.games_to_url }),
+          _react2.default.createElement(_genericTable2.default, { title: 'Companies', data_arr: year.companies_to_url }),
           _react2.default.createElement(
             'h2',
             null,
             'Most Popular Genre: ',
             year.most_popular_genre
-          ),
-          _react2.default.createElement(_genericTable2.default, { title: 'Games', data_arr: year.games_to_url }),
-          _react2.default.createElement(_genericTable2.default, { title: 'Companies', data_arr: year.companies_to_url })
+          )
         );
       }
     }
@@ -1302,12 +1341,10 @@ var Years = function (_React$Component) {
           sortFunction: function sortFunction(a, b) {
             var nameA = a.props.children;
             var nameB = b.props.children;
-            console.log(nameA);
             return nameA > nameB ? 1 : -1;
-            // return nameA > nameB;
           }
         }, 'Average Rating', 'Most popular genre', 'Number of Companies Founded', 'Number of Games'],
-        defaultSort: { column: 'Year', direction: 'desc' },
+        defaultSort: { column: ' Year', direction: 'desc' },
         itemsPerPage: 6, pageButtonLimit: 10,
         defaultSortAscending: true });
     }
