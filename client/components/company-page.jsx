@@ -30,8 +30,8 @@ export default class CompanyPage extends React.Component {
       return (
         <div className="container">
           <div className="row">
-            <div className="col-md-3">
-              <img src={c.image_url} />
+            <div className="col-md-6">
+              <img src={c.image_url ? c.image_url.replace('thumb', 'cover_big') : ""} />
             </div>
             <div className="col-md-6">
               <h2>{c.name}</h2>

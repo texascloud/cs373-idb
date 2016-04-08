@@ -24,11 +24,16 @@ export default class Companies extends React.Component {
     }
     else {
       var companies = this.state.data;
+      var columns = [];
+      for (var key in companies[0])
+        columns.push(key);
+      columns.splice(columns.indexOf('company_id'), 1);
       var reformattedCompanies = companies.map(function(obj) {
         var comp = obj;
         var id = comp['company_id'];
         var name = comp[' Company'];
         var year = comp['Year Founded'];
+        comp['name'] = name;
         comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
         comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
         delete comp.company_id;
@@ -36,6 +41,7 @@ export default class Companies extends React.Component {
       });
       return (
         <Table data={reformattedCompanies}
+               columns={columns}
                sortable={[
                {
                   column: ' Company',
@@ -56,9 +62,11 @@ export default class Companies extends React.Component {
                 },
                 'Average Rating',
                 'Number of Games Developed',
-                'Number of Games Published',
+                'Number of Games Published'
                 ]}
                defaultSort={{column: ' Company', direction: 'asc'}}
+               filterable={['name']}
+               filterPlaceholder='Filter by Title, Genre, Console, or Rating'
                itemsPerPage={6} pageButtonLimit={10}
                defaultSortAscending/>
         );

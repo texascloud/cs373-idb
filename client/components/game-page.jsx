@@ -34,8 +34,8 @@ export default class GamePage extends React.Component {
       return (
         <div className="container">
           <div className="row">
-            <div className="col-md-3">
-              <img src={game.image_url} />
+            <div className="col-md-6">
+              <img src={game.image_url.replace('small', 'big')} />
             </div>
             <div className="col-md-6">
               <h2>{game.name}</h2>

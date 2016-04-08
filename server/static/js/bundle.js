@@ -399,11 +399,16 @@ var Companies = function (_React$Component) {
         return _react2.default.createElement('div', null);
       } else {
         var companies = this.state.data;
+        var columns = [];
+        for (var key in companies[0]) {
+          columns.push(key);
+        }columns.splice(columns.indexOf('company_id'), 1);
         var reformattedCompanies = companies.map(function (obj) {
           var comp = obj;
           var id = comp['company_id'];
           var name = comp[' Company'];
           var year = comp['Year Founded'];
+          comp['name'] = name;
           comp[' Company'] = _react2.default.createElement(
             _reactRouter.Link,
             { to: "/companies/" + id },
@@ -418,6 +423,7 @@ var Companies = function (_React$Component) {
           return comp;
         });
         return _react2.default.createElement(_reactable.Table, { data: reformattedCompanies,
+          columns: columns,
           sortable: [{
             column: ' Company',
             sortFunction: function sortFunction(a, b) {
@@ -435,6 +441,8 @@ var Companies = function (_React$Component) {
             }
           }, 'Average Rating', 'Number of Games Developed', 'Number of Games Published'],
           defaultSort: { column: ' Company', direction: 'asc' },
+          filterable: ['name'],
+          filterPlaceholder: 'Filter by Title, Genre, Console, or Rating',
           itemsPerPage: 6, pageButtonLimit: 10,
           defaultSortAscending: true });
       }
@@ -526,8 +534,8 @@ var CompanyPage = function (_React$Component) {
             { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-3' },
-              _react2.default.createElement('img', { src: c.image_url })
+              { className: 'col-md-6' },
+              _react2.default.createElement('img', { src: c.image_url ? c.image_url.replace('thumb', 'cover_big') : "" })
             ),
             _react2.default.createElement(
               'div',
@@ -656,8 +664,8 @@ var GamePage = function (_React$Component) {
             { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-3' },
-              _react2.default.createElement('img', { src: game.image_url })
+              { className: 'col-md-6' },
+              _react2.default.createElement('img', { src: game.image_url.replace('small', 'big') })
             ),
             _react2.default.createElement(
               'div',
