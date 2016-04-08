@@ -21,7 +21,7 @@ before_script:
     - printenv
     - pip list
     - coverage --version
-    - mysql -e 'create database swe_test'
+    - mysql -e 'create database swe_test;'
 
 script:
     - date
