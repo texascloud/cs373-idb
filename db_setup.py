@@ -17,6 +17,7 @@ year_cache = []
 
 def db_import():
 	global year_cache
+	global header
 	db.drop_all()
 	db.create_all()
 
@@ -33,64 +34,71 @@ def db_import():
 	j = r.json()
 
 	# while len(j["games"]) > 0:
-	# while offset < 200
-	# 	header["offset"] += 25
+	while header["offset"] < 100:
 
-	# pp = pprint.PrettyPrinter(indent = 4)
-	# pp.pprint(j)
-	games = j["games"]
-	# loop through games
-	for game in games:
-		game_id = game["id"]
-		if(game_id not in game_cache):
-			game_cache += [game_id]
-			name = game["name"]
-			release_year = int((re.split("-", game["release_date"]))[0])
+		# pp = pprint.PrettyPrinter(indent = 4)
+		# pp.pprint(j)
+		games = j["games"]
+		# loop through games
+		for game in games:
+			game_id = game["id"]
+			if(game_id not in game_cache):
+				game_cache += [game_id]
+				name = game["name"]
+				release_year = int((re.split("-", game["release_date"]))[0])
 
-			#check year cache before adding a new year
-			if(release_year not in year_cache):
-				y = Year(release_year)
-				db.session.add(y)
-				year_cache+= [release_year]
+				#check year cache before adding a new year
+				if(release_year not in year_cache):
+					y = Year(release_year)
+					db.session.add(y)
+					year_cache+= [release_year]
 
-			url_specific_game = "https://www.igdb.com/api/v1/games/" + str(game_id)
-			r = requests.get(url_specific_game, params = header)
+				url_specific_game = "https://www.igdb.com/api/v1/games/" + str(game_id)
+				r = requests.get(url_specific_game, params = header)
 
-			#get specific game information
-			game_info = r.json()["game"]
+				#get specific game information
+				game_info = r.json()["game"]
 
-			#image
-			image_url = None
-			if("cover" in game_info and "url" in game_info["cover"]):
-				image_url = "https" + game_info["cover"]["url"]
+				#image
+				image_url = None
+				if("cover" in game_info and "url" in game_info["cover"]):
+					image_url = "https:" + game_info["cover"]["url"]
 
-			#rating
-			rating = None
-			if("rating" in game_info):
-				rating = game_info["rating"]
+				#rating
+				rating = None
+				if("rating" in game_info):
+					rating = game_info["rating"]
 
 
-			g = Game(id=game_id, name=name, image_url=image_url, rating=rating, release_year=release_year)
-			
-			#loop through platforms 
-			for v in game_info["release_dates"]:
-				c = None
-				platform = v["platform_name"]
-				if platform not in platform_cache:
-					platform_cache += [platform]
-					c = Platform(platform)
-					db.session.add(c)					
-				else:
-					c = Platform.query.filter_by(platform_name = platform).first()
-				g.associated_platforms.append(c)
+				g = Game(id=game_id, name=name, image_url=image_url, rating=rating, release_year=release_year)
+				
+				#loop through platforms 
+				for v in game_info["release_dates"]:
+					c = None
+					platform = v["platform_name"]
+					if platform not in platform_cache:
+						platform_cache += [platform]
+						c = Platform(platform)
+						db.session.add(c)					
+					else:
+						c = Platform.query.filter_by(platform_name = platform).first()
+					g.associated_platforms.append(c)
 
-			add_genres(game_info["genres"], g)
+				if "genres" not in game_info:
+					continue
+				
+				add_genres(game_info["genres"], g)
 
-			add_companies(game_info["companies"], g)
+				add_companies(game_info["companies"], g)
 
-			#add game
-			db.session.add(g)	
-			db.session.commit()
+				#add game
+				db.session.add(g)	
+				db.session.commit()
+
+
+		r = requests.get(url, params = header)
+		j = r.json()
+		header["offset"] += 25
 
 
 
@@ -159,7 +167,7 @@ def add_companies(companies, game):
 			if "average_rating" in company_info:
 				c["avg_rating"] = company_info["average_rating"]
 			if "company_logo" in company_info:
-				c["image_url"] = "https" + company_info["company_logo"]["url"]
+				c["image_url"] = "https:" + company_info["company_logo"]["url"]
 			company_to_update = Company(**c)
 			db.session.add(company_to_update)
 		
