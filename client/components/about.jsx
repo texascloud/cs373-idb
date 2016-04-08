@@ -2,6 +2,19 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
 
+
+class TestButton extends React.Component {
+  render() {
+    const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
+    return (
+      <h1>Press me bitch!</h1>
+    )
+  }
+}
+
+
+
+
 var GithubStats = React.createClass({
     render: function() {
         return (
@@ -75,11 +88,8 @@ var AboutCard = React.createClass({
               </ul>
               <div className="card-block">
                   <div className="row">
-                      <div className="col-sm-6">
-                          <a href="#" className="member-link">Github</a>
-                      </div>
-                      <div className="col-sm-6">
-                          <a href="#" className="member-link">Placeholder</a>
+                      <div className="col-sm-offset-4 col-sm-4">
+                          <a href={this.props.github} className="member-link">Github</a>
                       </div>
                   </div>
               </div>
@@ -98,8 +108,8 @@ var AboutList = React.createClass({
                   <AboutCard
                     name="James Huang"
                     avatar="/static/img/james.png"
-                    bio="He is James, and yes. He likes Geico gaming."
-                    duties="Docker, frontend design"
+                    bio="He is James, and yes. He likes Geico gaming and loves lobster rolls."
+                    duties="Docker, frontend design, hype man"
                     commits="21"
                     issues="2"
                     tests="3"/>
@@ -142,7 +152,8 @@ var AboutList = React.createClass({
                         duties="React, backend, framework, everything pretty much"
                         commits="45"
                         issues="22"
-                        tests="2"/>
+                        tests="2"
+                        github="https://github.com/CamelBackNotation"/>
               </div>
               </section>
           </div>
@@ -154,18 +165,18 @@ export default class About extends React.Component {
     render() {
         return (
           <section id="about">
+          <TestButton />
           <div id="about-page">
             <div className="inner">
-          
             <AboutList />
             <GithubCard name="Total Coding Stats"
-            commits="132"
+            commits="166"
             issues="35"
             tests="20"
-            apiary=""
-            gh-issues=""
-            gh-repo=""
-            gh-wiki=""
+            apiary="https://jsapi.apiary.io/previews/gamesobservatory/reference"
+            gh-issues="https://github.com/CamelBackNotation/cs373-idb/issues"
+            gh-repo="https://github.com/CamelBackNotation/cs373-idb"
+            gh-wiki="https://github.com/CamelBackNotation/cs373-idb/wiki"
               />
             </div>
           </div>

@@ -5,6 +5,7 @@ import { Table } from 'reactable'
 import { connect } from 'react-redux';
 import { requestGames } from '../db_actions/actions'
 import { requestKittens } from '../db_actions/actions'
+import { arrWithoutTerm } from '../utils/helpers'
 
 
 export default class Games extends React.Component {
@@ -25,16 +26,19 @@ export default class Games extends React.Component {
     }
     else{
       let games = this.state.data;
+      var columns = arrWithoutTerm(games, 'game_id');
       var reformattedGames = games.map(function(obj) {
         var g = obj;
         var id = g['game_id'];
         var name = g[' Game'];
+        g['name'] = g[' Game'];
         g[' Game'] = <Link to={"/games/"+id}>{name}</Link>;
         delete g.game_id;
         return g;
       });
       return (
         <Table data={reformattedGames}
+               columns={columns}
                sortable={[
                {
                   column: ' Game',
@@ -51,6 +55,8 @@ export default class Games extends React.Component {
                 'Year'
                 ]}
                defaultSort={{column: ' Game', direction: 'asc'}}
+               filterable={['name']}
+               filterPlaceholder='Filter by Title, Genre, Console, or Rating'
                itemsPerPage={6} pageButtonLimit={10}
                defaultSortDescending />
           );

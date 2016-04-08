@@ -2,11 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { Table } from 'reactable'
+import { arrWithoutTerm } from '../utils/helpers.js'
 
 export default class Companies extends React.Component {
-  constructor() {
-    super();
-  }
   componentWillMount() {
     this.setState({data: null});
     this.serverRequest = $.get('/api/companies', function (result) {
@@ -24,10 +22,7 @@ export default class Companies extends React.Component {
     }
     else {
       var companies = this.state.data;
-      var columns = [];
-      for (var key in companies[0])
-        columns.push(key);
-      columns.splice(columns.indexOf('company_id'), 1);
+      var columns = arrWithoutTerm(companies, 'company_id');
       var reformattedCompanies = companies.map(function(obj) {
         var comp = obj;
         var id = comp['company_id'];
