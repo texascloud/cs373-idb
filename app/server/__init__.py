@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask.ext.cache import Cache
 from server.views import index
-from flask.ext.script import Manager
 import pymysql
 import os
 
