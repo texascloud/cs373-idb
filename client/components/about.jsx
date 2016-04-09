@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
-import RaisedButton from 'material-ui/lib/raised-button';
-
+import RaisedButton from 'material-ui/lib/raised-button'
+import Popover from 'material-ui/lib/popover/popover'
 
 
 class TestButton extends React.Component {
@@ -14,7 +14,7 @@ class TestButton extends React.Component {
 
     const RaisedButtonExampleSimple = () => (
     <div>
-        <RaisedButton label="Press Me; I'm a button!" primary={true} style={style} />
+        <RaisedButton label="Press Me I'm a button!" primary={true} style={style} />
     </div>
     );
     return (
