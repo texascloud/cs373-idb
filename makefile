@@ -18,8 +18,8 @@ IDB2.log:
 IDB3.log:
 	git log > IDB3.log	
 
-tests.tmp: app/tests.py
-	coverage3 run    --include="app/*" --branch app/tests.py >  tests.tmp 2>&1
+tests.tmp: app/carina_tests.py
+	coverage3 run    --include="app/*" --branch app/carina_tests.py >  tests.tmp 2>&1
 	coverage3 report -m                      >> tests.tmp
 	cat tests.tmp
 
