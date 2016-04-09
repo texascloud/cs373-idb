@@ -168,7 +168,3 @@ class Platform(db.Model):
 
     def __repr__(self):
         return '<Platform : %s>' % (self.platform_name)
-
-
-if __name__=='__main__':
-    main()
