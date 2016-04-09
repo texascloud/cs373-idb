@@ -7,7 +7,7 @@ class TestButton extends React.Component {
   render() {
     const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
     return (
-      <h1>Press me bitch!</h1>
+      <a href="https://findgamesfor.me/api/tests">Test</a>
     )
   }
 }

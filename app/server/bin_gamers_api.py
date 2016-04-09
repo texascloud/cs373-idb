@@ -117,4 +117,6 @@ class YearAPI(Resource):
 class TestOutput(Resource):
     @staticmethod
     def get():
-        return { 'nah': 'yea'}
+        proc = subprocess.Popen(["python3", "carina_tests.py"], stdout=subprocess.PIPE, stderr= subprocess.STDOUT)
+        output = proc.communicate()
+        return { 'passed': not bool(proc.returncode), 'output' : str(output[0])}
