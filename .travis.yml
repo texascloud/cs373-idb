@@ -11,7 +11,7 @@ sudo: false
 install:
     - pip install --upgrade pip
     - pip --version
-    - pip install -r requirements.txt
+    - pip install -r app/requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
 
