@@ -3,14 +3,14 @@ import { render } from 'react-dom'
 import { Link } from 'react-router'
 
 
-class TestButton extends React.Component {
-  render() {
-    const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
-    return (
-      <a href="https://findgamesfor.me/api/tests">Test</a>
-    )
-  }
-}
+// class TestButton extends React.Component {
+//   render() {
+//     const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
+//     return (
+//       <a href="https://findgamesfor.me/api/tests"></a>
+//     )
+//   }
+// }
 
 
 
@@ -165,7 +165,6 @@ export default class About extends React.Component {
     render() {
         return (
           <section id="about">
-          <TestButton />
           <div id="about-page">
             <div className="inner">
             <AboutList />
