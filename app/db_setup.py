@@ -172,3 +172,8 @@ def add_companies(companies, game):
 			db.session.add(company_to_update)
 		
 		game.associated_companies.append(company_to_update)
+
+
+if __name__ == '__main__':
+	db_import()
+	update_year_entries()
