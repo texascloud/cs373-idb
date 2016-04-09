@@ -24,7 +24,6 @@ class CompaniesAPI(Resource):
 class CompanyAPI(Resource):
     @staticmethod
     @cache.memoize(50)
-    @cache.cached(50)
     def get(company_id):
         Company = models.Company
         c = Company.query.filter_by(company_id = company_id).first()
