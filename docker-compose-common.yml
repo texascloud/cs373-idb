@@ -24,9 +24,9 @@ services:
           - apps
     environment:
       # Environment variables to configure the app on startup.
-      - MYSQL_DATABASE=swe
+      - MYSQL_DATABASE=guestbook
       - MYSQL_HOST=pythonwebapp_db
-      - MYSQL_TEST_DATABASE=swe_test
+
   db:
     # The database container. Built from the db/Dockerfile.
     container_name: pythonwebapp_db
@@ -36,8 +36,7 @@ services:
       - backend
     environment:
       # Environment variables to configure MySQL on startup.
-      - MYSQL_DATABASE=swe
-      - MYSQL_TEST_DATABASE=swe_test
+      - MYSQL_DATABASE=guestbook
 
   data:
     container_name: pythonwebapp_db_data

@@ -35,6 +35,7 @@ services:
       - "3306"
     env_file:
       - pythonwebapp-mysql-prod.env
+      - pythonwebapp-mysql-root-prod.env
     volumes_from:
       # Mount the volumes from the data container to store our MySQL files
       - data
