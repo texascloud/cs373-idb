@@ -15,8 +15,9 @@ class TestCase(TestCase):
     # -------------------
     def setUp(self):
         app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
-        
+        app.config['SQLALCHEMY_DATABASE_URI'] = '{engine}://travis:password@localhost/swe_test'.format(
+        engine='mysql+pymysql')
+
         self.app = app.test_client()
         self.endpoints = []
         self.endpoints.append('/games')
