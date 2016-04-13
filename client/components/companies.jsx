@@ -60,7 +60,7 @@ export default class Companies extends React.Component {
                 'Number of Games Published'
                 ]}
                defaultSort={{column: ' Company', direction: 'asc'}}
-               filterable={['name']}
+               filterable={['name', 'Year Founded', 'Average Rating']}
                filterPlaceholder='Filter by Title, Genre, Console, or Rating'
                itemsPerPage={6} pageButtonLimit={10}
                defaultSortAscending/>

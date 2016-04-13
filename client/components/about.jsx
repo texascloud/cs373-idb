@@ -5,24 +5,47 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import Popover from 'material-ui/lib/popover/popover'
 
 
-class TestButton extends React.Component {
+class RaisedButtonSimple extends React.Component {
+  handleClick() {
+    this.setState({data: 'running'});
+    this.serverRequest = $.get('/api/tests', function (result) {
+      this.setState({
+        data: result
+      })
+    }.bind(this));
+  }
+  componentWillMount() {
+    this.setState({data: null});
+  }
   render() {
-    const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
     const style = {
-         margin: 12,
+         margin: 12
     };
-
-    const RaisedButtonExampleSimple = () => (
-    <div>
-        <RaisedButton label="Press Me I'm a button!" primary={true} style={style} />
-    </div>
-    );
-    return (
+    if (this.state.data === null) {
+      return (
       <div>
-        <RaisedButtonExampleSimple />
-        <h1>Press me bitch!</h1>
+        <RaisedButton onClick={this.handleClick.bind(this)} label="Press Me I'm a button!" primary={true} style={style} />
+        <textarea rows="7" type="text" id="add" name="results" value="" />
       </div>
-    )
+      )
+    }
+    else if (this.state.data === 'running') {
+      return (
+        <div>
+          <RaisedButton label="Running tests..." primary={true} style={style} />
+          <textarea rows="7" type="text" id="add" name="results" value={this.state.data.output} />
+        </div>
+      )
+    }
+    else {
+      console.log(this.state.data);
+      return (
+        <div>
+          <RaisedButton label="Test results below" primary={true} style={style} />
+          <textarea rows="7" type="text" id="add" name="results" value={this.state.data} />
+        </div>
+      )
+    }
   }
 }
 
@@ -179,7 +202,7 @@ export default class About extends React.Component {
     render() {
         return (
           <section id="about">
-          <TestButton />
+          <RaisedButtonSimple />
           <div id="about-page">
             <div className="inner">
             <AboutList />
