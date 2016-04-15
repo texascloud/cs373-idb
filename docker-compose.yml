@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: python /production/run.py
+  ports:
+   - "5000:5000"
+  volumes:
+   - .:/production
+  links:
+   - db
+  hostname: myappserver
+db:
+  hostname: mysqlserver
+  image: mysql
+  environment:
+     MYSQL_ROOT_PASSWORD: password
+     MYSQL_DATABASE: swe
