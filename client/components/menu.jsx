@@ -1,10 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
+import SearchBar from 'react-search-bar'
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 
 export default class Menu extends React.Component {
-  handleClick() {
+  handleClick(searchTerm) {
     console.log('SEARCH SOME STUFF');
+    this.serverRequest = $.get('/api/search/'+searchTerm, function (result) {
+      this.setState({
+        data: result
+      });
+      console.log(result);
+    }.bind(this));
   }
   render() {
       return (
@@ -15,13 +22,14 @@ export default class Menu extends React.Component {
             <Link activeClassName="active" className="nav-item nav-link" to="/companies">Companies</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/games">Games</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/years">Years</Link>
-            <div className="input-group">
-              <input type="text" className="form-control" placeholder="Search for...">
-                <span className="input-group-btn">
-                  <button onClick={this.handleClick.bind(this)} className="btn btn-default" type="button">Go!</button>
-                </span>
-              </input>
-            </div>
+            <SearchBar
+              onChange={(searchTerm, resolve) => {
+
+              }}
+              onSubmit={(searchTerm) => {
+                this.handleClick(searchTerm);
+                console.log(searchTerm);
+              }} />
           </div>
         </nav>
       );

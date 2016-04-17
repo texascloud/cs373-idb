@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 from server import models, cache
+import flask.ext.whooshalchemy
 import subprocess
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 
@@ -114,6 +115,18 @@ class YearAPI(Resource):
                 "games_to_url" : [{"name" : i.name, "url" : ("/games/" + str(i.game_id))} for i in y.games]
         }]
 
+
+@api.resource('/search/<string:search_term>')
+class SearchAPI(Resource):
+    @staticmethod
+    def get(search_term):
+        print(search_term)
+        Company = models.Company
+        q = Company.query.whoosh_search("bioware", or_=True)
+        print(q)
+        # if not q:
+        #     return []
+        return "nah man"
 
 @api.resource('/tests')
 class TestOutput(Resource):

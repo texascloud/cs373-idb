@@ -1,4 +1,5 @@
-from server import db
+from server import db, app
+import flask.ext.whooshalchemy
 
 association_table_game_company = db.Table(
         'association_game_company',
@@ -74,6 +75,7 @@ class Company(db.Model):
         the association table.
     """
     __tablename__ = 'companies'
+    __searchable__ = ["name"]
     company_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), unique=True)
     num_developed = db.Column(db.Integer)
@@ -95,6 +97,9 @@ class Company(db.Model):
 
     def __repr__(self):
         return '<Company: %r>' % (self.name)
+
+    def __unicode__(self):
+        return self.name
 
 class Year(db.Model):
     """
@@ -168,3 +173,6 @@ class Platform(db.Model):
 
     def __repr__(self):
         return '<Platform : %s>' % (self.platform_name)
+
+
+flask.ext.whooshalchemy.whoosh_index(app, Company)
