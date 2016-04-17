@@ -1,7 +1,6 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 from server import models, cache
-import flask.ext.whooshalchemy
 import subprocess
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 
@@ -14,14 +13,7 @@ class CompaniesAPI(Resource):
     def get():
         Company = models.Company
         q = Company.query.all()
-        return [ { 
-                "company_id" : c.company_id,
-                " Company" : c.name,
-                "Number of Games Developed" :  c.num_developed,
-                "Number of Games Published" : c.num_published,
-                "Average Rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
-                "Year Founded" : c.year_founded,
-                } for c in q]
+        return companyListFormat(q)
 
 @api.resource('/companies/<int:company_id>')
 class CompanyAPI(Resource):
@@ -33,16 +25,7 @@ class CompanyAPI(Resource):
         c = Company.query.filter_by(company_id = company_id).first()
         if not c:
             return []
-        return [{ 
-                "company_id" : c.company_id,
-                "name" : c.name,
-                "num_developed" :  c.num_developed,
-                "num_published" : c.num_published,
-                "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
-                "year" : c.year_founded,
-                "games_to_url" : [{ "name": i.name, "url" : ("/games/" + str(i.game_id))} for i in c.associated_games],
-                "image_url" : c.image_url
-                }]
+        return companyFormat(c)
 
 @api.resource('/games')
 class GamesAPI(Resource):
@@ -122,11 +105,12 @@ class SearchAPI(Resource):
     def get(search_term):
         print(search_term)
         Company = models.Company
-        q = Company.query.whoosh_search("bioware", or_=True)
+        q = Company.query.filter_by(name=search_term).all()
         print(q)
-        # if not q:
-        #     return []
-        return "nah man"
+        if not q:
+            return []
+        # return 'Searching for "{}"'.format(search_term)
+        return companyListFormat(q)
 
 @api.resource('/tests')
 class TestOutput(Resource):
@@ -136,3 +120,28 @@ class TestOutput(Resource):
                                 stderr= subprocess.STDOUT, universal_newlines=True)
         output = proc.stdout.read()
         return output
+
+
+
+
+def companyFormat(c):
+    return [{
+        "company_id" : c.company_id,
+        "name" : c.name,
+        "num_developed" :  c.num_developed,
+        "num_published" : c.num_published,
+        "avg_rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
+        "year" : c.year_founded,
+        "games_to_url" : [{ "name": i.name, "url" : ("/games/" + str(i.game_id))} for i in c.associated_games],
+        "image_url" : c.image_url
+    }]
+
+def companyListFormat(q):
+    return [ {
+        "company_id" : c.company_id,
+        " Company" : c.name,
+        "Number of Games Developed" :  c.num_developed,
+        "Number of Games Published" : c.num_published,
+        "Average Rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
+        "Year Founded" : c.year_founded,
+        } for c in q]

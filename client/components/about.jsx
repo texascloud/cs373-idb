@@ -1,8 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
-import RaisedButton from 'material-ui/lib/raised-button'
-import Popover from 'material-ui/lib/popover/popover'
+import RaisedButton from 'material-ui/RaisedButton'
 
 
 class RaisedButtonSimple extends React.Component {
@@ -24,7 +23,7 @@ class RaisedButtonSimple extends React.Component {
     if (this.state.data === null) {
       return (
       <div>
-        <RaisedButton onClick={this.handleClick.bind(this)} label="Press Me I'm a button!" primary={true} style={style} />
+        <button onClick={this.handleClick.bind(this)}>Press Me I'm a button!</button>
         <textarea rows="7" type="text" id="add" name="results" value="" />
       </div>
       )
@@ -32,16 +31,15 @@ class RaisedButtonSimple extends React.Component {
     else if (this.state.data === 'running') {
       return (
         <div>
-          <RaisedButton label="Running tests..." primary={true} style={style} />
+          <button>Running tests...</button>
           <textarea rows="7" type="text" id="add" name="results" value={this.state.data.output} />
         </div>
       )
     }
     else {
-      console.log(this.state.data);
       return (
         <div>
-          <RaisedButton label="Test results below" primary={true} style={style} />
+          <button>Test results below</button>
           <textarea rows="7" type="text" id="add" name="results" value={this.state.data} />
         </div>
       )
