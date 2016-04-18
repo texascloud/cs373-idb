@@ -85,19 +85,42 @@ class SearchAPI(Resource):
     @staticmethod
     def get(search_term):
         print(search_term)
-        Company = models.Company
-        Game = models.Game
-        # q = Company.query.filter_by(name=search_term).all()
-        c = Company.query.search(search_term).all()
-        g = Game.query.search(search_term).all()
-        print(c)
-        print(g)
-        if not c and not g:
-            return []
-        return {
-            "companies" : companyListFormat(c),
-            "games"     : gameListFormat(g)
-        }
+        # Check if the search term has a space in it. If so, need to do an OR query
+        if ' ' in search_term:
+            print('OR QUERY SHOULD EXECUTE NOW')
+            return {
+                'and' : and_query(search_term),
+                'or'  : or_query(search_term)
+            }
+        else:
+            return {
+                'and' : and_query(search_term),
+                'or'  : []
+            }
+
+
+def or_query(query_term):
+    terms_list = query_term.strip().split(' ')
+    splitter = " or "
+    query_term = splitter.join(terms_list)
+    return and_query(query_term)
+
+
+def and_query(query_term):
+    Company = models.Company
+    Game = models.Game
+    c = Company.query.search(query_term).all()
+    g = Game.query.search(query_term).all()
+    print(c)
+    print(g)
+    if not c and not g:
+        return []
+    return {
+        "companies" : companyListFormat(c),
+        "games"     : gameListFormat(g)
+    }
+
+
 
 
 @api.resource('/tests')
@@ -108,6 +131,10 @@ class TestOutput(Resource):
                                 stderr= subprocess.STDOUT, universal_newlines=True)
         output = proc.stdout.read()
         return output
+
+
+
+
 
 
 

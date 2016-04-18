@@ -5,8 +5,12 @@ python:
 
 services:
     - mysql
+    - postgresql
 
 sudo: false
+
+env:
+    - TRAVIS_RUNNING=true
 
 install:
     - pip install --upgrade pip
@@ -22,6 +26,7 @@ before_script:
     - pip list
     - coverage --version
     - mysql -e 'create database swe_test;'
+    - psql -c 'create database swe_test;' -U postgres
 
 script:
     - date

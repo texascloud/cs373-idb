@@ -17,7 +17,11 @@ class TestCase(TestCase):
         app.config['TESTING'] = True
         # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
         # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/swe_test'
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe_test'
+        travis_running = os.environ.get('TRAVIS_RUNNING')
+        if travis_running is not None:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe_test'
 
         self.app = app.test_client()
         self.endpoints = []
@@ -167,7 +171,7 @@ class TestCase(TestCase):
         db.session.add(y2)
         db.session.add(y3)
         q = Year.query.all()
-        self.assertEqual(q[0].year_id, y3.year_id)
+        self.assertEqual(q[2].year_id, y3.year_id)
         db.session.remove()
 
 
@@ -198,7 +202,7 @@ class TestCase(TestCase):
         db.session.add(y2)
         db.session.add(y3)
         q = Year.query.all()
-        self.assertEqual(q[0].year_id, y3.year_id)
+        self.assertEqual(q[2].year_id, y3.year_id)
         db.session.remove()
 
 

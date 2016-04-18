@@ -6,7 +6,7 @@ import pymysql
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/swe'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 

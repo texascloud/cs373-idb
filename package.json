@@ -27,7 +27,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python3 run.py",
+    "watch": "watchify -t [ babelify --presets [ es2015 react ] ] ./client/main.jsx -o ./server/static/js/bundle.js -v"
   },
   "repository": {
     "type": "git",
