@@ -13,9 +13,7 @@ export default class Menu extends React.Component {
             <Link activeClassName="active" className="nav-item nav-link" to="/companies">Companies</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/games">Games</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/years">Years</Link>
-            <div className="row">
-              <SearchBar />
-            </div>
+            <SearchBar />
           </div>
         </nav>
       );
@@ -43,10 +41,12 @@ class SearchBar extends React.Component {
   }
   render() {
     return (
-        <div className="form-group">
-          <input id="searchTerm" type="text"  placeholder="Search for..." />
+        <form className="navbar-form navbar-left">
+          <div className="form-group">
+            <input id="searchTerm" className="form-control" type="text"  placeholder="Search for..." />
             <button onClick={this.handleClick.bind(this)} type="button" className="btn btn-default">Submit</button>
-        </div>
+          </div>
+        </form>
     )
   }
 }

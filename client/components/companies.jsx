@@ -70,7 +70,6 @@ export default class Companies extends React.Component {
 }
 
 export function CompaniesTable(data) {
-  console.log(data);
   var companies = data;
   var columns = arrWithoutTerm(companies, 'company_id');
   var reformattedCompanies = companies.map(function(obj) {
@@ -81,7 +80,6 @@ export function CompaniesTable(data) {
     comp['name'] = name;
     comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
     comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
-    delete comp.company_id;
     return comp;
   });
   return (
@@ -110,7 +108,6 @@ export function CompaniesTable(data) {
                 'Number of Games Published'
                 ]}
            defaultSort={{column: ' Company', direction: 'asc'}}
-           filterable={['name', 'Year Founded', 'Average Rating']}
            filterPlaceholder='Filter by Title, Genre, Console, or Rating'
            itemsPerPage={6} pageButtonLimit={10}
            defaultSortAscending/>

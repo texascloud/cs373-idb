@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
-from server import models, cache
+from server import models, cache, db
+from sqlalchemy_searchable import search
 import subprocess
 api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 
@@ -9,7 +10,6 @@ api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 class CompaniesAPI(Resource):
     @staticmethod
     @cache.memoize(50)
-    @cache.cached(50)
     def get():
         Company = models.Company
         q = Company.query.all()
@@ -19,7 +19,6 @@ class CompaniesAPI(Resource):
 class CompanyAPI(Resource):
     @staticmethod
     @cache.memoize(50)
-    @cache.cached(50)
     def get(company_id):
         Company = models.Company
         c = Company.query.filter_by(company_id = company_id).first()
@@ -31,19 +30,10 @@ class CompanyAPI(Resource):
 class GamesAPI(Resource):
     @staticmethod
     @cache.memoize(50)
-    @cache.cached(50)
     def get():
         Game = models.Game
         q = Game.query.all()
-        return [{
-                "game_id" : g.game_id,
-                " Game" : g.name,
-                "Genres" : [i.genre_name for i in g.associated_genres],
-                "Platforms" : [i.platform_name for i in g.associated_platforms],
-                "Companies" : [i.name for i in g.associated_companies],
-                "Rating" : float("%.2f" % g.rating) if g.rating else None,
-                "Year" : g.release_year 
-            } for g in q]
+        return gameListFormat(q)
 
 @api.resource('/games/<int:game_id>')
 class GameAPI(Resource):
@@ -54,16 +44,7 @@ class GameAPI(Resource):
         g = Game.query.filter_by(game_id = game_id).first()
         if not g:
             return []
-        return [{
-                "game_id" : game_id,
-                "name" : g.name,
-                "genres" : [i.genre_name for i in g.associated_genres],
-                "platforms" : [i.platform_name for i in g.associated_platforms],
-                "companies_to_url" : [{"name" : i.name, "url" : ("/companies/" + str(i.company_id))} for i in g.associated_companies],
-                "rating" : float("%.2f" % g.rating) if g.rating else None,
-                "year" : g.release_year,
-                "image_url" : g.image_url
-        }]
+        return gameFormat(g)
 
 @api.resource('/years')
 class YearsAPI(Resource):
@@ -72,7 +53,7 @@ class YearsAPI(Resource):
     def get():
         Year = models.Year
         q = Year.query.all()
-        return [{ 
+        return [{
                 " Year" : y.year_id,
                 "Number of Games" : len(y.games),
                 "Most popular genre" : y.most_popular_genre,
@@ -105,12 +86,19 @@ class SearchAPI(Resource):
     def get(search_term):
         print(search_term)
         Company = models.Company
-        q = Company.query.filter_by(name=search_term).all()
-        print(q)
-        if not q:
+        Game = models.Game
+        # q = Company.query.filter_by(name=search_term).all()
+        c = Company.query.search(search_term).all()
+        g = Game.query.search(search_term).all()
+        print(c)
+        print(g)
+        if not c and not g:
             return []
-        # return 'Searching for "{}"'.format(search_term)
-        return companyListFormat(q)
+        return {
+            "companies" : companyListFormat(c),
+            "games"     : gameListFormat(g)
+        }
+
 
 @api.resource('/tests')
 class TestOutput(Resource):
@@ -145,3 +133,26 @@ def companyListFormat(q):
         "Average Rating" : float("%.2f" % c.avg_rating) if c.avg_rating else None,
         "Year Founded" : c.year_founded,
         } for c in q]
+
+def gameFormat(g):
+    return [{
+        "game_id" : g.game_id,
+        "name" : g.name,
+        "genres" : [i.genre_name for i in g.associated_genres],
+        "platforms" : [i.platform_name for i in g.associated_platforms],
+        "companies_to_url" : [{"name" : i.name, "url" : ("/companies/" + str(i.company_id))} for i in g.associated_companies],
+        "rating" : float("%.2f" % g.rating) if g.rating else None,
+        "year" : g.release_year,
+        "image_url" : g.image_url
+    }]
+
+def gameListFormat(q):
+    return [{
+                "game_id" : g.game_id,
+                " Game" : g.name,
+                "Genres" : [i.genre_name for i in g.associated_genres],
+                "Platforms" : [i.platform_name for i in g.associated_platforms],
+                "Companies" : [i.name for i in g.associated_companies],
+                "Rating" : float("%.2f" % g.rating) if g.rating else None,
+                "Year" : g.release_year
+            } for g in q]

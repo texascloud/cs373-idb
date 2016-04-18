@@ -19,6 +19,7 @@ def db_import():
 	global year_cache
 	global header
 	db.drop_all()
+	db.configure_mappers()
 	db.create_all()
 
 	game_cache = [g.game_id for g in Game.query.all()]
@@ -51,7 +52,7 @@ def db_import():
 				if(release_year not in year_cache):
 					y = Year(release_year)
 					db.session.add(y)
-					year_cache+= [release_year]
+					year_cache += [release_year]
 
 				url_specific_game = "https://www.igdb.com/api/v1/games/" + str(game_id)
 				r = requests.get(url_specific_game, params = header)
@@ -65,34 +66,35 @@ def db_import():
 					image_url = "https:" + game_info["cover"]["url"]
 
 				#rating
-				rating = None
+				rating = 0.0
 				if("rating" in game_info):
 					rating = game_info["rating"]
 
 
+
 				g = Game(id=game_id, name=name, image_url=image_url, rating=rating, release_year=release_year)
-				
-				#loop through platforms 
+
+				#loop through platforms
 				for v in game_info["release_dates"]:
 					c = None
 					platform = v["platform_name"]
 					if platform not in platform_cache:
 						platform_cache += [platform]
 						c = Platform(platform)
-						db.session.add(c)					
+						db.session.add(c)
 					else:
 						c = Platform.query.filter_by(platform_name = platform).first()
 					g.associated_platforms.append(c)
 
 				if "genres" not in game_info:
 					continue
-				
+
 				add_genres(game_info["genres"], g)
 
 				add_companies(game_info["companies"], g)
 
 				#add game
-				db.session.add(g)	
+				db.session.add(g)
 				db.session.commit()
 
 
@@ -159,7 +161,7 @@ def add_companies(companies, game):
 			if "founded_year" in company_info:
 				year = company_info["founded_year"]
 				c["year_founded"] = year
-				
+
 				if(year not in year_cache):
 					y = Year(year)
 					db.session.add(y)
@@ -167,11 +169,14 @@ def add_companies(companies, game):
 
 			if "average_rating" in company_info:
 				c["avg_rating"] = company_info["average_rating"]
+			else:
+				c["avg_rating"] = 0.0
+
 			if "company_logo" in company_info:
 				c["image_url"] = "https:" + company_info["company_logo"]["url"]
 			company_to_update = Company(**c)
 			db.session.add(company_to_update)
-		
+
 		game.associated_companies.append(company_to_update)
 
 db_import()
