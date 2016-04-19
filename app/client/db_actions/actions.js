@@ -1,7 +1,6 @@
 import { get, getStuff } from '../utils/api';
 import 'react-redux';
 
-
 export function requestGames() {
   return {
    type: 'GET_GAMES',

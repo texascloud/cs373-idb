@@ -24,8 +24,9 @@ services:
           - apps
     environment:
       # Environment variables to configure the app on startup.
-      - MYSQL_DATABASE=guestbook
-      - MYSQL_HOST=pythonwebapp_db
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=swe
 
   db:
     # The database container. Built from the db/Dockerfile.
@@ -36,7 +37,9 @@ services:
       - backend
     environment:
       # Environment variables to configure MySQL on startup.
-      - MYSQL_DATABASE=guestbook
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=swe
 
   data:
     container_name: pythonwebapp_db_data
