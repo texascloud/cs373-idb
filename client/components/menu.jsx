@@ -22,18 +22,22 @@ export default class Menu extends React.Component {
 
 class SearchBar extends React.Component {
   handleClick() {
-    let searchTerm = document.getElementById("searchTerm").value;
-    console.log('SEARCH SOME STUFF');
-    console.log(searchTerm);
+    let inputBar = document.getElementById("searchTerm");
+    // Get user input
+    const searchTerm = inputBar.value;
     this.serverRequest = $.get('/api/search/'+searchTerm, function (result) {
       this.setState({
         data: result
       });
-      let location = {
+      const location = {
         pathname: '/search',
         state: result
       };
+      // Send user to search page, as well as passing GET request
+      // results to the page to be rendered
       browserHistory.push(location);
+      // Reset the search bar input to the placeholder text
+      inputBar.value = "";
     }.bind(this));
   }
   componentWillMount() {
@@ -41,12 +45,12 @@ class SearchBar extends React.Component {
   }
   render() {
     return (
-        <form className="navbar-form navbar-left">
-          <div className="form-group">
-            <input id="searchTerm" className="form-control" type="text"  placeholder="Search for..." />
-            <button onClick={this.handleClick.bind(this)} type="button" className="btn btn-default">Submit</button>
-          </div>
-        </form>
+      <form className="navbar-form navbar-left">
+        <div className="form-group">
+          <input id="searchTerm" className="form-control" type="text"  placeholder="Search for..." />
+          <button onClick={this.handleClick.bind(this)} type="button" className="btn btn-default">Submit</button>
+        </div>
+      </form>
     )
   }
 }

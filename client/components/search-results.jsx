@@ -10,31 +10,44 @@ export default class SearchResults extends React.Component {
   render() {
     console.log('Render of "search-results"');
     console.log(this.props.location.state);
-    let data = this.props.location.state;
-    if (data.and.length === 0) {
+    const data = this.props.location.state;
+    if (data.and.length === 0 && data.or.length === 0) {
       return (
         <h1>No results matching that query</h1>
       )
     }
-    else if (data.or.length === 0) {
+    else if (data.and.length === 1 && data.or.length === 0) {
+      const and = data.and[0];
       return (
         <div>
           <h1>Search results will eventually appear here! :)</h1>
-          {CompaniesTable(data.and.companies)}
-          {GamesTable(data.and.games)}
+          {CompaniesTable(and.companies)}
+          {GamesTable(and.games)}
+        </div>
+      )
+    }
+    else if (data.and.length === 0 && data.or.length === 1) {
+      const or = data.or[0];
+      return (
+        <div>
+          {CompaniesTable(or.companies)}
+          {GamesTable(or.games)}
         </div>
       )
     }
     else {
+      console.log('and: '+data.and.length);
+      console.log('or: '+data.or.length);
+      const and = data.and[0];
+      const or = data.or[0];
       return (
         <div>
-          <h1>Search results will eventually appear here! :)</h1>
-          <h1>And results</h1>
-            {CompaniesTable(data.and.companies)}
-            {GamesTable(data.and.games)}
-          <h1>Or results</h1>
-          {CompaniesTable(data.or.companies)}
-          {GamesTable(data.or.games)}
+          <h1><u>And results</u></h1>
+            {CompaniesTable(and.companies)}
+            {GamesTable(and.games)}
+          <h1><u>Or results</u></h1>
+          {CompaniesTable(or.companies)}
+          {GamesTable(or.games)}
         </div>
       )
     }

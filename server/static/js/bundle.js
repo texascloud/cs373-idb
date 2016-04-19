@@ -957,19 +957,21 @@ var Games = function (_React$Component) {
 exports.default = Games;
 function GamesTable(data) {
   var games = data;
-  var columns = (0, _helpers.arrWithoutTerm)(games, 'game_id');
-  var reformattedGames = games.map(function (obj) {
-    var g = obj;
-    var id = g['game_id'];
-    var name = g[' Game'];
-    g['name'] = g[' Game'];
-    g[' Game'] = _react2.default.createElement(
-      _reactRouter.Link,
-      { to: "/games/" + id },
-      name
-    );
-    return g;
-  });
+  if (data.length !== 0) {
+    var columns = (0, _helpers.arrWithoutTerm)(games, 'game_id');
+    var reformattedGames = games.map(function (obj) {
+      var g = obj;
+      var id = g['game_id'];
+      var name = g[' Game'];
+      g['name'] = g[' Game'];
+      g[' Game'] = _react2.default.createElement(
+        _reactRouter.Link,
+        { to: "/games/" + id },
+        name
+      );
+      return g;
+    });
+  }
   return _react2.default.createElement(_reactable.Table, { data: reformattedGames,
     columns: columns,
     sortable: [{
@@ -985,23 +987,6 @@ function GamesTable(data) {
     itemsPerPage: 6, pageButtonLimit: 10,
     defaultSortDescending: true });
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     game_data: state.nah
-//   }
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getGames: () => {
-//       dispatch(requestGames())
-//     }
-//   }
-// }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Games)
 
 },{"../utils/helpers":14,"react":271,"react-dom":86,"react-router":125,"reactable":272}],6:[function(require,module,exports){
 'use strict';
@@ -1262,9 +1247,9 @@ var SearchBar = function (_React$Component2) {
   _createClass(SearchBar, [{
     key: 'handleClick',
     value: function handleClick() {
-      var searchTerm = document.getElementById("searchTerm").value;
-      console.log('SEARCH SOME STUFF');
-      console.log(searchTerm);
+      var inputBar = document.getElementById("searchTerm");
+      // Get user input
+      var searchTerm = inputBar.value;
       this.serverRequest = $.get('/api/search/' + searchTerm, function (result) {
         this.setState({
           data: result
@@ -1273,7 +1258,11 @@ var SearchBar = function (_React$Component2) {
           pathname: '/search',
           state: result
         };
+        // Send user to search page, as well as passing GET request
+        // results to the page to be rendered
         _reactRouter.browserHistory.push(location);
+        // Reset the search bar input to the placeholder text
+        inputBar.value = "";
       }.bind(this));
     }
   }, {
@@ -1418,13 +1407,14 @@ var SearchResults = function (_React$Component) {
       console.log('Render of "search-results"');
       console.log(this.props.location.state);
       var data = this.props.location.state;
-      if (data.and.length === 0) {
+      if (data.and.length === 0 && data.or.length === 0) {
         return _react2.default.createElement(
           'h1',
           null,
           'No results matching that query'
         );
-      } else if (data.or.length === 0) {
+      } else if (data.and.length === 1 && data.or.length === 0) {
+        var and = data.and[0];
         return _react2.default.createElement(
           'div',
           null,
@@ -1433,32 +1423,47 @@ var SearchResults = function (_React$Component) {
             null,
             'Search results will eventually appear here! :)'
           ),
-          (0, _companies.CompaniesTable)(data.and.companies),
-          (0, _games.GamesTable)(data.and.games)
+          (0, _companies.CompaniesTable)(and.companies),
+          (0, _games.GamesTable)(and.games)
+        );
+      } else if (data.and.length === 0 && data.or.length === 1) {
+        var or = data.or[0];
+        return _react2.default.createElement(
+          'div',
+          null,
+          (0, _companies.CompaniesTable)(or.companies),
+          (0, _games.GamesTable)(or.games)
         );
       } else {
+        console.log('and: ' + data.and.length);
+        console.log('or: ' + data.or.length);
+        var _and = data.and[0];
+        var _or = data.or[0];
         return _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
             'h1',
             null,
-            'Search results will eventually appear here! :)'
+            _react2.default.createElement(
+              'u',
+              null,
+              'And results'
+            )
           ),
+          (0, _companies.CompaniesTable)(_and.companies),
+          (0, _games.GamesTable)(_and.games),
           _react2.default.createElement(
             'h1',
             null,
-            'And results'
+            _react2.default.createElement(
+              'u',
+              null,
+              'Or results'
+            )
           ),
-          (0, _companies.CompaniesTable)(data.and.companies),
-          (0, _games.GamesTable)(data.and.games),
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Or results'
-          ),
-          (0, _companies.CompaniesTable)(data.or.companies),
-          (0, _games.GamesTable)(data.or.games)
+          (0, _companies.CompaniesTable)(_or.companies),
+          (0, _games.GamesTable)(_or.games)
         );
       }
     }

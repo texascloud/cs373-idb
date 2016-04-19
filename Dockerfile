@@ -12,8 +12,6 @@ RUN npm install -g npm
 RUN npm install
 
 ADD . /production
-ENTRYPOINT ["python"]
 
-EXPOSE 5000
+CMD python ./run.py
 
-CMD ["/production/run.py"]

@@ -63,15 +63,17 @@ export default class Games extends React.Component {
 
 export function GamesTable(data) {
   let games = data;
-  var columns = arrWithoutTerm(games, 'game_id');
-  var reformattedGames = games.map(function(obj) {
-    var g = obj;
-    var id = g['game_id'];
-    var name = g[' Game'];
-    g['name'] = g[' Game'];
-    g[' Game'] = <Link to={"/games/"+id}>{name}</Link>;
-    return g;
-  });
+  if (data.length !== 0) {
+    var columns = arrWithoutTerm(games, 'game_id');
+    var reformattedGames = games.map(function(obj) {
+      var g = obj;
+      var id = g['game_id'];
+      var name = g[' Game'];
+      g['name'] = g[' Game'];
+      g[' Game'] = <Link to={"/games/"+id}>{name}</Link>;
+      return g;
+    });
+  }
   return (
     <Table data={reformattedGames}
            columns={columns}
@@ -96,22 +98,3 @@ export function GamesTable(data) {
            defaultSortDescending />
   );
 }
-
-
-// const mapStateToProps = (state) => {
-//   return {
-//     game_data: state.nah
-//   }
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getGames: () => {
-//       dispatch(requestGames())
-//     }
-//   }
-// }
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Games)
-

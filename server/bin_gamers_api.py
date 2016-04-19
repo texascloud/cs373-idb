@@ -9,7 +9,7 @@ api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 @api.resource('/companies')
 class CompaniesAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Company = models.Company
         q = Company.query.all()
@@ -18,7 +18,7 @@ class CompaniesAPI(Resource):
 @api.resource('/companies/<int:company_id>')
 class CompanyAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get(company_id):
         Company = models.Company
         c = Company.query.filter_by(company_id = company_id).first()
@@ -29,7 +29,7 @@ class CompanyAPI(Resource):
 @api.resource('/games')
 class GamesAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Game = models.Game
         q = Game.query.all()
@@ -38,7 +38,7 @@ class GamesAPI(Resource):
 @api.resource('/games/<int:game_id>')
 class GameAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get(game_id):
         Game = models.Game
         g = Game.query.filter_by(game_id = game_id).first()
@@ -49,7 +49,7 @@ class GameAPI(Resource):
 @api.resource('/years')
 class YearsAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Year = models.Year
         q = Year.query.all()
@@ -64,7 +64,7 @@ class YearsAPI(Resource):
 @api.resource('/years/<int:year_id>')
 class YearAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached(50)
     def get(year_id):
         Year = models.Year
         y = Year.query.filter_by(year_id = year_id).first()
@@ -115,10 +115,10 @@ def and_query(query_term):
     print(g)
     if not c and not g:
         return []
-    return {
+    return [{
         "companies" : companyListFormat(c),
         "games"     : gameListFormat(g)
-    }
+    }]
 
 
 
