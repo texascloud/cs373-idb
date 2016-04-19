@@ -166,7 +166,7 @@ class TestCase(TestCase):
         db.session.add(y2)
         db.session.add(y3)
         q = Year.query.all()
-        self.assertEqual(q[0].year_id, y3.year_id)
+        self.assertEqual(q[2].year_id, y3.year_id)
         db.session.remove()
 
 
@@ -197,7 +197,7 @@ class TestCase(TestCase):
         db.session.add(y2)
         db.session.add(y3)
         q = Year.query.all()
-        self.assertEqual(q[0].year_id, y3.year_id)
+        self.assertEqual(q[2].year_id, y3.year_id)
         db.session.remove()
 
 
