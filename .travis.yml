@@ -4,7 +4,7 @@ python:
    - "3.4"
 
 services:
-    - mysql
+    - postgresql
 
 sudo: false
 
@@ -21,7 +21,7 @@ before_script:
     - printenv
     - pip list
     - coverage --version
-    - mysql -e 'create database swe_test;'
+    - psql -c 'create database swe_test;' -U postgres
 
 script:
     - date

@@ -19,7 +19,7 @@ IDB3.log:
 	git log > IDB3.log	
 
 tests.tmp: app/tests.py
-	coverage3 run    --include="app/*" --branch app/tests.py >  tests.tmp 2>&1
+	coverage3 run    --include="app/*" --branch app/tests-travis.py >  tests.tmp 2>&1
 	coverage3 report -m                      >> tests.tmp
 	cat tests.tmp
 
