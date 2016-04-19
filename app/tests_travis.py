@@ -16,7 +16,7 @@ class TestCase(TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@locahost/swe_test'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'
         
         self.app = app.test_client()
         self.endpoints = []
