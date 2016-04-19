@@ -1,4 +1,24 @@
-from server import db
+from sqlalchemy.dialects.postgresql import JSON
+from flask.ext.sqlalchemy import SQLAlchemy, BaseQuery
+from sqlalchemy_searchable import SearchQueryMixin
+from sqlalchemy_utils.types import TSVectorType
+from sqlalchemy_searchable import make_searchable, vectorizer
+from server import db, app
+
+
+make_searchable()
+
+@vectorizer(db.Integer)
+def integer_vectorizer(column):
+    return db.cast(db.func.avals(column), db.String)
+# Several empty classes to implement the search functionality for our models
+class CompanyQuery(BaseQuery, SearchQueryMixin):
+    pass
+class GameQuery(BaseQuery, SearchQueryMixin):
+    pass
+class YearQuery(BaseQuery, SearchQueryMixin):
+    pass
+
 
 association_table_game_company = db.Table(
         'association_game_company',
@@ -31,22 +51,25 @@ class Game(db.Model):
     Associated_Genres - The genres associated with the game. Like companies, the information  is populated using an associated table with the data retrieved from the IGDB API.
     Associated_Platforms - The platforms the game was released on. This information is populated using a combination of the association table for platforms and games and the IGDB API.
     """
+    query_class   = GameQuery
     __tablename__ = 'games'
     game_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     name = db.Column(db.String(50))
     image_url = db.Column(db.String(255))
     rating = db.Column(db.Float(4))
     release_year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
+    search_vector = db.Column(TSVectorType('name'))
     associated_companies = db.relationship("Company", secondary=association_table_game_company, backref=db.backref("games"))
     associated_genres = db.relationship("Genre", secondary=association_table_game_genre, backref=db.backref("games"))
     associated_platforms = db.relationship("Platform", secondary=association_table_game_platform, backref=db.backref("games"))
 
-    def __init__(self, id, name=None, image_url=None, rating=None, release_year=None):
+    def __init__(self, id, name=None, image_url=None, rating=0.0, release_year=0, search_vector=None):
         self.game_id = id
         self.name = name
         self.image_url = image_url
         self.rating = rating
         self.release_year = release_year
+        self.search_vector = search_vector
 
     def __repr__(self):
         return '<Game: %r>' % (self.name)
@@ -73,6 +96,7 @@ class Company(db.Model):
     Games - The games associated with this company. This data is retrieved using
         the association table.
     """
+    query_class   = CompanyQuery
     __tablename__ = 'companies'
     company_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), unique=True)
@@ -81,9 +105,10 @@ class Company(db.Model):
     image_url = db.Column(db.String(255))
     avg_rating = db.Column(db.Float)
     year_founded = db.Column(db.Integer, db.ForeignKey('years.year_id'))
+    search_vector = db.Column(TSVectorType('name'))
     associated_games = db.relationship("Game", secondary=association_table_game_company, backref=db.backref('companies'))
 
-    def __init__(self, company_id, name=None, num_developed=None, image_url=None, num_published=None, avg_rating=None, year_founded=None):
+    def __init__(self, company_id, name=None, num_developed=0, image_url="", num_published=0, avg_rating=0.0, year_founded=None, search_vector=None):
         self.company_id = company_id
         self.name = name
         self.num_developed = num_developed
@@ -91,6 +116,7 @@ class Company(db.Model):
         self.num_published = num_published
         self.avg_rating = avg_rating
         self.year_founded = year_founded
+        self.search_vector = search_vector
 
 
     def __repr__(self):
@@ -122,7 +148,7 @@ class Year(db.Model):
     games = db.relationship('Game', backref=db.backref('years'))
     companies_founded = db.relationship('Company', backref=db.backref('years'))
 
-    def __init__(self, year_id = None, num_games = None, most_popular_genre = None, avg_rating = None, num_companies_founded = None):
+    def __init__(self, year_id=0, num_games=None, most_popular_genre=None, avg_rating=None, num_companies_founded=None):
         self.year_id = year_id
         self.num_games = num_games
         self.most_popular_genre = most_popular_genre

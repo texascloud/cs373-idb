@@ -1,14 +1,49 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 
-class TestButton extends React.Component {
+class RaisedButtonSimple extends React.Component {
+  handleClick() {
+    this.setState({data: 'running'});
+    this.serverRequest = $.get('/api/tests', function (result) {
+      this.setState({
+        data: result
+      })
+    }.bind(this));
+  }
+  componentWillMount() {
+    this.setState({data: null});
+  }
   render() {
-    const TRAVIS_KEY = 'kAOLLDyY6UAi3Ia6413fAA';
-    return (
-      <h1>Press me bitch!</h1>
-    )
+    const style = {
+         margin: 12
+    };
+    if (this.state.data === null) {
+      return (
+      <div>
+        <button onClick={this.handleClick.bind(this)}>Press Me I'm a button!</button>
+        <textarea rows="7" type="text" id="add" name="results" value="" />
+      </div>
+      )
+    }
+    else if (this.state.data === 'running') {
+      return (
+        <div>
+          <button>Running tests...</button>
+          <textarea rows="7" type="text" id="add" name="results" value={this.state.data.output} />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <button>Test results below</button>
+          <textarea rows="7" type="text" id="add" name="results" value={this.state.data} />
+        </div>
+      )
+    }
   }
 }
 
@@ -165,7 +200,7 @@ export default class About extends React.Component {
     render() {
         return (
           <section id="about">
-          <TestButton />
+          <RaisedButtonSimple />
           <div id="about-page">
             <div className="inner">
             <AboutList />

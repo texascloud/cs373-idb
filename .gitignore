@@ -6,3 +6,4 @@ tests.tmp
 .DS_Store
 venv/
 node_modules
+npm-debug.log
