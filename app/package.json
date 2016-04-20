@@ -22,12 +22,13 @@
     "classnames": "~2.2.3",
     "es6-promise": "~3.1.2",
     "babel": "~5.8.38",
-    "babel-core": "~5.8.38",
-    "react-search-bar": "~1.1.4"
+    "babel-core": "~5.8.38"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python3 run.py",
+    "watch": "watchify -t [ babelify --presets [ es2015 react ] ] ./client/main.jsx -o ./server/static/js/bundle.js -v"
   },
   "repository": {
     "type": "git",

@@ -71,17 +71,20 @@ export default class Companies extends React.Component {
 
 export function CompaniesTable(data) {
   var companies = data;
-  var columns = arrWithoutTerm(companies, 'company_id');
-  var reformattedCompanies = companies.map(function(obj) {
-    var comp = obj;
-    var id = comp['company_id'];
-    var name = comp[' Company'];
-    var year = comp['Year Founded'];
-    comp['name'] = name;
-    comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
-    comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
-    return comp;
-  });
+  if (data.length !== 0) {
+    var columns = arrWithoutTerm(companies, 'company_id');
+    var reformattedCompanies = companies.map(function(obj) {
+      var comp = obj;
+      var id = comp['company_id'];
+      var name = comp[' Company'];
+      var year = comp['Year Founded'];
+      comp['name'] = name;
+      comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
+      comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
+      return comp;
+    });
+
+  }
   return (
     <Table data={reformattedCompanies}
            columns={columns}

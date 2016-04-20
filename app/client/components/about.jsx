@@ -17,13 +17,10 @@ class RaisedButtonSimple extends React.Component {
     this.setState({data: null});
   }
   render() {
-    const style = {
-         margin: 12
-    };
     if (this.state.data === null) {
       return (
       <div>
-        <button onClick={this.handleClick.bind(this)}>Press Me I'm a button!</button>
+        <button onClick={this.handleClick.bind(this)}>Click to run tests!</button>
         <textarea rows="7" type="text" id="add" name="results" value="" />
       </div>
       )
@@ -129,7 +126,6 @@ var AboutCard = React.createClass({
                   </div>
               </div>
           </div>
-        
         );
     }
 });
@@ -152,7 +148,7 @@ var AboutList = React.createClass({
                     name="Will Ripley"
                     avatar="/static/img/will.png"
                     bio="He is just a CS and MIS double major at UT Austin."
-                    duties="Frontend, Database, REST API documentation, Technical Report"
+                    duties="Docker master, Database, REST API documentation, Technical Report"
                     commits="24"
                     issues="15"
                     tests="10"/>
@@ -184,7 +180,7 @@ var AboutList = React.createClass({
                         name="Joshua Hurt"
                         avatar="/static/img/josh.png"
                         bio="Josh is a top 10% Brawhalla player. Once upon a time his computer got rained on; he dried it out."
-                        duties="React, backend, framework, everything pretty much"
+                        duties="React, search functionality, backend, framework, devops, everything pretty much"
                         commits="45"
                         issues="22"
                         tests="2"

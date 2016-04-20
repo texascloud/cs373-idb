@@ -15,9 +15,12 @@ class TestCase(TestCase):
     # -------------------
     def setUp(self):
         app.config['TESTING'] = True
-        # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://docker:password@pythonwebapp_db/swe_test'
-        
+        travis_running = os.environ.get('TRAVIS_RUNNING')
+        if travis_running is not None:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe_test'
+
         self.app = app.test_client()
         self.endpoints = []
         self.endpoints.append('/games')

@@ -9,7 +9,7 @@ api = Api(Blueprint('api', __name__)) # pylint: disable=invalid-name
 @api.resource('/companies')
 class CompaniesAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Company = models.Company
         q = Company.query.all()
@@ -18,7 +18,7 @@ class CompaniesAPI(Resource):
 @api.resource('/companies/<int:company_id>')
 class CompanyAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get(company_id):
         Company = models.Company
         c = Company.query.filter_by(company_id = company_id).first()
@@ -29,7 +29,7 @@ class CompanyAPI(Resource):
 @api.resource('/games')
 class GamesAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Game = models.Game
         q = Game.query.all()
@@ -38,7 +38,7 @@ class GamesAPI(Resource):
 @api.resource('/games/<int:game_id>')
 class GameAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get(game_id):
         Game = models.Game
         g = Game.query.filter_by(game_id = game_id).first()
@@ -49,7 +49,7 @@ class GameAPI(Resource):
 @api.resource('/years')
 class YearsAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get():
         Year = models.Year
         q = Year.query.all()
@@ -64,7 +64,7 @@ class YearsAPI(Resource):
 @api.resource('/years/<int:year_id>')
 class YearAPI(Resource):
     @staticmethod
-    @cache.memoize(50)
+    @cache.cached()
     def get(year_id):
         Year = models.Year
         y = Year.query.filter_by(year_id = year_id).first()
@@ -84,20 +84,41 @@ class YearAPI(Resource):
 class SearchAPI(Resource):
     @staticmethod
     def get(search_term):
-        print(search_term)
-        Company = models.Company
-        Game = models.Game
-        # q = Company.query.filter_by(name=search_term).all()
-        c = Company.query.search(search_term).all()
-        g = Game.query.search(search_term).all()
-        print(c)
-        print(g)
-        if not c and not g:
-            return []
-        return {
-            "companies" : companyListFormat(c),
-            "games"     : gameListFormat(g)
-        }
+        # Check if the search term has a space in it. If so, need to do an OR query
+        if ' ' in search_term:
+            return {
+                'and' : and_query(search_term),
+                'or'  : or_query(search_term)
+            }
+        else:
+            return {
+                'and' : and_query(search_term),
+                'or'  : []
+            }
+
+
+def or_query(query_term):
+    terms_list = query_term.strip().split(' ')
+    splitter = " or "
+    query_term = splitter.join(terms_list)
+    return and_query(query_term)
+
+
+def and_query(query_term):
+    Company = models.Company
+    Game = models.Game
+    c = Company.query.search(query_term).all()
+    g = Game.query.search(query_term).all()
+    print(c)
+    print(g)
+    if not c and not g:
+        return []
+    return [{
+        "companies" : companyListFormat(c),
+        "games"     : gameListFormat(g)
+    }]
+
+
 
 
 @api.resource('/tests')
@@ -108,6 +129,10 @@ class TestOutput(Resource):
                                 stderr= subprocess.STDOUT, universal_newlines=True)
         output = proc.stdout.read()
         return output
+
+
+
+
 
 
 

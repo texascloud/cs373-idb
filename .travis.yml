@@ -8,6 +8,9 @@ services:
 
 sudo: false
 
+env:
+    - TRAVIS_RUNNING=true
+
 install:
     - pip install --upgrade pip
     - pip --version

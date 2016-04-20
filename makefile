@@ -19,7 +19,7 @@ IDB3.log:
 	git log > IDB3.log	
 
 tests.tmp: app/tests.py
-	coverage3 run    --include="app/*" --branch app/tests_travis.py >  tests.tmp 2>&1
+	coverage3 run    --include="app/*" --branch app/tests.py >  app/tests.tmp 2>&1
 	coverage3 report -m                      >> tests.tmp
 	cat tests.tmp
 
@@ -45,9 +45,9 @@ check:
 clean:
 	rm -f  .coverage
 	rm -f  *.pyc
-	rm -rf server/__pycache__
-	rm -rf __pycache__
-	rm -f  tests.tmp
+	rm -rf app/server/__pycache__
+	rm -rf app/__pycache__
+	rm -f  app/tests.tmp
 
 config:
 	git config -l
