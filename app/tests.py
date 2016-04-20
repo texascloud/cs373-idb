@@ -15,8 +15,6 @@ class TestCase(TestCase):
     # -------------------
     def setUp(self):
         app.config['TESTING'] = True
-        # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://travis@localhost/swe_test'
-        # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/swe_test'
         travis_running = os.environ.get('TRAVIS_RUNNING')
         if travis_running is not None:
             app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'

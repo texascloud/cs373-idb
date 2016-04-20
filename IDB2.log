@@ -1,0 +1,1139 @@
+commit 4e8340ddf785aeb8c4ece28effc248a94338d783
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 21:44:21 2016 -0500
+
+    Took out text
+
+commit ce7f0d5b03f517e7099398efde32784b44f6497d
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 8 21:23:47 2016 -0500
+
+    ADDED
+
+commit cfa912366dc09c4f716c655facdf2475c810c98f
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 21:18:41 2016 -0500
+
+    Fix makefile to pass travis
+
+commit ea780ebdcc9686b17919c21cda0b1ddef3b9718e
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 21:16:25 2016 -0500
+
+    Fix models.py to pass travis
+
+commit 00d7dc9005e184d4ad1ccdc981426b9787a16f3d
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 20:53:34 2016 -0500
+
+    Add html and apiary
+
+commit fe09964f670235e5da3ecfb8c4fee558731524e4
+Merge: bf51c24 46aa0fe
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 8 20:51:41 2016 -0500
+
+    Merge branch 'test' of https://github.com/CamelBackNotation/cs373-idb into test
+
+commit bf51c2486d0f0537e0a6afb3494b0f0f4514a42a
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 8 20:51:39 2016 -0500
+
+    fixed api companies
+
+commit 46aa0fef1312e1c116e53c55cd10f01cd0840b7b
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 20:08:04 2016 -0500
+
+    Attempt to pass travis number whatev
+
+commit 207399961422c4e881f0640b29b3ada0fd8a2a9f
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 19:01:05 2016 -0500
+
+    update requirements directory in travis yml
+
+commit 8304e015b5c940c080269011d38bd70a2c36d401
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 8 18:34:06 2016 -0500
+
+    Fixed redirect issue
+
+commit f2a7618ea4b34b244b4c141fc4f6e35472cb3a94
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 8 17:45:27 2016 -0500
+
+    docker working locally
+
+commit 024a81c9f793b75a8c10f6104355e859e0a0e81d
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Fri Apr 8 10:43:38 2016 -0500
+
+    Add flask cache to requirements
+
+commit 84ff730af8f23943b75a3a140fc630520b0b504f
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Apr 8 01:40:21 2016 -0500
+
+    Game AND company names are searchable in the big tables! Added endpoint that will aid in getting the test button on the About page.
+
+commit e9af0e6e1494faef8f8d4c1f545daccd2da518e6
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 23:33:34 2016 -0500
+
+    Big company table is now searchablegst! WOooogstgst
+
+commit d249ae0e5922ffa194bb911ed0ce0e78e3220f4b
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 22:32:25 2016 -0500
+
+    Missing server/static files that merge to master blew away
+
+commit a48d631c564400167baec8e215eabb026d96d312
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 22:27:19 2016 -0500
+
+    Added menu.jsx back that got deleted from merge to master
+
+commit 6a5942df4591d60e7c4d8575c2a00198492dda5d
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 22:07:08 2016 -0500
+
+    More files deleted from the merge to master
+
+commit 674c66230439b4c91c7e3fb5f36d453cfe34ce05
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:52:24 2016 -0500
+
+    Merge removed base.html file. Added it. Everything should work now
+
+commit b79fbdb439ceb4e7b80e53ce01e7b434e2644870
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:48:43 2016 -0500
+
+    Accidentally removed views.py file
+
+commit 45435e54938b47f39d3673f91728ec0f6d2c2a8f
+Merge: 8dd18a0 03d20ce
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:41:18 2016 -0500
+
+    Merging from dev
+
+commit 8dd18a0f5cf70b7d458c60ef96cb4589d35ab839
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:40:49 2016 -0500
+
+    Master was too far out of date. Our bad. Merge conflicts put us in danger of scrubbing too many changes
+
+commit 8a1f9357d5ef760c9d820116eb537d66f6ce27ca
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 21:37:02 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit 03d20ce4d50163b7d555fe859b8f35c38388116e
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:35:30 2016 -0500
+
+    Added images for individual game and company pages
+
+commit f60c0b2c8a448fe1fd5989b270936a420f54391a
+Merge: 9e14f6f 22fc7ca
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 21:10:13 2016 -0500
+
+    fixed merge
+
+commit 22fc7ca01d0bd6e0db56e0d0d0d9ae248b0d2a46
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 21:09:21 2016 -0500
+
+    Circular linking works for individual pages
+
+commit 9e14f6f1eab9c37fb46ebca808cbc168fe825fc0
+Merge: 57f1b20 5c068a5
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 21:09:16 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 57f1b202df37af80fc1dc88db25f10023fc354bd
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 21:09:10 2016 -0500
+
+    pulling more data now in db_setup
+
+commit 5c068a5d57a5c45aa110eee0454b3d6701f02051
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 20:50:49 2016 -0500
+
+    added imageurl to api
+
+commit 8087f916be64eecc5f1438436a82718819b8b03e
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 20:45:05 2016 -0500
+
+    updated api
+
+commit eb7bfb65f6c0d90ce1776d96db7834d9d5995746
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 20:45:55 2016 -0500
+
+    Fix for travis
+
+commit 94bf4e1fd473fd9efd67feea2c6287769c4eb75c
+Merge: 01da47b b717212
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 20:43:17 2016 -0500
+
+    Merge branch 'travis' into dev
+
+commit b7172128e2c3461644a751d35a334971023f023c
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 20:42:50 2016 -0500
+
+    update travis
+
+commit 2c7a44257c0cdd50cd4213fdbb7fa043168777a4
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 19:55:25 2016 -0500
+
+    Fix identation
+
+commit cd0d62d3332d411b392e5fa955cb68a272522b83
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 19:51:20 2016 -0500
+
+    Please pass travis
+
+commit aa8b3209625ca252732b05593edad41e1de21f9d
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 19:47:34 2016 -0500
+
+    Attempt to pass on travis
+
+commit 0e08103dcc8b7b622bf9d46715d0e9073bbc093d
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 19:36:17 2016 -0500
+
+    Fix travis damn it
+
+commit 01da47b13fb77d79d5446d5be13edf7197700167
+Merge: 541b545 150fd97
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 18:46:29 2016 -0500
+
+    Merge branch 'dev' of github.com:camelbacknotation/cs373-idb into dev
+    
+    Wat. What happened??
+
+commit 541b54572bf515a9581051b4cd26b97397b5f857
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 18:45:58 2016 -0500
+
+    Need to render more stuff for single pages still
+
+commit 150fd97ac8b90e7a1da88f6ca6bfa0c6e158378c
+Merge: 0de6e3a afeb3b7
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 18:45:41 2016 -0500
+
+    Attempt to fix travis
+
+commit 0de6e3aea8e23eab30c5ac039e66ef6d59647dc8
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Apr 7 18:44:02 2016 -0500
+
+    Attempt to fix travis issue
+
+commit afeb3b7a04dd8726bea179048ef6d6642718aa60
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:36:00 2016 -0500
+
+    fixed travis db.yml
+
+commit bb62a53efd301304ba8a6326629c82e00233b4ab
+Merge: 86162b8 b2ef0c3
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:30:32 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 86162b801be5d349f4e9e3d38c570ac50ef27807
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:30:26 2016 -0500
+
+    fixed travis file
+
+commit b2ef0c3af76ad72d17877bc19be69562b2b96bfa
+Author: jerrypon <jp117@cs.utexas.edu>
+Date:   Thu Apr 7 18:27:04 2016 -0500
+
+    Fixed about page gridding. Close #18
+
+commit 2cd32e252d7e7911464744c9a2d1423a55e5a98b
+Merge: 3f0ad92 1c0fdd1
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:13:26 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 3f0ad92b1db60125778c229a8ba377a72945d2c8
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:12:53 2016 -0500
+
+    RUN TRAVIS RUN
+
+commit 913211a5ad5ae192b9836d7802ff155109bb7ede
+Merge: cb7dbc0 086f2e8
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:08:34 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit cb7dbc06d717c46d1fde9a4f4e9d80b3716785f2
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 18:08:29 2016 -0500
+
+    added swe_test db to travis
+
+commit 1c0fdd16c33c2b146b44ee7cbbdf53b559e31734
+Merge: 3b21674 913211a
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 18:08:22 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 3b21674a253e1c13b7b36faaf74a7bd5b62c2628
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 18:07:51 2016 -0500
+
+    updated api yet again
+
+commit 086f2e8fe459cb0b0bbe459d0e317e0f6e8a371f
+Merge: d1c1655 7f444b7
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 17:51:47 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit d1c165505ea935605829de2250df49c3545c6a15
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 17:51:32 2016 -0500
+
+    updated api
+
+commit 7f444b792847924c8407aabc4867049514c8853a
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 17:35:58 2016 -0500
+
+    Added documentation for new tables in models.py
+
+commit a4bfb1c665e66b2861d06dd2feb2cbbefd8f2a75
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 17:31:17 2016 -0500
+
+    Main tables looking pretty good. Need to work on individual tables now
+
+commit 3e148342e6dbdaaf0b546efe9de4e5acf44f0975
+Merge: 59b9f7b ec9ab17
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 16:59:28 2016 -0500
+
+    fixed merge conflict with lack of numpy now
+
+commit 59b9f7b394538b6798c5130fc97257c7be3942ff
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Apr 7 16:58:30 2016 -0500
+
+    tests work now
+
+commit ec9ab17ac9549f63816e25ba84e74fff2d9eed57
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 16:53:39 2016 -0500
+
+    updated api
+
+commit dab9ad7ea39f72b32ba55fb8a18fd46a53758d9e
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 16:47:03 2016 -0500
+
+    updated api
+
+commit d1cbb5d190ebe7192f55325c1758bb258b852256
+Merge: 937fbf8 1d309af
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 16:41:23 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 937fbf86f4e01a4a9ae56e7c2a7fa2e4c8e1923b
+Author: Doug <wowdoug@gmail.com>
+Date:   Thu Apr 7 16:40:15 2016 -0500
+
+    updated api
+
+commit 1d309afd1a3568720d327952f1dafda01c7a5567
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 16:33:54 2016 -0500
+
+    Removed numpy dependency. Removed botched filtering from the big tables.
+
+commit cf593a6a2a92ec7402278be42c4a506e3aa53f77
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 15:57:10 2016 -0500
+
+    Added package.json for easy dependency installation of NPM modules. Still don't push those to the repo though. Cleaned up some unused/unneeded imports from Python and Javascript files
+
+commit 3b26ac0664e6886cbfb8da044239c78fff3efb6a
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Apr 7 06:04:20 2016 -0500
+
+    Added rudimentary data rendering via React. Needs work but data is able to be retrieved via our API endpoints and then rendered to the website
+
+commit 96710186e9a5ea3e0572a8756d5b8be5ad855341
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 22:38:59 2016 -0500
+
+    switched to year from yearr : url mapping
+
+commit 1d3b5bda46d002bda85cd14e7424988e035d855f
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 22:28:30 2016 -0500
+
+    fixed name to url mapping up to work better with react routing
+
+commit c0335506c49d1a9cce172ebd40f17c686569a2f4
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 21:51:15 2016 -0500
+
+    added name to url mapping in for individual entries
+
+commit b3af13087228c54d006cfbd4f79291280231a3e8
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 21:11:59 2016 -0500
+
+    switched to mapping for associated tables, with mapping being {name : id}. Might need to change to {name : url} later
+
+commit 88f098371842926846395e95c32f3508f0f05653
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 20:00:27 2016 -0500
+
+    Updated API to returns lists of companies, games, etc... Will need to refine API further whenever constructing the front-end
+
+commit 05a5cb63cba08b19d017c460140f36235df4faf1
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 19:22:23 2016 -0500
+
+    Updated API to include cross referential information, still need to format genres and platforms for games
+
+commit 7f88285a4cdfa5c9e5b898f0337c07dd9e22402a
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Wed Apr 6 17:57:57 2016 -0500
+
+    Update makefile
+
+commit 148e600d6b18f9f79f6f922eae643b75ea0013cd
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Wed Apr 6 17:52:54 2016 -0500
+
+    Update yml for travis
+
+commit 4aab923db3afc3bfd8c267d4ce357c6c6fdf4509
+Merge: caf0256 50aed19
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Apr 6 17:29:30 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit caf0256ba8499413a1fe288369b26a017417b0be
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Apr 6 17:29:19 2016 -0500
+
+    fixed truncate issue with table
+
+commit 0e6466007fbc126ad85dab5f7d8e9a61f8dd74f5
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Apr 6 17:24:20 2016 -0500
+
+    db_setup.py works
+
+commit 50aed199b2d313270d4c7744c8495423e967b12d
+Merge: 5bd3651 eb37bbd
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 16:03:30 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+    
+    Resolving merge conflict
+
+commit 5bd3651311647eb2d8ba5a0773e590084e5b25c7
+Author: Doug <wowdoug@gmail.com>
+Date:   Wed Apr 6 16:01:58 2016 -0500
+
+    Added in API elements that do not require associations
+
+commit 196b627e1b76b62ecf58e7f00f66d8c5f0d8f100
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Apr 6 12:09:56 2016 -0500
+
+    Added all platforms for associated games into db
+
+commit eb37bbdf4046fc0eae68a6e2fe9193f3312a1186
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 21:23:54 2016 -0500
+
+    Added select.sql script to show tables
+
+commit de02b1011e9ef444bd42638f2dd4651ea27fab64
+Merge: 8430204 5ab7d73
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 20:33:50 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 8430204498fd0b285e3e53892a8d223d2815983f
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 20:33:35 2016 -0500
+
+    first 25 games and year_ids added into mysql
+
+commit 5ab7d73c126a2cc7e26388395c3994e5c979ca2f
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Tue Apr 5 20:30:25 2016 -0500
+
+    MySQL for Travis try 3
+
+commit d6a2abf7c13f68a8dffde525f0db3ca2d31d2547
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Tue Apr 5 19:58:13 2016 -0500
+
+    Update yml for travis
+
+commit 33749cadd5a2c19368dadc1f964aa856fb61d0b6
+Merge: 102dffd 4f2a4de
+Author: jerrypon <jp117@cs.utexas.edu>
+Date:   Tue Apr 5 19:53:05 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 102dffd849115ddbfdfa78fcc285b22b12376b76
+Author: jerrypon <jp117@cs.utexas.edu>
+Date:   Tue Apr 5 19:51:28 2016 -0500
+
+    Update yml
+
+commit 4f2a4de33cae79fa5ff3affccd398d4bc5498cd6
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 19:45:36 2016 -0500
+
+    Added PyMySQL to requirements.txt
+
+commit 63d748e36c784a68f27f880f0d4b246edffbd4fe
+Merge: 23759b7 d504516
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 19:37:47 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 23759b7e8a09562614ec725f2b3824d2d0fd65d8
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Tue Apr 5 19:37:41 2016 -0500
+
+    connected to mysql and created tables using SQLAlchemy
+
+commit d504516d973fe0d3161c30c8b00f6c5298608349
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Tue Apr 5 08:14:38 2016 -0500
+
+    Add 404
+
+commit c8ece50fe00af9b22f4ecba5a459180407c435f4
+Author: James Huang <james.huang@weiluen.com>
+Date:   Mon Apr 4 18:56:12 2016 -0500
+
+    Delete stuff Revert "adding in new node modules and adding in new components"
+    
+    This reverts commit 88899b3fa919f7357f081c3d46eeb41a274a8611.
+
+commit 1d593cd3eeabf9448ce1e3dd4fe0777bef1b942c
+Author: James Huang <james.huang@weiluen.com>
+Date:   Mon Apr 4 18:54:33 2016 -0500
+
+    Oops we have Bundle.js Revert "adding in react-tap-event-plugin to register touch events"
+    
+    This reverts commit 5a0b0c290b772f72e19ab2358c92a616a080e28c.
+
+commit a3524b1c740ea9cbc98f82e1eea5c857695f3f6d
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Mon Apr 4 17:05:09 2016 -0500
+
+    Added pull.py to server. Updated models.py
+
+commit 5a0b0c290b772f72e19ab2358c92a616a080e28c
+Author: James Huang <james.huang@weiluen.com>
+Date:   Mon Apr 4 16:59:21 2016 -0500
+
+    adding in react-tap-event-plugin to register touch events
+
+commit 88899b3fa919f7357f081c3d46eeb41a274a8611
+Author: James Huang <james.huang@weiluen.com>
+Date:   Mon Apr 4 16:48:21 2016 -0500
+
+    adding in new node modules and adding in new components
+
+commit 07d930bfe318d4f2b7c206d17f8e5ef7acc00dd4
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Mon Apr 4 16:25:34 2016 -0500
+
+    Updated API to return empty JSON object if given an invalid lookup parameter
+
+commit b922683afb8244c72b92e8acf43d14e76b497924
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Mon Apr 4 16:20:31 2016 -0500
+
+    Update dependencies and about image
+
+commit d642469d23d0b2017738910d3a4c6a605a322dfc
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Mon Apr 4 15:42:46 2016 -0500
+
+    API endpoints beginning to return correct JSON data that uses data queried from our database
+
+commit 8a155169fbe1928c5ddf699428c6f56f24ab0749
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Apr 3 21:57:09 2016 -0500
+
+    Removed an accidental 'bundle.js' file from root directory
+
+commit 43b37df5f95d1e3a8aa8c58bbd7d88a18deb61b7
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Apr 3 21:55:29 2016 -0500
+
+    Updated gitignore to not include all __pycache__ directories
+
+commit 69f5136081d560cf126268b6998eb138782aacef
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Apr 3 21:54:02 2016 -0500
+
+    Removed models.py from root directory since it's already under 'server' directory
+
+commit 574ec87b7c65ca0fe2e087f93ed93ef50605d72a
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Sun Apr 3 10:57:39 2016 -0500
+
+    finished sample db
+
+commit 10efaf33a7413563060bb890c8b3de32ecc3ff9a
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Sat Apr 2 14:58:44 2016 -0500
+
+    removed auto increment from sqlMaker for easier rest calls to igdb
+
+commit f83f8f640c2a3676dd4ede8cd619d8a241e4020c
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Sat Apr 2 14:56:38 2016 -0500
+
+    starting to pull data into pulls.py
+
+commit 1c068202e4af7c68c8354095029b092441fafca3
+Merge: ff67407 2e81a3d
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Sat Apr 2 14:32:10 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit ff6740725af608636c4ac57445b552a309f5aa7e
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Sat Apr 2 14:32:06 2016 -0500
+
+    sqlMaker.sql table creation modified
+
+commit 9b5ffa276feb7d1e786c11bbe86f4c1ec75a637a
+Merge: 6e4a7b3 2e81a3d
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Apr 1 22:33:39 2016 -0500
+
+    Merge branch 'dev'
+
+commit 2e81a3db2a9d553bf730671e5b22c29193b4300b
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Apr 1 22:32:16 2016 -0500
+
+    Setup framework for restful API to close #29. Restructured project to split files into server and client directories to better label file roles.
+
+commit 6af034e83dd5b8d24c46c5c7f7b1522e69e1eb55
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Fri Apr 1 19:51:49 2016 -0500
+
+    Added pull.py and sqlMaker.sql
+
+commit 6e4a7b351f031efde013e798d79b023ab85d19f5
+Merge: dff279b 4678f8c
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Mon Mar 28 15:36:32 2016 -0500
+
+    MASTERFUL MERGE
+
+commit 4678f8caaff49baf11ee1c340e18edd6320f9ac8
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 27 05:06:46 2016 -0500
+
+    Reactified all the routing and pages. Navigating around the website is much much quicker since there is a single HTML page that has a single div continually updated as opposed to always rendering new HTML pages.
+
+commit dff279bc0ce3e7aebe77247224382a7312449ec0
+Merge: 55baab5 a63e453
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:51:41 2016 -0500
+
+    Merge branch 'master' of github.com:CamelBackNotation/cs373-idb
+    
+    Merge conflicts
+
+commit 55baab5e69b32dace3592455b5888970fbd90df6
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:51:15 2016 -0500
+
+    Finished updating company data
+
+commit a63e453d52e00cd9094bcb5a8a866477ead1e94f
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 21:46:16 2016 -0500
+
+    add html
+
+commit f0dc0588c719d59f89dc9799faa015fe52026b6a
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:43:37 2016 -0500
+
+    Added documentation to models
+
+commit 97032a7684bf91e3baf8ee20b3f2cfaed2e7c973
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 21:41:51 2016 -0500
+
+    deleted README.md
+
+commit 118c35820b312d6283aad08b39c2f8c8e8ce628f
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 21:40:36 2016 -0500
+
+    add log
+
+commit 40b4665ad6dc49269fc1d8140188c9ff9c5c1406
+Merge: e8bb2c1 553ecea
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 21:39:34 2016 -0500
+
+    fixed merge conflict
+
+commit e8bb2c1734c60c352af24446f57fa3118c435ed6
+Merge: 7654498 4d33d99
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 21:35:21 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 553ecea29321ca5cd7be53952c21ddd8802b4cd3
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 21:34:08 2016 -0500
+
+    change about info
+
+commit 76544985b5915e2188d001aa53735ed65f64262a
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 21:34:07 2016 -0500
+
+    changed and updated the splash page with a little more text
+
+commit 4d33d99af233247e3f268e7b1ba842b84e75c6b0
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:22:47 2016 -0500
+
+    Updated company/games/years static data to be 'accurate'
+
+commit 76e06677ec9ea903ed5db0d6f4b4ad2f1eaf2bb4
+Merge: 946d9d5 ee08787
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:12:40 2016 -0500
+
+    Merge branch 'dev' of github.com:CamelBackNotation/cs373-idb into dev
+    
+    Merging!
+
+commit 946d9d517e81f3bcf00eb33db70855d5e79f55cb
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 21:12:33 2016 -0500
+
+    Made more static pages and ensured all of them had links to all other models.
+
+commit ee08787808f38eaf1f0b2f9fb90b938b973b57d8
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 19:41:32 2016 -0500
+
+    added images to the about page and short bios.
+
+commit 1a979ed5633a2d48f1e28c93301050b988b96fe9
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 18:41:39 2016 -0500
+
+    added the logo closes #19, closes #8
+
+commit feadaa140be51f31c706a99e474c593db26d5dc3
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 18:21:25 2016 -0500
+
+    All unit tests passing. We have a good number of them as well. All models properly tested. Travis script should pass. Nice milestone.
+
+commit 1ec8b8adf6d695bc9f6009d8af959201c2576a92
+Merge: 56df40f 80596e3
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 17:36:20 2016 -0500
+
+    Merge branch 'master' into dev
+    
+    People committing to the wrong branches causing issues.
+
+commit 56df40f2d7ec2aec26f519583ce1e1e903bd8326
+Author: James Huang <james.huang@weiluen.com>
+Date:   Thu Mar 24 17:35:45 2016 -0500
+
+    Circular linking between models (dealing with an unmerged issue from Dev)
+
+commit 80596e33d8c68db47b315540d1ec63fdd4ed4a50
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Mar 24 17:22:24 2016 -0500
+
+    Finished Specified Timeline
+
+commit 7c2f4608e5fdee35fff86b10643ed069b96605c8
+Merge: 912e464 f3d38e6
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Thu Mar 24 17:21:49 2016 -0500
+
+    Merge branch 'master' into dev
+    
+    Tests added.
+
+commit 18881f375da0244ea7c4bb43764f8c723813a1e4
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Mar 24 17:06:52 2016 -0500
+
+    Fixed a test
+
+commit 056044163f8160002f655dab1d8397d5cd6c5b5c
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Mar 24 17:01:20 2016 -0500
+
+    Added all models tests; not functional yet
+
+commit 7a49952d777ec729051a789fb9d5200b869ac52b
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Mar 24 16:15:36 2016 -0500
+
+    Added my bio information and image
+
+commit 29110b9960408c19c002119ebff91dbec97a3924
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Thu Mar 24 16:02:26 2016 -0500
+
+    Added virtual environment into .gitignore
+
+commit 65fe31f0c91419bde64fffa555d5402835dfc0a3
+Merge: a4e4019 79d8a8d
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 10:05:10 2016 -0500
+
+    Merge branch 'master' of https://github.com/CamelBackNotation/cs373-idb
+
+commit a4e40194b02bcd907501dbca085ef8a6ca6907f5
+Merge: 715b1e4 912e464
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 10:04:52 2016 -0500
+
+    Merge branch 'dev'
+
+commit 912e4642307f8b2101ba8c9221f712deec812e24
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 10:02:55 2016 -0500
+
+    Slight change for README
+
+commit de840c264326e871edf9d45fa4f644c7dc7c88ec
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 10:00:52 2016 -0500
+
+    New README with complete instruction
+
+commit 79d8a8dde3326697517290f1dbf3934367f9a87c
+Author: Douglas Wiley <wowdoug@gmail.com>
+Date:   Thu Mar 24 08:46:05 2016 -0500
+
+    Updated models.py to use FlaskSQLAlchemy rather than SQLAlchemy and removed old models.py from subdirectory
+
+commit be9aba2b82217f16e0dca6f7e0d7d05dcb1a2c27
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 07:47:49 2016 -0500
+
+    Update README
+
+commit c2a8c86df1a9ee62fff1fae3b0e59e66c3628990
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 07:45:22 2016 -0500
+
+    Update README
+
+commit 715b1e4f2748bcdd3901d8073b2272236abc82b3
+Merge: bbf285d 7690a46
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 07:22:17 2016 -0500
+
+    Merge branch 'dev'
+    
+    Now passing on travis again with dependency added
+
+commit 7690a46612b0b2c68a32aa8dddff86e551712ecb
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Thu Mar 24 07:19:58 2016 -0500
+
+    Add SQLAlchemy dependency to yml
+
+commit bbf285d352cf27fa7e013d5a88b204ed726e59db
+Author: wripley <wwripley@gmail.com>
+Date:   Wed Mar 23 22:27:49 2016 -0500
+
+    UML.pdf added to base directory
+
+commit 883f48ea70adc70c88fc0efa65492329c1676698
+Author: wripley <wwripley@gmail.com>
+Date:   Wed Mar 23 22:22:08 2016 -0500
+
+    Create models.py in base directory
+
+commit f3d38e68fbfc1a5e00ff1a9886cb54f8c161ef2f
+Merge: 2abb247 640adf6
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Wed Mar 23 21:09:00 2016 -0500
+
+    Merge branch 'dev'
+    
+    Added clickable links!
+
+commit 640adf687aae3973c814dc25e9f4f90cf9fde954
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Wed Mar 23 21:08:42 2016 -0500
+
+    Added clickable links to all the models in the 'Games' tab. Follow suit for the other pages as well.
+
+commit 2abb24778f7bf8a2d07c4f81300b6f4d45246d74
+Merge: c762ac3 e409445
+Author: Douglas Wiley <doug@cs.utexas.edu>
+Date:   Wed Mar 23 18:26:03 2016 -0500
+
+    Merge branch 'dev'
+
+commit e409445574079bb928aec914589e4f58f919fcb2
+Author: Douglas Wiley <doug@cs.utexas.edu>
+Date:   Wed Mar 23 18:24:20 2016 -0500
+
+    Added in models and updated about.js to link to github and apiary. Closes issue #10
+
+commit c762ac302b39ba7fd49ec7cb43f3a5cd4b23bac0
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Mar 23 17:14:42 2016 -0500
+
+    Updated IDs
+
+commit ee9eb2426440f2affa54ca44698439aa0dc7305b
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Mar 23 17:03:53 2016 -0500
+
+    IDs found for games and companies
+
+commit 4b4feee9e26f107c2b614662802d4453261a4a2d
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Mar 23 17:03:20 2016 -0500
+
+    IDs found for games and companies
+
+commit 032b8af1b1dcfc799a2d202042de7c69950f5908
+Author: Will Ripley <wwripley@gmail.com>
+Date:   Wed Mar 23 15:50:07 2016 -0500
+
+    wripley: Added JSON examples to requests
+
+commit 681bb4d9c5d7a4f53bd5f1a01255ae66ca1fb1a3
+Author: Joshua Hurt <joshuahurt@utexas.edu>
+Date:   Wed Mar 23 14:59:17 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit bfbf481ab01a0c38477ff3288dfb4724bfef2c0e
+Merge: df2dda0 5c0f6f1
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Wed Mar 23 09:16:39 2016 -0500
+
+    Merge branch 'dev'
+    
+    master was ahead of dev. Shouldn't happen.
+
+commit 5c0f6f14b7d63e11656ad18c8971394dd6f90b2e
+Author: Jerry <jerry.pon@utexas.edu>
+Date:   Wed Mar 23 09:15:43 2016 -0500
+
+    Corrected url
+
+commit df2dda0ab7e46fbd77949eaf893e32651e22b50e
+Author: James Huang <james.huang@weiluen.com>
+Date:   Tue Mar 22 19:15:44 2016 -0500
+
+    closes #23, closes #25 we added in a custom stylesheet and everything is up and running on docker
+
+commit c0e958585826b4c1817a89c3bf487b2ef7ef8e46
+Author: James Huang <james.huang@weiluen.com>
+Date:   Tue Mar 22 18:47:59 2016 -0500
+
+    changed local host to 0.0.0.0 for docker container to run properly
+
+commit 9b6e404ff86bce25ecaf87b44707f12c8dd14441
+Merge: 8abb854 59b04a5
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Tue Mar 22 11:57:50 2016 -0500
+
+    Merge branch 'dev' of https://github.com/CamelBackNotation/cs373-idb into dev
+
+commit 8abb854b0a5f8d5a8a029a8ed6715d6b9811d133
+Author: ios4ever <jerry.pon@utexas.edu>
+Date:   Tue Mar 22 11:57:21 2016 -0500
+
+    Ignores Mac desktop service store
+
+commit 59b04a55b2a530bfd0d4ade6bf4e7d27c420e391
+Author: Jerry <jerry.pon@utexas.edu>
+Date:   Tue Mar 22 11:44:52 2016 -0500
+
+    Added travis status to md
+
+commit b399f3539b551e04a8ce6f9382e65fec57363642
+Author: Jerry <jerry.pon@utexas.edu>
+Date:   Mon Mar 21 09:06:52 2016 -0500
+
+    Added travis status to md
+
+commit d77e0b8041ff79a688a16e3abcbd4225c727cf64
+Merge: f1fbffd fd6ddac
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 22:38:10 2016 -0500
+
+    Merge branch 'dev'
+
+commit fd6ddac19fe27f59bddabc13e58ea3eddacbb482
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 22:37:03 2016 -0500
+
+    Added mock tables for 'Companies' and 'Games' pages with dynamic-filtering search bar included.
+
+commit f1fbffd57d63522625553ff7ac990b6868f9f492
+Merge: 12a4c8d 4a1107d
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 19:45:31 2016 -0500
+
+    Merge branch 'dev'
+
+commit 4a1107df3d8959c9fc4c1feea45f29358736e760
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 19:44:25 2016 -0500
+
+    Found a nice react table implementation that supports pagination, and both custom sorting and filtering. It looks pretty easy to use. I put a demo of it on the 'Games' page. The table isn't responsive right now (doesn't look right on mobile). If someone knows of a better library please say so! It was such a pain in the butt to find a simple react table implementation.
+
+commit 12a4c8d9cb975716d2f6b2dd1018c67f6888b76d
+Merge: 685fd6a 9a0948d
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 13:12:45 2016 -0500
+
+    Merge branch 'dev'
+
+commit 9a0948d4d683d4de09c914ae36af022a96d91287
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 13:10:12 2016 -0500
+
+    Fleshed out the 'About' page a bit more. I suck at front-end so I can't get the URL links to look pretty. Someone please feel free to fix that lol
+
+commit 685fd6a9dd802d4d98dca0c19c12a92e9f74fb99
+Merge: b04e651 e148762
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 12:27:19 2016 -0500
+
+    Merge branch 'dev'
+    
+    Merging master with dev. React Components are niiiiiiice.
+
+commit e148762626a1c65c438e8d11bf95ecf2cc8726e9
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 12:22:58 2016 -0500
+
+    Figured out how to use React components more. Used some to create a placeholder 'About the team' member info cards on the 'About' page
+
+commit b04e65167e80157f25c398e8fb103545cfe45adc
+Merge: 4bb03c2 cf2faa3
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 09:41:52 2016 -0500
+
+    Merge branch 'dev'
+    
+    Merging dev branch with master. I think an un-added ".idea" directory in master before the merge caused this conflict, but that's resolved in dev because I added the ".idea" directory to the ".gitignore".
+
+commit cf2faa383fb1928fbf4adb7de60f186217ac40d9
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sun Mar 20 09:36:07 2016 -0500
+
+    Went ahead and chose a template from the website Jerry linked and modified them to use Flask's Jinja templating syntax for easy extensibility. Closes #7.
+
+commit 801bc9a68bfa5f6af4a1266cec12baae34339de6
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sat Mar 19 05:43:10 2016 -0500
+
+    Messed around with React to create components to use for the About page.
+
+commit 4bb03c2306cbccf4850dd5f390bb888358b8abc0
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sat Mar 19 01:35:34 2016 -0500
+
+    Changed the name of a unit test to better reflect what it is testing for.
+
+commit 46696ef6b9f8b8d18323e020c4b46e80f94314c1
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Sat Mar 19 01:32:17 2016 -0500
+
+    Created the framework for React integration (assuming we 100% go that route vs Angular). Closes #6
+
+commit 7f6096174076b68c399a04a8c5a34c75073644ac
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Mar 18 21:16:53 2016 -0500
+
+    Removed the virtualenv created directory 'flask' to avoid issues with Travis. Individuals can simply use pip (the one associated with Python 3.4.x) to run 'pip install -r requirements.txt', which will install all the required dependencies (this is what Travis does).
+
+commit bfb57df9f8599be27295ba4e80a06e19a7fcd161
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Mar 18 21:03:48 2016 -0500
+
+    Accidentally added the Travis script to the gitignore. The Travis build should now run after this commit, therefore closing #4
+
+commit 18de6ba6c6394be87bba65aeb8cc2ed12ffd3447
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Mar 18 20:59:33 2016 -0500
+
+    Laid out Flask framework (closes #2), set up a test harness(closes #5), and working on issue #4. This commit will test the initial Travis script to see if it needs tweaking before being merged. This commit includes a directory named flask that was generated via virtualenv. It contains a complete 3.4.3 Python environment to use for development to avoid any issues across our respective computers. This 'flask' directory is meant only for development and therefore should not be merged into the master branch.
+
+commit 1bcc9535ea907382218105a01b29212b8ebd7ecf
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Mar 11 20:50:32 2016 -0600
+
+    Dev branch creation. Readme included with spots to fill out time estimation. Closes #1
+
+commit 8af4fa78aa3bdc4cdcc3ffd5d591b2a50f84bf47
+Author: CamelBackNotation <joshuahurt@utexas.edu>
+Date:   Fri Mar 11 19:55:47 2016 -0600
+
+    Initial commit

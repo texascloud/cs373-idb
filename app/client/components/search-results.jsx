@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Link } from 'react-router'
 import { Table } from 'reactable'
 import { CompaniesTable } from './companies.jsx'
 import { GamesTable } from './games.jsx'
@@ -20,7 +19,7 @@ export default class SearchResults extends React.Component {
       const and = data.and[0];
       return (
         <div>
-          <h1>Search results will eventually appear here! :)</h1>
+          <h1><u>And results</u></h1>
           {CompaniesTable(and.companies)}
           {GamesTable(and.games)}
         </div>
@@ -30,6 +29,7 @@ export default class SearchResults extends React.Component {
       const or = data.or[0];
       return (
         <div>
+          <h1><u>Or results</u></h1>
           {CompaniesTable(or.companies)}
           {GamesTable(or.games)}
         </div>

@@ -4,7 +4,6 @@ python:
    - "3.4"
 
 services:
-    - mysql
     - postgresql
 
 sudo: false
@@ -15,7 +14,7 @@ env:
 install:
     - pip install --upgrade pip
     - pip --version
-    - pip install -r requirements.txt
+    - pip install -r app/requirements.txt
     - pip install Flask
     - pip install Flask-SQLAlchemy
 
@@ -25,7 +24,6 @@ before_script:
     - printenv
     - pip list
     - coverage --version
-    - mysql -e 'create database swe_test;'
     - psql -c 'create database swe_test;' -U postgres
 
 script:

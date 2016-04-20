@@ -64,7 +64,7 @@ class YearsAPI(Resource):
 @api.resource('/years/<int:year_id>')
 class YearAPI(Resource):
     @staticmethod
-    @cache.cached(50)
+    @cache.cached()
     def get(year_id):
         Year = models.Year
         y = Year.query.filter_by(year_id = year_id).first()
@@ -84,10 +84,8 @@ class YearAPI(Resource):
 class SearchAPI(Resource):
     @staticmethod
     def get(search_term):
-        print(search_term)
         # Check if the search term has a space in it. If so, need to do an OR query
         if ' ' in search_term:
-            print('OR QUERY SHOULD EXECUTE NOW')
             return {
                 'and' : and_query(search_term),
                 'or'  : or_query(search_term)

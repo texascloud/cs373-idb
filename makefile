@@ -1,12 +1,13 @@
 FILES :=                              \
     models.html             \
-    IDB1.log              \
-    run.py                            \
-    tests.out                         \
-    tests.py
+    IDB2.log              \
+    apiary.apib			\
+    app/models.py                            \
+    app/tests.py 			\
+    UML.pdf
 
-models.html: models.py
-	pydoc3 -w models.py
+models.html: app/models.py
+	cd app; pydoc3 -w models.py; mv models.html ../models.html
 
 IDB1.log:
 	git log > IDB1.log
@@ -17,12 +18,8 @@ IDB2.log:
 IDB3.log:
 	git log > IDB3.log	
 
-# RunCollatz.tmp: RunCollatz.in RunCollatz.out RunCollatz.py
-# 	./RunCollatz.py < RunCollatz.in > RunCollatz.tmp
-# 	diff RunCollatz.tmp RunCollatz.out
-
-tests.tmp: tests.py
-	coverage3 run    --include="./*" --branch tests.py >  tests.tmp 2>&1
+tests.tmp: app/tests.py
+	coverage3 run    --include="app/*" --branch app/tests.py >  app/tests.tmp 2>&1
 	coverage3 report -m                      >> tests.tmp
 	cat tests.tmp
 
@@ -48,16 +45,12 @@ check:
 clean:
 	rm -f  .coverage
 	rm -f  *.pyc
-	rm -rf server/__pycache__
-	rm -rf __pycache__
-	rm -f  tests.tmp
+	rm -rf app/server/__pycache__
+	rm -rf app/__pycache__
+	rm -f  app/tests.tmp
 
 config:
 	git config -l
-
-html: GamesObservatory.html
-
-log: GamesObservatory.log
 
 scrub:
 	make clean

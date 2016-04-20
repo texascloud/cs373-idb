@@ -1,4 +1,5 @@
 from sqlalchemy.dialects.postgresql import JSON
+import sqlalchemy as sa
 from flask.ext.sqlalchemy import SQLAlchemy, BaseQuery
 from sqlalchemy_searchable import SearchQueryMixin
 from sqlalchemy_utils.types import TSVectorType
@@ -6,17 +7,26 @@ from sqlalchemy_searchable import make_searchable, vectorizer
 from server import db, app
 
 
-make_searchable()
+make_searchable(options={'remove_symbols': '@'})
 
 @vectorizer(db.Integer)
 def integer_vectorizer(column):
-    return db.cast(db.func.avals(column), db.String)
+    return db.cast(column, db.String)
+
+@vectorizer(db.Float)
+def integer_vectorizer(column):
+    return db.cast(column, db.String)
+
 # Several empty classes to implement the search functionality for our models
 class CompanyQuery(BaseQuery, SearchQueryMixin):
     pass
 class GameQuery(BaseQuery, SearchQueryMixin):
     pass
 class YearQuery(BaseQuery, SearchQueryMixin):
+    pass
+class PlatformQuery(BaseQuery, SearchQueryMixin):
+    pass
+class GenreQuery(BaseQuery, SearchQueryMixin):
     pass
 
 
@@ -54,7 +64,7 @@ class Game(db.Model):
     query_class   = GameQuery
     __tablename__ = 'games'
     game_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(75))
     image_url = db.Column(db.String(255))
     rating = db.Column(db.Float(4))
     release_year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
@@ -63,13 +73,15 @@ class Game(db.Model):
     associated_genres = db.relationship("Genre", secondary=association_table_game_genre, backref=db.backref("games"))
     associated_platforms = db.relationship("Platform", secondary=association_table_game_platform, backref=db.backref("games"))
 
+    search_vector = db.Column(TSVectorType('name', 'rating', 'release_year'))
+
     def __init__(self, id, name=None, image_url=None, rating=0.0, release_year=0, search_vector=None):
-        self.game_id = id
-        self.name = name
-        self.image_url = image_url
-        self.rating = rating
-        self.release_year = release_year
-        self.search_vector = search_vector
+        self.game_id        = id
+        self.name           = name
+        self.image_url      = image_url
+        self.rating         = rating
+        self.release_year   = release_year
+        self.search_vector  = search_vector
 
     def __repr__(self):
         return '<Game: %r>' % (self.name)
@@ -99,7 +111,7 @@ class Company(db.Model):
     query_class   = CompanyQuery
     __tablename__ = 'companies'
     company_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
-    name = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(75), unique=True)
     num_developed = db.Column(db.Integer)
     num_published = db.Column(db.Integer)
     image_url = db.Column(db.String(255))
@@ -108,15 +120,17 @@ class Company(db.Model):
     search_vector = db.Column(TSVectorType('name'))
     associated_games = db.relationship("Game", secondary=association_table_game_company, backref=db.backref('companies'))
 
+    search_vector = db.Column(TSVectorType('name', 'avg_rating', 'year_founded'))
+
     def __init__(self, company_id, name=None, num_developed=0, image_url="", num_published=0, avg_rating=0.0, year_founded=None, search_vector=None):
-        self.company_id = company_id
-        self.name = name
-        self.num_developed = num_developed
-        self.image_url = image_url
-        self.num_published = num_published
-        self.avg_rating = avg_rating
-        self.year_founded = year_founded
-        self.search_vector = search_vector
+        self.company_id     = company_id
+        self.name           = name
+        self.num_developed  = num_developed
+        self.image_url      = image_url
+        self.num_published  = num_published
+        self.avg_rating     = avg_rating
+        self.year_founded   = year_founded
+        self.search_vector  = search_vector
 
 
     def __repr__(self):
@@ -140,6 +154,7 @@ class Year(db.Model):
 
     Num_companies_founded - The number of companies that were founded this specific year.
     """
+    query_class   = YearQuery
     __tablename__ = 'years'
     year_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     num_games = db.Column(db.Integer)
@@ -148,12 +163,15 @@ class Year(db.Model):
     games = db.relationship('Game', backref=db.backref('years'))
     companies_founded = db.relationship('Company', backref=db.backref('years'))
 
-    def __init__(self, year_id=0, num_games=None, most_popular_genre=None, avg_rating=None, num_companies_founded=None):
-        self.year_id = year_id
-        self.num_games = num_games
-        self.most_popular_genre = most_popular_genre
-        self.avg_rating = avg_rating
-        self.num_companies_founded = num_companies_founded
+    search_vector = db.Column(TSVectorType('year_id', 'most_popular_genre', 'avg_rating'))
+
+    def __init__(self, year_id=0, num_games=None, most_popular_genre=None, avg_rating=None, num_companies_founded=None, search_vector=None):
+        self.year_id                = year_id
+        self.num_games              = num_games
+        self.most_popular_genre     = most_popular_genre
+        self.avg_rating             = avg_rating
+        self.num_companies_founded  = num_companies_founded
+        self.search_vector          = search_vector
 
     def __repr__(self):
         return '<Year : %r>' % (self.year_id)
@@ -167,12 +185,16 @@ class Genre(db.Model):
     
     Genre_Name - The name of the genre.
     """
+    query_class   = GenreQuery
     __tablename__ = 'genres'
     genre_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     genre_name = db.Column(db.String(100))
 
-    def __init__(self, genre_name=None):
-        self.genre_name = genre_name
+    search_vector = db.Column(TSVectorType('genre_name'))
+
+    def __init__(self, genre_name=None, search_vector=None):
+        self.genre_name     = genre_name
+        self.search_vector  = search_vector
 
     def __repr__(self):
         return '<Genre : %s>' % (self.genre_name)
@@ -185,12 +207,16 @@ class Platform(db.Model):
 
     Platform_Name - The name of the platform.
     """
+    query_class   = PlatformQuery
     __tablename__ = 'platforms'
     platform_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     platform_name = db.Column(db.String(100))
 
-    def __init__(self, platform_name=None):
+    search_vector = db.Column(TSVectorType('platform_name'))
+
+    def __init__(self, platform_name=None, search_vector=None):
         self.platform_name = platform_name
+        self.search_vector = search_vector
 
     def __repr__(self):
         return '<Platform : %s>' % (self.platform_name)
