@@ -54,9 +54,6 @@ var RaisedButtonSimple = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var style = {
-                margin: 12
-            };
             if (this.state.data === null) {
                 return _react2.default.createElement(
                     'div',
@@ -314,7 +311,7 @@ var AboutList = _react2.default.createClass({
                         name: 'Will Ripley',
                         avatar: '/static/img/will.png',
                         bio: 'He is just a CS and MIS double major at UT Austin.',
-                        duties: 'Frontend, Database, REST API documentation, Technical Report',
+                        duties: 'Docker master, Database, REST API documentation, Technical Report',
                         commits: '24',
                         issues: '15',
                         tests: '10' })
@@ -354,7 +351,7 @@ var AboutList = _react2.default.createClass({
                         name: 'Joshua Hurt',
                         avatar: '/static/img/josh.png',
                         bio: 'Josh is a top 10% Brawhalla player. Once upon a time his computer got rained on; he dried it out.',
-                        duties: 'React, backend, framework, everything pretty much',
+                        duties: 'React, search functionality, backend, framework, devops, everything pretty much',
                         commits: '45',
                         issues: '22',
                         tests: '2',
@@ -1250,12 +1247,14 @@ var SearchBar = function (_React$Component2) {
       var inputBar = document.getElementById("searchTerm");
       // Get user input
       var searchTerm = inputBar.value;
+      console.log(searchTerm);
       this.serverRequest = $.get('/api/search/' + searchTerm, function (result) {
         this.setState({
           data: result
         });
         var location = {
           pathname: '/search',
+          query: { terms: searchTerm },
           state: result
         };
         // Send user to search page, as well as passing GET request
@@ -1275,7 +1274,7 @@ var SearchBar = function (_React$Component2) {
     value: function render() {
       return _react2.default.createElement(
         'form',
-        { className: 'navbar-form navbar-left' },
+        { className: 'navbar-form navbar-left', action: 'javascript:void(0);' },
         _react2.default.createElement(
           'div',
           { className: 'form-group' },
@@ -1376,8 +1375,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
-var _reactRouter = require('react-router');
-
 var _reactable = require('reactable');
 
 var _companies = require('./companies.jsx');
@@ -1421,7 +1418,11 @@ var SearchResults = function (_React$Component) {
           _react2.default.createElement(
             'h1',
             null,
-            'Search results will eventually appear here! :)'
+            _react2.default.createElement(
+              'u',
+              null,
+              'And results'
+            )
           ),
           (0, _companies.CompaniesTable)(and.companies),
           (0, _games.GamesTable)(and.games)
@@ -1431,6 +1432,15 @@ var SearchResults = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           null,
+          _react2.default.createElement(
+            'h1',
+            null,
+            _react2.default.createElement(
+              'u',
+              null,
+              'Or results'
+            )
+          ),
           (0, _companies.CompaniesTable)(or.companies),
           (0, _games.GamesTable)(or.games)
         );
@@ -1474,7 +1484,7 @@ var SearchResults = function (_React$Component) {
 
 exports.default = SearchResults;
 
-},{"./companies.jsx":2,"./games.jsx":5,"react":271,"react-dom":86,"react-router":125,"reactable":272}],11:[function(require,module,exports){
+},{"./companies.jsx":2,"./games.jsx":5,"react":271,"react-dom":86,"reactable":272}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

@@ -25,13 +25,15 @@ class SearchBar extends React.Component {
     let inputBar = document.getElementById("searchTerm");
     // Get user input
     const searchTerm = inputBar.value;
+    console.log(searchTerm);
     this.serverRequest = $.get('/api/search/'+searchTerm, function (result) {
       this.setState({
         data: result
       });
       const location = {
         pathname: '/search',
-        state: result
+        query   : {terms: searchTerm},
+        state   : result
       };
       // Send user to search page, as well as passing GET request
       // results to the page to be rendered
@@ -45,7 +47,7 @@ class SearchBar extends React.Component {
   }
   render() {
     return (
-      <form className="navbar-form navbar-left">
+      <form className="navbar-form navbar-left" action="javascript:void(0);">
         <div className="form-group">
           <input id="searchTerm" className="form-control" type="text"  placeholder="Search for..." />
           <button onClick={this.handleClick.bind(this)} type="button" className="btn btn-default">Submit</button>

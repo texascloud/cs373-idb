@@ -35,7 +35,7 @@ def db_import():
 	j = r.json()
 
 	# while len(j["games"]) > 0:
-	while header["offset"] < 100:
+	while header["offset"] < 300:
 
 		# pp = pprint.PrettyPrinter(indent = 4)
 		# pp.pprint(j)
