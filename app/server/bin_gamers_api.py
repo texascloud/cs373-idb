@@ -53,13 +53,7 @@ class YearsAPI(Resource):
     def get():
         Year = models.Year
         q = Year.query.all()
-        return [{
-                " Year" : y.year_id,
-                "Number of Games" : len(y.games),
-                "Most popular genre" : y.most_popular_genre,
-                "Average Rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                "Number of Companies Founded" : len(y.companies_founded)
-        } for y in q]
+        return yearListFormat(q)
 
 @api.resource('/years/<int:year_id>')
 class YearAPI(Resource):
@@ -70,14 +64,8 @@ class YearAPI(Resource):
         y = Year.query.filter_by(year_id = year_id).first()
         if not y:
             return []
-        return [{ 
-                "year_id" : year_id,
-                "num_games" : y.num_games,
-                "most_popular_genre" : y.most_popular_genre,
-                "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
-                "companies_to_url" : [{"name" : i.name, "url" : ("/companies/" + str(i.company_id))} for i in y.companies_founded],
-                "games_to_url" : [{"name" : i.name, "url" : ("/games/" + str(i.game_id))} for i in y.games]
-        }]
+        else:
+            return yearFormat(y)
 
 
 @api.resource('/search/<string:search_term>')
@@ -107,15 +95,19 @@ def or_query(query_term):
 def and_query(query_term):
     Company = models.Company
     Game = models.Game
+    Year = models.Year
     c = Company.query.search(query_term).all()
     g = Game.query.search(query_term).all()
+    y = Year.query.search(query_term).all()
     print(c)
     print(g)
-    if not c and not g:
+    print(y)
+    if not c and not g and not y:
         return []
     return [{
         "companies" : companyListFormat(c),
-        "games"     : gameListFormat(g)
+        "games"     : gameListFormat(g),
+        "years"     : yearListFormat(y)
     }]
 
 
@@ -181,3 +173,22 @@ def gameListFormat(q):
                 "Rating" : float("%.2f" % g.rating) if g.rating else None,
                 "Year" : g.release_year
             } for g in q]
+
+def yearListFormat(q):
+    return [{
+                " Year" : y.year_id,
+                "Number of Games" : len(y.games),
+                "Most Popular Genre" : y.most_popular_genre,
+                "Average Rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
+                "Number of Companies Founded" : len(y.companies_founded)
+            } for y in q]
+
+def yearFormat(y):
+    return [{
+        "year_id" : y.year_id,
+        "num_games" : y.num_games,
+        "most_popular_genre" : y.most_popular_genre,
+        "avg_rating" : float("%.2f" % y.avg_rating) if y.avg_rating else None,
+        "companies_to_url" : [{"name" : i.name, "url" : ("/companies/" + str(i.company_id))} for i in y.companies_founded],
+        "games_to_url" : [{"name" : i.name, "url" : ("/games/" + str(i.game_id))} for i in y.games]
+    }]
