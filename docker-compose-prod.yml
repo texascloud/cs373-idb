@@ -7,7 +7,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: lb
-    image: etoews/pythonwebapp_lb
+    image: wripley/pythonwebapp_lb
     environment:
       # Always deploy to n1 so the lb always has the same IP address. This is
       # just for convenience and isn't strictly necessary.
@@ -17,7 +17,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: app
-    image: etoews/pythonwebapp_app
+    image: wripley/pythonwebapp_app
     expose:
       # Expose port 8000 so it's only visibile on the container, not the host
       - "8000"
@@ -29,7 +29,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: db
-    image: etoews/pythonwebapp_db
+    image: wripley/pythonwebapp_db
     expose:
       # Expose port 5432 so it's only visibile on the container, not the host
       - "5432"
