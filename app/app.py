@@ -9,9 +9,13 @@ manager = Manager(app)
 @manager.command
 def create_db():
 	app.config['SQLALCHEMY_ECHO'] = True
-	db.create_all()
+	# db.create_all()
 	db_import()
 	update_year_entries()
+
+@manager.command
+def drop_db():
+	db.drop_all()
 
 # @manager.command
 # def start():

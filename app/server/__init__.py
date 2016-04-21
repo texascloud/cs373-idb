@@ -16,7 +16,7 @@ cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 
 app.register_blueprint(index)
 db = SQLAlchemy(app)
-db.configure_mappers()
+# db.configure_mappers()
 
 from server.bin_gamers_api import api
 app.register_blueprint(api.blueprint, url_prefix='/api')

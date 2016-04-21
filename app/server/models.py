@@ -68,7 +68,6 @@ class Game(db.Model):
     image_url = db.Column(db.String(255))
     rating = db.Column(db.Float(4))
     release_year = db.Column(db.Integer, db.ForeignKey('years.year_id'))
-    search_vector = db.Column(TSVectorType('name'))
     associated_companies = db.relationship("Company", secondary=association_table_game_company, backref=db.backref("games"))
     associated_genres = db.relationship("Genre", secondary=association_table_game_genre, backref=db.backref("games"))
     associated_platforms = db.relationship("Platform", secondary=association_table_game_platform, backref=db.backref("games"))
@@ -117,7 +116,6 @@ class Company(db.Model):
     image_url = db.Column(db.String(255))
     avg_rating = db.Column(db.Float)
     year_founded = db.Column(db.Integer, db.ForeignKey('years.year_id'))
-    search_vector = db.Column(TSVectorType('name'))
     associated_games = db.relationship("Game", secondary=association_table_game_company, backref=db.backref('companies'))
 
     search_vector = db.Column(TSVectorType('name', 'avg_rating', 'year_founded'))

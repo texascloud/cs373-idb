@@ -12,3 +12,4 @@ PyMySQL==0.7.2
 psycopg2
 gunicorn~=19.3
 requests==2.9.1
+Flask-Script~=2.0

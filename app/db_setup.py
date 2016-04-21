@@ -18,7 +18,7 @@ year_cache = []
 def db_import():
 	global year_cache
 	global header
-	db.drop_all()
+	# db.drop_all()
 	db.configure_mappers()
 	db.create_all()
 
@@ -179,5 +179,5 @@ def add_companies(companies, game):
 
 		game.associated_companies.append(company_to_update)
 
-db_import()
-update_year_entries()
+# db_import()
+# update_year_entries()
