@@ -19,7 +19,7 @@ class TestCase(TestCase):
         if travis_running is not None:
             app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'
         else:
-            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:password@localhost/swe_test'
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://docker:password@pythonwebapp_db/swe_test'
 
         self.app = app.test_client()
         self.endpoints = []
