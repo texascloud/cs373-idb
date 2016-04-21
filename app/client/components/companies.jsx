@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
 import { Table } from 'reactable'
-import { arrWithoutTerm } from '../utils/helpers.js'
+import { arrWithoutTerm, highlightTerms, sortColumn } from '../utils/helpers.js'
 
 export default class Companies extends React.Component {
   componentWillMount() {
@@ -69,18 +69,25 @@ export default class Companies extends React.Component {
   }
 }
 
-export function CompaniesTable(data) {
+export function CompaniesTable(data, query) {
   var companies = data;
+  let tmp = query.toString().split(' ').join('|');
+  var terms = new RegExp(tmp, "i");
   if (data.length !== 0) {
     var columns = arrWithoutTerm(companies, 'company_id');
     var reformattedCompanies = companies.map(function(obj) {
-      var comp = obj;
-      var id = comp['company_id'];
-      var name = comp[' Company'];
-      var year = comp['Year Founded'];
+      let comp = obj;
+      let id = comp['company_id'];
+      let name = comp[' Company'];
+      let year = comp['Year Founded'];
+      let rating = comp['Average Rating'];
       comp['name'] = name;
-      comp[' Company'] = <Link to={"/companies/"+id}>{name}</Link>;
-      comp['Year Founded'] = <Link to={"/years/"+year}>{year}</Link>;
+      // Highlight any search terms in the object attributes
+      comp['Average Rating'] = highlightTerms(rating, terms);
+      let boldedName = highlightTerms(name, terms);
+      let boldedYear = highlightTerms(year, terms);
+      comp[' Company'] = <Link to={"/companies/"+id}>{boldedName}</Link>;
+      comp['Year Founded'] = <Link to={"/years/"+year}>{boldedYear}</Link>;
       return comp;
     });
 
@@ -89,24 +96,9 @@ export function CompaniesTable(data) {
     <Table data={reformattedCompanies}
            columns={columns}
            sortable={[
-               {
-                  column: ' Company',
-                  sortFunction: function(a, b) {
-                  var nameA = a.props.children.toLowerCase();
-                  var nameB = b.props.children.toLowerCase();
-
-                  return nameA.localeCompare(nameB);
-                  }
-                },
-               {
-                  column: 'Year Founded',
-                  sortFunction: function(a, b) {
-                  var nameA = a.props.children;
-                  var nameB = b.props.children;
-                  return nameA > nameB ? 1 : -1;
-                  }
-                },
-                'Average Rating',
+                sortColumn(' Company', 2),
+                sortColumn('Year Founded', 2),
+                sortColumn('Average Rating', 1),
                 'Number of Games Developed',
                 'Number of Games Published'
                 ]}
@@ -116,3 +108,14 @@ export function CompaniesTable(data) {
            defaultSortAscending/>
   )
 }
+
+
+// {
+//   column: ' Company',
+//     sortFunction: function(a, b) {
+//   var nameA = a.props.children.toLowerCase();
+//   var nameB = b.props.children.toLowerCase();
+//
+//   return nameA.localeCompare(nameB);
+// }
+// },
