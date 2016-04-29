@@ -13,6 +13,7 @@ export default class Menu extends React.Component {
             <Link activeClassName="active" className="nav-item nav-link" to="/companies">Companies</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/games">Games</Link>
             <Link activeClassName="active" className="nav-item nav-link" to="/years">Years</Link>
+            <Link activeClassName="active" className="nav-item nav-link" to="/darkrituals">Dark Rituals</Link>
             <SearchBar />
           </div>
         </nav>

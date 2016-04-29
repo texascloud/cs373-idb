@@ -16,7 +16,8 @@ class TestCase(TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         travis_running = os.environ.get('TRAVIS_RUNNING')
-        if travis_running is not None:
+        local = os.environ.get('LOCAL_TESTS')
+        if travis_running is not None or local is not None:
             app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/swe_test'
         else:
             app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://docker:password@pythonwebapp_db/swe_test'
